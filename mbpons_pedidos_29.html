@@ -80,6 +80,8 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 .cliente-field label { font-size: 13px; color: var(--muted); display: block; margin-bottom: 6px; font-weight: 500; }
 .cliente-field input { width: 100%; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none; color: var(--text); }
 .cliente-field input:focus { border-color: var(--brand-light); }
+.cliente-field textarea { width: 100%; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none; color: var(--text); resize: vertical; min-height: 80px; }
+.cliente-field textarea:focus { border-color: var(--brand-light); }
 .cart-empty { text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: 14px; }
 .cart-item { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); }
 .cart-item-name { flex: 1; font-size: 13px; line-height: 1.3; }
@@ -145,6 +147,10 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
     <div class="cliente-field">
       <label>Tu localidad</label>
       <input type="text" id="localidad-cliente" placeholder="Ej: Gualeguaychú, Concepción del Uruguay...">
+    </div>
+    <div class="cliente-field">
+      <label>Comentarios (opcional)</label>
+      <textarea id="comentarios-cliente" placeholder="Aclaración sobre el pedido..."></textarea>
     </div>
     <div id="cart-items-list"></div>
   </div>
@@ -942,8 +948,9 @@ function enviarWhatsApp() {
   const localidad = document.getElementById('localidad-cliente').value.trim();
   const items = Object.values(carrito);
   if (!nombre) { alert('Por favor ingresá tu nombre antes de enviar el pedido.'); return; }
-  if (!localidad) { alert('Por favor ingresá tu localidad antes de enviar el pedido.'); return; }
+
   if (items.length === 0) { alert('No hay productos en el pedido.'); return; }
+  if (!localidad) { alert('Por favor ingresá tu localidad antes de enviar el pedido.'); return; }
   const esGualeguaychu = localidad.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes('gualeguaychu');
   const numero = esGualeguaychu ? NUMERO_GCU : NUMERO_RESTO;
   const total = items.reduce((s, i) => s + i.precio * i.qty, 0);
@@ -955,6 +962,8 @@ function enviarWhatsApp() {
   items.forEach(i => {
     msg += `• ${i.marca} ${i.nombre}${i.presentacion ? ' ' + i.presentacion : ''} x *${i.qty}* = $${Math.round(i.precio * i.qty).toLocaleString('es-AR')}\n`;
   });
+  const comentarios = document.getElementById('comentarios-cliente').value.trim();
+  if (comentarios) msg += `\n*Comentarios:* ${comentarios}`;
   msg += `\n*TOTAL: $${Math.round(total).toLocaleString('es-AR')}*`;
   window.open(`https://wa.me/${numero}?text=${encodeURIComponent(msg)}`, '_blank');
 }
