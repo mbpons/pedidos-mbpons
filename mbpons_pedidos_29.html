@@ -80,8 +80,6 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 .cliente-field label { font-size: 13px; color: var(--muted); display: block; margin-bottom: 6px; font-weight: 500; }
 .cliente-field input { width: 100%; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none; color: var(--text); }
 .cliente-field input:focus { border-color: var(--brand-light); }
-.cliente-field textarea { width: 100%; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none; color: var(--text); resize: vertical; min-height: 80px; }
-.cliente-field textarea:focus { border-color: var(--brand-light); }
 .cart-empty { text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: 14px; }
 .cart-item { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); }
 .cart-item-name { flex: 1; font-size: 13px; line-height: 1.3; }
@@ -144,14 +142,6 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
       <label>Tu nombre y negocio</label>
       <input type="text" id="nombre-cliente" placeholder="Ej: Juan García - Veterinaria Central">
     </div>
-    <div class="cliente-field">
-      <label>Tu localidad</label>
-      <input type="text" id="localidad-cliente" placeholder="Ej: Gualeguaychú, Concepción del Uruguay...">
-    </div>
-    <div class="cliente-field">
-      <label>Comentarios (opcional)</label>
-      <textarea id="comentarios-cliente" placeholder="Aclaración sobre el pedido..."></textarea>
-    </div>
     <div id="cart-items-list"></div>
   </div>
   <div class="cart-footer">
@@ -167,8 +157,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 </div>
 
 <script>
-const NUMERO_GCU = "5493446206221";
-const NUMERO_RESTO = "5493446599787";
+const TU_NUMERO = "5493446543120"; // ← REEMPLAZÁ CON TU NÚMERO
 
 const categorias = [
   { id: "todos", label: "Todos" },
@@ -458,38 +447,38 @@ const productos = [
   {id:"108900",marca:"CÉSPED",nombre:"Fertilizante 15-15-15",presentacion:"1 kg",precio:5000,cat:"forraje",sub:""},
   {id:"108899",marca:"CÉSPED",nombre:"Jardín",presentacion:"500 g",precio:5000,cat:"forraje",sub:""},
   // GRANAZO
-  {id:"100280",marca:"GRANAZO",nombre:"Bebé Doméstico",presentacion:"25 kg",precio:22132.11,cat:"granazo",sub:""},
-  {id:"100291",marca:"GRANAZO",nombre:"Bloque Proteico 35%",presentacion:"15 kg",precio:18416.99,cat:"granazo",sub:""},
-  {id:"100288",marca:"GRANAZO",nombre:"Borrego Exposición",presentacion:"25 kg",precio:18569.88,cat:"granazo",sub:""},
-  {id:"100283",marca:"GRANAZO",nombre:"Cerdo Lechón",presentacion:"25 kg",precio:21075.05,cat:"granazo",sub:""},
-  {id:"100285",marca:"GRANAZO",nombre:"Cerdo Recría",presentacion:"25 kg",precio:18988.16,cat:"granazo",sub:""},
-  {id:"100286",marca:"GRANAZO",nombre:"Cerdo Reproductor",presentacion:"25 kg",precio:17739.34,cat:"granazo",sub:""},
-  {id:"100284",marca:"GRANAZO",nombre:"Cerdo Terminación",presentacion:"25 kg",precio:16613.89,cat:"granazo",sub:""},
-  {id:"100267",marca:"GRANAZO",nombre:"Concentrado 40%",presentacion:"30 kg",precio:25763.53,cat:"granazo",sub:""},
-  {id:"100268",marca:"GRANAZO",nombre:"Concentrado 40% Sin Urea",presentacion:"30 kg",precio:30103.75,cat:"granazo",sub:""},
-  {id:"100290",marca:"GRANAZO",nombre:"Conejo Engorde",presentacion:"25 kg",precio:19284.11,cat:"granazo",sub:""},
-  {id:"100287",marca:"GRANAZO",nombre:"Cordero",presentacion:"25 kg",precio:17847.67,cat:"granazo",sub:""},
-  {id:"100260",marca:"GRANAZO",nombre:"Destete Hiper Precoz",presentacion:"25 kg",precio:29433.91,cat:"granazo",sub:""},
-  {id:"100261",marca:"GRANAZO",nombre:"Destete Precoz",presentacion:"30 kg",precio:20789.64,cat:"granazo",sub:""},
-  {id:"100282",marca:"GRANAZO",nombre:"Engorde Doméstico",presentacion:"25 kg",precio:20885.47,cat:"granazo",sub:""},
-  {id:"100275",marca:"GRANAZO",nombre:"Equino Desarrollo",presentacion:"30 kg",precio:22877.29,cat:"granazo",sub:""},
-  {id:"100274",marca:"GRANAZO",nombre:"Equino Mantenimiento",presentacion:"30 kg",precio:19361.71,cat:"granazo",sub:""},
-  {id:"100273",marca:"GRANAZO",nombre:"Equino Trainning",presentacion:"30 kg",precio:21162.90,cat:"granazo",sub:""},
-  {id:"100271",marca:"GRANAZO",nombre:"Lechera Alta Energía",presentacion:"30 kg",precio:17656,cat:"granazo",sub:""},
-  {id:"100289",marca:"GRANAZO",nombre:"Ovejas",presentacion:"25 kg",precio:17739.34,cat:"granazo",sub:""},
-  {id:"100276",marca:"GRANAZO",nombre:"Parrillero Iniciador",presentacion:"25 kg",precio:23539.60,cat:"granazo",sub:""},
-  {id:"100277",marca:"GRANAZO",nombre:"Parrillero Terminados",presentacion:"25 kg",precio:21916.68,cat:"granazo",sub:""},
-  {id:"100281",marca:"GRANAZO",nombre:"Ponedora Doméstica",presentacion:"25 kg",precio:15693.55,cat:"granazo",sub:""},
-  {id:"100278",marca:"GRANAZO",nombre:"Ponedora Jaula",presentacion:"25 kg",precio:17902.45,cat:"granazo",sub:""},
-  {id:"100279",marca:"GRANAZO",nombre:"Recría Reposición",presentacion:"25 kg",precio:20372.74,cat:"granazo",sub:""},
-  {id:"100266",marca:"GRANAZO",nombre:"Toro Servicio",presentacion:"30 kg",precio:18016.24,cat:"granazo",sub:""},
-  {id:"100270",marca:"GRANAZO",nombre:"Vaca Lechera 16%",presentacion:"30 kg",precio:18593.49,cat:"granazo",sub:""},
-  {id:"100272",marca:"GRANAZO",nombre:"Vaca Pre Parto",presentacion:"30 kg",precio:18241.93,cat:"granazo",sub:""},
-  {id:"100263",marca:"GRANAZO",nombre:"Vacuno Engorde",presentacion:"30 kg",precio:18077.01,cat:"granazo",sub:""},
-  {id:"100264",marca:"GRANAZO",nombre:"Vacuno Engorde Feed Lot",presentacion:"30 kg",precio:18597.83,cat:"granazo",sub:""},
-  {id:"100265",marca:"GRANAZO",nombre:"Vacuno Mantenimiento",presentacion:"30 kg",precio:17430.31,cat:"granazo",sub:""},
-  {id:"100269",marca:"GRANAZO",nombre:"Vacuno Recría 13%",presentacion:"30 kg",precio:17721.11,cat:"granazo",sub:""},
-  {id:"100262",marca:"GRANAZO",nombre:"Vacuno Recría 16%",presentacion:"30 kg",precio:18454.60,cat:"granazo",sub:""},
+  {id:"100280",marca:"GRANAZO",nombre:"Bebé Doméstico",presentacion:"25 kg",precio:21008.03,cat:"granazo",sub:""},
+  {id:"100291",marca:"GRANAZO",nombre:"Bloque Proteico 35%",presentacion:"15 kg",precio:20041.13,cat:"granazo",sub:""},
+  {id:"100288",marca:"GRANAZO",nombre:"Borrego Exposición",presentacion:"25 kg",precio:19025.31,cat:"granazo",sub:""},
+  {id:"100283",marca:"GRANAZO",nombre:"Cerdo Lechón",presentacion:"25 kg",precio:21559.33,cat:"granazo",sub:""},
+  {id:"100285",marca:"GRANAZO",nombre:"Cerdo Recría",presentacion:"25 kg",precio:18900.71,cat:"granazo",sub:""},
+  {id:"100286",marca:"GRANAZO",nombre:"Cerdo Reproductor",presentacion:"25 kg",precio:17316.47,cat:"granazo",sub:""},
+  {id:"100284",marca:"GRANAZO",nombre:"Cerdo Terminación",presentacion:"25 kg",precio:16191.18,cat:"granazo",sub:""},
+  {id:"100267",marca:"GRANAZO",nombre:"Concentrado 40%",presentacion:"30 kg",precio:25420.61,cat:"granazo",sub:""},
+  {id:"100268",marca:"GRANAZO",nombre:"Concentrado 40% Sin Urea",presentacion:"30 kg",precio:28607.50,cat:"granazo",sub:""},
+  {id:"100290",marca:"GRANAZO",nombre:"Conejo Engorde",presentacion:"25 kg",precio:19311.25,cat:"granazo",sub:""},
+  {id:"100287",marca:"GRANAZO",nombre:"Cordero",presentacion:"25 kg",precio:17688.03,cat:"granazo",sub:""},
+  {id:"100260",marca:"GRANAZO",nombre:"Destete Hiper Precoz",presentacion:"25 kg",precio:31507.26,cat:"granazo",sub:""},
+  {id:"100261",marca:"GRANAZO",nombre:"Destete Precoz",presentacion:"30 kg",precio:20155.88,cat:"granazo",sub:""},
+  {id:"100282",marca:"GRANAZO",nombre:"Engorde Doméstico",presentacion:"25 kg",precio:21275.65,cat:"granazo",sub:""},
+  {id:"100275",marca:"GRANAZO",nombre:"Equino Desarrollo",presentacion:"30 kg",precio:22957.02,cat:"granazo",sub:""},
+  {id:"100274",marca:"GRANAZO",nombre:"Equino Mantenimiento",presentacion:"30 kg",precio:18117.50,cat:"granazo",sub:""},
+  {id:"100273",marca:"GRANAZO",nombre:"Equino Trainning",presentacion:"30 kg",precio:20804.66,cat:"granazo",sub:""},
+  {id:"100271",marca:"GRANAZO",nombre:"Lechera Alta Energía",presentacion:"30 kg",precio:16898.85,cat:"granazo",sub:""},
+  {id:"100289",marca:"GRANAZO",nombre:"Ovejas",presentacion:"25 kg",precio:16665.09,cat:"granazo",sub:""},
+  {id:"100276",marca:"GRANAZO",nombre:"Parrillero Iniciador",presentacion:"25 kg",precio:22962.67,cat:"granazo",sub:""},
+  {id:"100277",marca:"GRANAZO",nombre:"Parrillero Terminados",presentacion:"25 kg",precio:23104.10,cat:"granazo",sub:""},
+  {id:"100281",marca:"GRANAZO",nombre:"Ponedora Doméstica",presentacion:"25 kg",precio:15991.91,cat:"granazo",sub:""},
+  {id:"100278",marca:"GRANAZO",nombre:"Ponedora Jaula",presentacion:"25 kg",precio:18469.50,cat:"granazo",sub:""},
+  {id:"100279",marca:"GRANAZO",nombre:"Recría Reposición",presentacion:"25 kg",precio:19981.73,cat:"granazo",sub:""},
+  {id:"100266",marca:"GRANAZO",nombre:"Toro Servicio",presentacion:"30 kg",precio:16780.50,cat:"granazo",sub:""},
+  {id:"100270",marca:"GRANAZO",nombre:"Vaca Lechera 16%",presentacion:"30 kg",precio:17990.37,cat:"granazo",sub:""},
+  {id:"100272",marca:"GRANAZO",nombre:"Vaca Pre Parto",presentacion:"30 kg",precio:17543.25,cat:"granazo",sub:""},
+  {id:"100263",marca:"GRANAZO",nombre:"Vacuno Engorde",presentacion:"30 kg",precio:17609.00,cat:"granazo",sub:""},
+  {id:"100264",marca:"GRANAZO",nombre:"Vacuno Engorde Feed Lot",presentacion:"30 kg",precio:17977.22,cat:"granazo",sub:""},
+  {id:"100265",marca:"GRANAZO",nombre:"Vacuno Mantenimiento",presentacion:"30 kg",precio:16434.19,cat:"granazo",sub:""},
+  {id:"100269",marca:"GRANAZO",nombre:"Vacuno Recría 13%",presentacion:"30 kg",precio:16653.37,cat:"granazo",sub:""},
+  {id:"100262",marca:"GRANAZO",nombre:"Vacuno Recría 16%",presentacion:"30 kg",precio:17845.72,cat:"granazo",sub:""},
 ];
 
 let carrito = {};
@@ -524,8 +513,8 @@ const imgPorCodigo = {
   '108871': 'https://advancebio.com.ar/wp-content/uploads/2024/09/cookie-cordero.webp',   // Cookie Cordero
   '108892': 'https://advancebio.com.ar/wp-content/uploads/2024/09/cookie-pollo.webp',     // Cookie Pollo
   // ADVANCE GATOS
-  '108837': 'https://advancebio.com.ar/wp-content/uploads/2024/09/6.png', // Adulto All Breeds 8kg
-  '108836': 'https://advancebio.com.ar/wp-content/uploads/2024/09/6.png', // Adulto All Breeds 1.5kg
+  '108837': 'https://advancebio.com.ar/wp-content/uploads/2024/09/4-450x450.png', // Adulto All Breeds
+  '108836': 'https://advancebio.com.ar/wp-content/uploads/2024/09/4-450x450.png', // Adulto All Breeds 1.5kg
   '108870': 'https://advancebio.com.ar/wp-content/uploads/2024/09/5-450x450.png', // Indoor
   '108868': 'https://advancebio.com.ar/wp-content/uploads/2024/09/8-450x450.png', // Kitten 7.5kg
   '108867': 'https://advancebio.com.ar/wp-content/uploads/2024/09/8-450x450.png', // Kitten 750g
@@ -945,27 +934,19 @@ function renderCarrito() {
 
 function enviarWhatsApp() {
   const nombre = document.getElementById('nombre-cliente').value.trim();
-  const localidad = document.getElementById('localidad-cliente').value.trim();
   const items = Object.values(carrito);
   if (!nombre) { alert('Por favor ingresá tu nombre antes de enviar el pedido.'); return; }
-
   if (items.length === 0) { alert('No hay productos en el pedido.'); return; }
-  if (!localidad) { alert('Por favor ingresá tu localidad antes de enviar el pedido.'); return; }
-  const esGualeguaychu = localidad.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes('gualeguaychu');
-  const numero = esGualeguaychu ? NUMERO_GCU : NUMERO_RESTO;
   const total = items.reduce((s, i) => s + i.precio * i.qty, 0);
   let msg = `*PEDIDO - MBPONS Distribuciones*\n`;
   msg += `*Cliente:* ${nombre}\n`;
-  msg += `*Localidad:* ${localidad}\n`;
   msg += `*Fecha:* ${new Date().toLocaleDateString('es-AR')}\n\n`;
   msg += `*Productos:*\n`;
   items.forEach(i => {
     msg += `• ${i.marca} ${i.nombre}${i.presentacion ? ' ' + i.presentacion : ''} x *${i.qty}* = $${Math.round(i.precio * i.qty).toLocaleString('es-AR')}\n`;
   });
-  const comentarios = document.getElementById('comentarios-cliente').value.trim();
-  if (comentarios) msg += `\n*Comentarios:* ${comentarios}`;
   msg += `\n*TOTAL: $${Math.round(total).toLocaleString('es-AR')}*`;
-  window.open(`https://wa.me/${numero}?text=${encodeURIComponent(msg)}`, '_blank');
+  window.open(`https://wa.me/${TU_NUMERO}?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
 renderAll();
