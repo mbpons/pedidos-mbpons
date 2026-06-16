@@ -142,6 +142,10 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
       <label>Tu nombre y negocio</label>
       <input type="text" id="nombre-cliente" placeholder="Ej: Juan García - Veterinaria Central">
     </div>
+    <div class="cliente-field">
+      <label>Tu localidad</label>
+      <input type="text" id="localidad-cliente" placeholder="Ej: Gualeguaychú, Concepción del Uruguay...">
+    </div>
     <div id="cart-items-list"></div>
   </div>
   <div class="cart-footer">
@@ -157,7 +161,8 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 </div>
 
 <script>
-const TU_NUMERO = "5493446543120"; // ← REEMPLAZÁ CON TU NÚMERO
+const NUMERO_GCU = "5493446206221";
+const NUMERO_RESTO = "5493446599787";
 
 const categorias = [
   { id: "todos", label: "Todos" },
@@ -938,19 +943,24 @@ function renderCarrito() {
 
 function enviarWhatsApp() {
   const nombre = document.getElementById('nombre-cliente').value.trim();
+  const localidad = document.getElementById('localidad-cliente').value.trim();
   const items = Object.values(carrito);
   if (!nombre) { alert('Por favor ingresá tu nombre antes de enviar el pedido.'); return; }
+  if (!localidad) { alert('Por favor ingresá tu localidad antes de enviar el pedido.'); return; }
   if (items.length === 0) { alert('No hay productos en el pedido.'); return; }
+  const esGualeguaychu = localidad.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes('gualeguaychu');
+  const numero = esGualeguaychu ? NUMERO_GCU : NUMERO_RESTO;
   const total = items.reduce((s, i) => s + i.precio * i.qty, 0);
   let msg = `*PEDIDO - MBPONS Distribuciones*\n`;
   msg += `*Cliente:* ${nombre}\n`;
+  msg += `*Localidad:* ${localidad}\n`;
   msg += `*Fecha:* ${new Date().toLocaleDateString('es-AR')}\n\n`;
   msg += `*Productos:*\n`;
   items.forEach(i => {
     msg += `• ${i.marca} ${i.nombre}${i.presentacion ? ' ' + i.presentacion : ''} x *${i.qty}* = $${Math.round(i.precio * i.qty).toLocaleString('es-AR')}\n`;
   });
   msg += `\n*TOTAL: $${Math.round(total).toLocaleString('es-AR')}*`;
-  window.open(`https://wa.me/${TU_NUMERO}?text=${encodeURIComponent(msg)}`, '_blank');
+  window.open(`https://wa.me/${numero}?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
 renderAll();
