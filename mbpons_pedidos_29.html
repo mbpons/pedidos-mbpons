@@ -22,8 +22,6 @@
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
-
-/* HEADER */
 .header { background: var(--brand); color: white; padding: 0 1rem; position: sticky; top: 0; z-index: 100; }
 .header-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 56px; }
 .logo { font-family: 'DM Serif Display', serif; font-size: 18px; letter-spacing: 0.01em; }
@@ -31,8 +29,6 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 .cart-btn { background: var(--accent); border: none; color: var(--brand); font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 14px; padding: 8px 16px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: opacity 0.15s; }
 .cart-btn:hover { opacity: 0.9; }
 .cart-count { background: var(--brand); color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; }
-
-/* SEARCH & FILTERS */
 .controls { background: var(--surface); border-bottom: 1px solid var(--border); padding: 12px 1rem; position: sticky; top: 56px; z-index: 99; }
 .controls-inner { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
 .search-box { position: relative; }
@@ -43,13 +39,9 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 .filter-btn { padding: 6px 14px; border: 1.5px solid var(--border); border-radius: 20px; background: transparent; font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--muted); cursor: pointer; transition: all 0.15s; white-space: nowrap; }
 .filter-btn:hover { border-color: var(--brand-light); color: var(--brand); }
 .filter-btn.active { background: var(--brand); border-color: var(--brand); color: white; }
-
-/* MAIN */
 .main { max-width: 900px; margin: 0 auto; padding: 1rem; }
 .section-title { font-size: 13px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin: 1.5rem 0 0.75rem; }
 .section-title:first-child { margin-top: 0; }
-
-/* PRODUCT GRID */
 .prod-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 7px; }
 .prod-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: 10px; padding: 9px 10px; display: flex; flex-direction: row; align-items: center; gap: 10px; transition: border-color 0.15s, transform 0.1s; }
 .prod-card:hover { border-color: var(--brand-light); transform: translateY(-1px); }
@@ -66,8 +58,6 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 .qty-btn:hover { background: var(--brand); border-color: var(--brand); color: white; }
 .qty-num { font-size: 13px; font-weight: 500; min-width: 18px; text-align: center; }
 .in-cart { background: #e8f5ee; border-color: var(--brand-light) !important; }
-
-/* CART PANEL */
 .cart-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 200; }
 .cart-overlay.open { display: block; }
 .cart-panel { position: fixed; right: 0; top: 0; bottom: 0; width: min(420px, 100vw); background: var(--surface); z-index: 201; display: flex; flex-direction: column; transform: translateX(100%); transition: transform 0.25s ease; }
@@ -93,11 +83,9 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 .wa-btn { width: 100%; padding: 14px; background: var(--whatsapp); border: none; border-radius: 10px; color: white; font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: opacity 0.15s; }
 .wa-btn:hover { opacity: 0.9; }
 .wa-btn svg { width: 22px; height: 22px; fill: white; }
-
-/* EMPTY STATE */
+.kg-total-badge { position: fixed; bottom: 14px; right: 14px; background: rgba(26,58,42,0.92); color: #fff; font-size: 12px; font-weight: 600; padding: 7px 14px; border-radius: 20px; z-index: 250; box-shadow: 0 2px 8px rgba(0,0,0,0.25); display: none; }
+.kg-total-badge.show { display: block; }
 .empty-state { text-align: center; padding: 4rem 1rem; color: var(--muted); }
-
-/* RESPONSIVE */
 @media (max-width: 600px) {
   .prod-grid { grid-template-columns: 1fr; gap: 6px; }
   .prod-card { padding: 8px 10px; }
@@ -130,7 +118,6 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 
 <main class="main" id="main-content"></main>
 
-<!-- CARRITO -->
 <div class="cart-overlay" id="overlay" onclick="cerrarCarrito()"></div>
 <div class="cart-panel" id="cart-panel">
   <div class="cart-header">
@@ -160,6 +147,8 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
   </div>
 </div>
 
+<div class="kg-total-badge" id="kg-total-badge"></div>
+
 <script>
 const NUMERO_GCU = "5493446206221";
 const NUMERO_RESTO = "5493446599787";
@@ -175,7 +164,6 @@ const categorias = [
 ];
 
 const productos = [
-  // ADVANCE PERROS
   {id:"108833",marca:"ADVANCE",nombre:"Cachorros All Breeds",presentacion:"1,5 kg",precio:5013.53,cat:"perro",sub:"cachorro"},
   {id:"108834",marca:"ADVANCE",nombre:"Cachorros All Breeds",presentacion:"12 kg",precio:30725.69,cat:"perro",sub:"cachorro"},
   {id:"108828",marca:"ADVANCE",nombre:"Cachorros Giant Breed",presentacion:"15 kg",precio:54371.53,cat:"perro",sub:"cachorro"},
@@ -188,7 +176,6 @@ const productos = [
   {id:"108911",marca:"ADVANCE",nombre:"Adulto Nuggets",presentacion:"15 kg",precio:45591.66,cat:"perro",sub:"adulto"},
   {id:"108824",marca:"ADVANCE",nombre:"Adulto Small Breed",presentacion:"3 kg",precio:9830.80,cat:"perro",sub:"adulto"},
   {id:"108825",marca:"ADVANCE",nombre:"Adulto Small Breed",presentacion:"12 kg",precio:30359.40,cat:"perro",sub:"adulto"},
-  // ADVANCE GATOS
   {id:"108868",marca:"ADVANCE",nombre:"Kitten",presentacion:"7,5 kg",precio:46597.77,cat:"gato",sub:"kitten"},
   {id:"108867",marca:"ADVANCE",nombre:"Kitten",presentacion:"750 g",precio:7778.40,cat:"gato",sub:"kitten"},
   {id:"108837",marca:"ADVANCE",nombre:"Adulto All Breeds",presentacion:"8 kg",precio:29299.21,cat:"gato",sub:"adulto"},
@@ -197,11 +184,9 @@ const productos = [
   {id:"108869",marca:"ADVANCE",nombre:"Adulto Urinary",presentacion:"1,5 kg",precio:9095.16,cat:"gato",sub:"adulto"},
   {id:"108870",marca:"ADVANCE",nombre:"Adulto Indoor",presentacion:"8 kg",precio:40686.31,cat:"gato",sub:"adulto"},
   {id:"108912",marca:"ADVANCE",nombre:"Adulto Nuggets",presentacion:"8 kg",precio:34696.03,cat:"gato",sub:"adulto"},
-  // ADVANCE COOKIES
   {id:"108893",marca:"ADVANCE",nombre:"Cookie Carne",presentacion:"150 g",precio:1633.40,cat:"perro",sub:"snack"},
   {id:"108871",marca:"ADVANCE",nombre:"Cookie Cordero",presentacion:"150 g",precio:2055.03,cat:"perro",sub:"snack"},
   {id:"108892",marca:"ADVANCE",nombre:"Cookie Pollo",presentacion:"150 g",precio:1633.40,cat:"perro",sub:"snack"},
-  // GUARDIAN / MBPONS
   {id:"108873",marca:"GUARDIAN",nombre:"Cachorros",presentacion:"1,5 kg",precio:3606.96,cat:"perro",sub:"cachorro"},
   {id:"108842",marca:"GUARDIAN",nombre:"Cachorros",presentacion:"10 kg",precio:19593.78,cat:"perro",sub:"cachorro"},
   {id:"108875",marca:"GUARDIAN",nombre:"Adultos",presentacion:"2 kg",precio:3475.11,cat:"perro",sub:"adulto"},
@@ -210,14 +195,12 @@ const productos = [
   {id:"108874",marca:"GUARDIAN",nombre:"Adultos Small Breed",presentacion:"15 kg",precio:21234.53,cat:"perro",sub:"adulto"},
   {id:"108845",marca:"GUARDIAN",nombre:"Gatos Adultos",presentacion:"10 kg",precio:21347.09,cat:"gato",sub:"adulto"},
   {id:"108876",marca:"GUARDIAN",nombre:"Gatos Adultos",presentacion:"500 g",precio:1216.30,cat:"gato",sub:"adulto"},
-  // DONDOG / FANDOG / RINTY / NUTRI KING / TOBIE
   {id:"108838",marca:"DONDOG",nombre:"Perro Adulto",presentacion:"20+2 kg",precio:35560.57,cat:"perro",sub:"adulto"},
   {id:"108840",marca:"FANDOG",nombre:"Perro Adulto Criadores",presentacion:"20 kg",precio:33818.01,cat:"perro",sub:"adulto"},
   {id:"108841",marca:"RINTY",nombre:"Perro Adulto",presentacion:"20 kg",precio:30725.14,cat:"perro",sub:"adulto"},
   {id:"108846",marca:"NUTRI KING",nombre:"Perro Adulto",presentacion:"20 kg",precio:25714.43,cat:"perro",sub:"adulto"},
   {id:"108872",marca:"TOBIE MENU",nombre:"Perro Adulto",presentacion:"20 kg",precio:33268.87,cat:"perro",sub:"adulto"},
   {id:"108839",marca:"MIAU",nombre:"Gato Adulto",presentacion:"8+2 kg",precio:25322.20,cat:"gato",sub:"adulto"},
-  // FAWNA PERROS
   {id:"108782",marca:"FAWNA",nombre:"Perro Adulto Light",presentacion:"3 kg",precio:24694,cat:"perro",sub:"adulto"},
   {id:"108781",marca:"FAWNA",nombre:"Perro Adulto Light",presentacion:"15 kg",precio:81944,cat:"perro",sub:"adulto"},
   {id:"108778",marca:"FAWNA",nombre:"Perro Adulto Mordida Pequeña",presentacion:"3 kg",precio:24083,cat:"perro",sub:"adulto"},
@@ -231,7 +214,6 @@ const productos = [
   {id:"108774",marca:"FAWNA",nombre:"Cachorro M y G",presentacion:"15 kg",precio:91180,cat:"perro",sub:"cachorro"},
   {id:"108784",marca:"FAWNA",nombre:"Perro Senior",presentacion:"3 kg",precio:24694,cat:"perro",sub:"adulto"},
   {id:"108783",marca:"FAWNA",nombre:"Perro Senior",presentacion:"15 kg",precio:81944,cat:"perro",sub:"adulto"},
-  // FAWNA GATOS
   {id:"108786",marca:"FAWNA",nombre:"Gato Adulto",presentacion:"3 kg",precio:33779,cat:"gato",sub:"adulto"},
   {id:"108785",marca:"FAWNA",nombre:"Gato Adulto",presentacion:"7,5 kg",precio:65503,cat:"gato",sub:"adulto"},
   {id:"108788",marca:"FAWNA",nombre:"Gato Adulto Esterilizado",presentacion:"3 kg",precio:37870,cat:"gato",sub:"adulto"},
@@ -240,7 +222,6 @@ const productos = [
   {id:"108789",marca:"FAWNA",nombre:"Gato Adulto Urinario",presentacion:"7,5 kg",precio:74783,cat:"gato",sub:"adulto"},
   {id:"108792",marca:"FAWNA",nombre:"Gatito Kitten",presentacion:"1 kg",precio:12415,cat:"gato",sub:"kitten"},
   {id:"108791",marca:"FAWNA",nombre:"Gatito Kitten",presentacion:"3 kg",precio:35387,cat:"gato",sub:"kitten"},
-  // OLD PRINCE EQUILIBRIUM PERROS
   {id:"100082",marca:"OLD PRINCE",nombre:"Equilibrium Cachorro M. Pequeña",presentacion:"3 kg",precio:14128,cat:"perro",sub:"cachorro"},
   {id:"100081",marca:"OLD PRINCE",nombre:"Equilibrium Cachorro M. Pequeña",presentacion:"7,5 kg",precio:31151,cat:"perro",sub:"cachorro"},
   {id:"100088",marca:"OLD PRINCE",nombre:"Equilibrium Cachorro M y G",presentacion:"3 kg",precio:13082,cat:"perro",sub:"cachorro"},
@@ -255,7 +236,6 @@ const productos = [
   {id:"100083",marca:"OLD PRINCE",nombre:"Equilibrium Adulto Mord. Pequeña",presentacion:"15 kg",precio:54947,cat:"perro",sub:"adulto"},
   {id:"108764",marca:"OLD PRINCE",nombre:"Equilibrium Adulto Weight Control",presentacion:"15 kg",precio:63838,cat:"perro",sub:"adulto"},
   {id:"108765",marca:"OLD PRINCE",nombre:"Equilibrium Adulto Weight Control",presentacion:"3 kg",precio:14796,cat:"perro",sub:"adulto"},
-  // OLD PRINCE EQUILIBRIUM GATOS
   {id:"108422",marca:"OLD PRINCE",nombre:"Equilibrium Kitten",presentacion:"1 kg",precio:8018,cat:"gato",sub:"kitten"},
   {id:"108421",marca:"OLD PRINCE",nombre:"Equilibrium Kitten",presentacion:"3 kg",precio:21810,cat:"gato",sub:"kitten"},
   {id:"108424",marca:"OLD PRINCE",nombre:"Equilibrium Gato Adulto",presentacion:"3 kg",precio:19828,cat:"gato",sub:"adulto"},
@@ -264,7 +244,6 @@ const productos = [
   {id:"108425",marca:"OLD PRINCE",nombre:"Equilibrium Gato Urinario",presentacion:"7,5 kg",precio:53660,cat:"gato",sub:"adulto"},
   {id:"108420",marca:"OLD PRINCE",nombre:"Equilibrium Gato Esterilizado",presentacion:"3 kg",precio:21810,cat:"gato",sub:"adulto"},
   {id:"108419",marca:"OLD PRINCE",nombre:"Equilibrium Gato Esterilizado",presentacion:"7,5 kg",precio:51440,cat:"gato",sub:"adulto"},
-  // OLD PRINCE NOVEL PERROS
   {id:"100103",marca:"OLD PRINCE",nombre:"Novel Cerdo & Legumbres Adulto",presentacion:"3 kg",precio:14224,cat:"perro",sub:"adulto"},
   {id:"100102",marca:"OLD PRINCE",nombre:"Novel Cerdo & Legumbres Adulto",presentacion:"15 kg",precio:61844,cat:"perro",sub:"adulto"},
   {id:"100095",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Adulto M y L",presentacion:"3 kg",precio:16135,cat:"perro",sub:"adulto"},
@@ -280,7 +259,6 @@ const productos = [
   {id:"100101",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Cachorro",presentacion:"3 kg",precio:17748,cat:"perro",sub:"cachorro"},
   {id:"100100",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Cachorro",presentacion:"7,5 kg",precio:40515,cat:"perro",sub:"cachorro"},
   {id:"100099",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Cachorro",presentacion:"15 kg",precio:77172,cat:"perro",sub:"cachorro"},
-  // OLD PRINCE NOVEL GATOS
   {id:"100106",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Gato Adulto",presentacion:"1 kg",precio:9919,cat:"gato",sub:"adulto"},
   {id:"100105",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Gato Adulto",presentacion:"3 kg",precio:27053,cat:"gato",sub:"adulto"},
   {id:"100104",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Gato Adulto",presentacion:"7,5 kg",precio:60869,cat:"gato",sub:"adulto"},
@@ -289,14 +267,12 @@ const productos = [
   {id:"100109",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Gato Sterilized",presentacion:"7,5 kg",precio:67632,cat:"gato",sub:"adulto"},
   {id:"100108",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Gato Kitten",presentacion:"1 kg",precio:10910,cat:"gato",sub:"kitten"},
   {id:"100107",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Gato Kitten",presentacion:"3 kg",precio:29757,cat:"gato",sub:"kitten"},
-  // OLD PRINCE PREMIUM PERROS
   {id:"108364",marca:"OLD PRINCE",nombre:"Premium Adulto",presentacion:"3 kg",precio:8728,cat:"perro",sub:"adulto"},
   {id:"108363",marca:"OLD PRINCE",nombre:"Premium Adulto",presentacion:"20 kg",precio:51495,cat:"perro",sub:"adulto"},
   {id:"108368",marca:"OLD PRINCE",nombre:"Premium Adulto Cordero",presentacion:"3 kg",precio:13192,cat:"perro",sub:"adulto"},
   {id:"108367",marca:"OLD PRINCE",nombre:"Premium Adulto Cordero",presentacion:"15 kg",precio:59968,cat:"perro",sub:"adulto"},
   {id:"108366",marca:"OLD PRINCE",nombre:"Premium Cachorro",presentacion:"3 kg",precio:9425,cat:"perro",sub:"cachorro"},
   {id:"108365",marca:"OLD PRINCE",nombre:"Premium Cachorro",presentacion:"15 kg",precio:42847,cat:"perro",sub:"cachorro"},
-  // OLD PRINCE PREMIUM GATOS
   {id:"108769",marca:"OLD PRINCE",nombre:"Premium Gatito",presentacion:"3 kg",precio:18139,cat:"gato",sub:"kitten"},
   {id:"108768",marca:"OLD PRINCE",nombre:"Premium Gatito",presentacion:"7,5 kg",precio:36279,cat:"gato",sub:"kitten"},
   {id:"108767",marca:"OLD PRINCE",nombre:"Premium Gato Adulto",presentacion:"3 kg",precio:16490,cat:"gato",sub:"adulto"},
@@ -305,11 +281,9 @@ const productos = [
   {id:"108909",marca:"OLD PRINCE",nombre:"Premium Gato Cordero Adulto",presentacion:"7,5 kg",precio:32981,cat:"gato",sub:"adulto"},
   {id:"108908",marca:"OLD PRINCE",nombre:"Premium Gato Urinario",presentacion:"3 kg",precio:16490,cat:"gato",sub:"adulto"},
   {id:"108907",marca:"OLD PRINCE",nombre:"Premium Gato Urinario",presentacion:"7,5 kg",precio:32981,cat:"gato",sub:"adulto"},
-  // NATURAL MEAT
   {id:"100124",marca:"NATURAL MEAT",nombre:"Perro Adulto",presentacion:"7 kg",precio:25337,cat:"perro",sub:"adulto"},
   {id:"100123",marca:"NATURAL MEAT",nombre:"Perro Adulto",presentacion:"15 kg",precio:41553,cat:"perro",sub:"adulto"},
   {id:"100126",marca:"NATURAL MEAT",nombre:"Perro Cachorro",presentacion:"15 kg",precio:45708,cat:"perro",sub:"cachorro"},
-  // KONGO GOLD
   {id:"100006",marca:"KONGO GOLD",nombre:"Natural Adulto",presentacion:"1,5 kg",precio:3986.70,cat:"perro",sub:"adulto"},
   {id:"100005",marca:"KONGO GOLD",nombre:"Natural Adulto",presentacion:"3 kg",precio:7617.43,cat:"perro",sub:"adulto"},
   {id:"100004",marca:"KONGO GOLD",nombre:"Natural Adulto",presentacion:"8 kg",precio:18087.64,cat:"perro",sub:"adulto"},
@@ -322,7 +296,6 @@ const productos = [
   {id:"100011",marca:"KONGO GOLD",nombre:"Natural Cachorro",presentacion:"8 kg",precio:20116.74,cat:"perro",sub:"cachorro"},
   {id:"100010",marca:"KONGO GOLD",nombre:"Natural Cachorro",presentacion:"15 kg",precio:35982.58,cat:"perro",sub:"cachorro"},
   {id:"100009",marca:"KONGO GOLD",nombre:"Natural Cachorro",presentacion:"21 kg",precio:48906.73,cat:"perro",sub:"cachorro"},
-  // KONGO NATURAL PERROS
   {id:"100018",marca:"KONGO",nombre:"Natural Adulto Med y Grande",presentacion:"1,5 kg",precio:3034.50,cat:"perro",sub:"adulto"},
   {id:"100017",marca:"KONGO",nombre:"Natural Adulto Med y Grande",presentacion:"3 kg",precio:5818.67,cat:"perro",sub:"adulto"},
   {id:"100016",marca:"KONGO",nombre:"Natural Adulto Med y Grande",presentacion:"8 kg",precio:14268.61,cat:"perro",sub:"adulto"},
@@ -337,7 +310,6 @@ const productos = [
   {id:"100025",marca:"KONGO",nombre:"Natural Cachorro",presentacion:"8 kg",precio:16685.86,cat:"perro",sub:"cachorro"},
   {id:"100024",marca:"KONGO",nombre:"Natural Cachorro",presentacion:"15 kg",precio:29865.80,cat:"perro",sub:"cachorro"},
   {id:"100023",marca:"KONGO",nombre:"Natural Cachorro",presentacion:"21 kg",precio:39817.28,cat:"perro",sub:"cachorro"},
-  // KONGO GATOS
   {id:"100032",marca:"KONGO",nombre:"Gato Adulto Carne y Pollo",presentacion:"0,5 kg",precio:1957.69,cat:"gato",sub:"adulto"},
   {id:"100031",marca:"KONGO",nombre:"Gato Adulto Carne y Pollo",presentacion:"1 kg",precio:3688.15,cat:"gato",sub:"adulto"},
   {id:"100030",marca:"KONGO",nombre:"Gato Adulto Carne y Pollo",presentacion:"3 kg",precio:10349.78,cat:"gato",sub:"adulto"},
@@ -351,7 +323,6 @@ const productos = [
   {id:"100040",marca:"KONGO",nombre:"Gatito Carne y Leche",presentacion:"1 kg",precio:4056.97,cat:"gato",sub:"kitten"},
   {id:"100039",marca:"KONGO",nombre:"Gatito Carne y Leche",presentacion:"3 kg",precio:11348.87,cat:"gato",sub:"kitten"},
   {id:"100038",marca:"KONGO",nombre:"Gatito Carne y Leche",presentacion:"8 kg",precio:27012.94,cat:"gato",sub:"kitten"},
-  // CRIADORES
   {id:"108728",marca:"CRIADORES",nombre:"Adulto Razas Pequeñas",presentacion:"3 kg",precio:4963.71,cat:"perro",sub:"adulto"},
   {id:"108727",marca:"CRIADORES",nombre:"Adulto Razas Pequeñas",presentacion:"15 kg",precio:23213.47,cat:"perro",sub:"adulto"},
   {id:"100048",marca:"CRIADORES",nombre:"Adulto",presentacion:"3 kg",precio:30522.01,cat:"perro",sub:"adulto"},
@@ -370,7 +341,6 @@ const productos = [
   {id:"108921",marca:"CRIADORES",nombre:"High Pro Gato Adulto Salmón",presentacion:"3 kg",precio:65693.20,cat:"gato",sub:"adulto"},
   {id:"108920",marca:"CRIADORES",nombre:"High Pro Gato Adulto Salmón",presentacion:"7,5 kg",precio:25827.42,cat:"gato",sub:"adulto"},
   {id:"108919",marca:"CRIADORES",nombre:"High Pro Gato Adulto Salmón",presentacion:"15 kg",precio:49195.71,cat:"gato",sub:"adulto"},
-  // VORAZ
   {id:"108348",marca:"VORAZ",nombre:"Cachorro",presentacion:"3 kg",precio:5449.44,cat:"perro",sub:"cachorro"},
   {id:"108347",marca:"VORAZ",nombre:"Cachorro",presentacion:"1,5 kg",precio:2833.86,cat:"perro",sub:"cachorro"},
   {id:"108346",marca:"VORAZ",nombre:"Cachorro",presentacion:"10 kg",precio:16868.08,cat:"perro",sub:"cachorro"},
@@ -394,7 +364,6 @@ const productos = [
   {id:"108352",marca:"VORAZ",nombre:"Gato Adulto",presentacion:"0,5 kg",precio:1478.26,cat:"gato",sub:"adulto"},
   {id:"108350",marca:"VORAZ",nombre:"Gato Adulto",presentacion:"10 kg",precio:20991.62,cat:"gato",sub:"adulto"},
   {id:"108349",marca:"VORAZ",nombre:"Gato Adulto",presentacion:"20 kg",precio:41107.75,cat:"gato",sub:"adulto"},
-  // AP / BON GRILLE / AGROCAN / COMPANY
   {id:"108852",marca:"AP",nombre:"Cachorro",presentacion:"10 kg",precio:20500,cat:"perro",sub:"cachorro"},
   {id:"108853",marca:"AP",nombre:"Perro Adulto",presentacion:"20 kg",precio:31800,cat:"perro",sub:"adulto"},
   {id:"108854",marca:"AP",nombre:"Perro Adulto SMB",presentacion:"20 kg",precio:31800,cat:"perro",sub:"adulto"},
@@ -410,7 +379,6 @@ const productos = [
   {id:"100133",marca:"COMPANY",nombre:"Gatito",presentacion:"3 kg",precio:1907,cat:"gato",sub:"kitten"},
   {id:"100136",marca:"ORIGEN",nombre:"Perro Adulto",presentacion:"20 kg",precio:27145.79,cat:"perro",sub:"adulto"},
   {"2.15.11":true,id:"2.15.11",marca:"CAUDILLO",nombre:"Perro",presentacion:"18 kg",precio:24005.86,cat:"perro",sub:"adulto"},
-  // HUESOS Y SNACKS
   {id:"108793",marca:"HUESO",nombre:"Hueso 2/3",presentacion:"10 u",precio:5160,cat:"hueso",sub:""},
   {id:"108794",marca:"HUESO",nombre:"Hueso 3/4",presentacion:"10 u",precio:5900,cat:"hueso",sub:""},
   {id:"108795",marca:"HUESO",nombre:"Hueso 4/5",presentacion:"10 u",precio:7600,cat:"hueso",sub:""},
@@ -428,13 +396,11 @@ const productos = [
   {id:"108902",marca:"SNACK",nombre:"Donuts 3.5",presentacion:"5 u",precio:4700,cat:"hueso",sub:""},
   {id:"108903",marca:"SNACK",nombre:"Donuts 5.5",presentacion:"5 u",precio:10300,cat:"hueso",sub:""},
   {id:"108904",marca:"SNACK",nombre:"Grisin 7",presentacion:"10 u",precio:4700,cat:"hueso",sub:""},
-  // ACCESORIOS
   {id:"108808",marca:"ACCESORIO",nombre:"Bandeja sanitaria",presentacion:"1 u",precio:3118,cat:"accesorio",sub:""},
   {id:"108811",marca:"ACCESORIO",nombre:"Comedero chico",presentacion:"1 u",precio:966,cat:"accesorio",sub:""},
   {id:"108812",marca:"ACCESORIO",nombre:"Comedero gato",presentacion:"1 u",precio:1183,cat:"accesorio",sub:""},
   {id:"108809",marca:"ACCESORIO",nombre:"Comedero grande",presentacion:"1 u",precio:3097,cat:"accesorio",sub:""},
   {id:"108810",marca:"ACCESORIO",nombre:"Comedero mediano",presentacion:"1 u",precio:1839,cat:"accesorio",sub:""},
-  // FORRAJES
   {id:"108720",marca:"FORRAJE",nombre:"Alpiste",presentacion:"25 kg",precio:51300,cat:"forraje",sub:""},
   {id:"100259",marca:"FORRAJE",nombre:"Arrocín",presentacion:"",precio:22800,cat:"forraje",sub:""},
   {id:"108721",marca:"FORRAJE",nombre:"Canario",presentacion:"25 kg",precio:51300,cat:"forraje",sub:""},
@@ -452,7 +418,6 @@ const productos = [
   {id:"108898",marca:"CÉSPED",nombre:"Campos Deportivos",presentacion:"500 g",precio:5000,cat:"forraje",sub:""},
   {id:"108900",marca:"CÉSPED",nombre:"Fertilizante 15-15-15",presentacion:"1 kg",precio:5000,cat:"forraje",sub:""},
   {id:"108899",marca:"CÉSPED",nombre:"Jardín",presentacion:"500 g",precio:5000,cat:"forraje",sub:""},
-  // GRANAZO
   {id:"100280",marca:"GRANAZO",nombre:"Bebé Doméstico",presentacion:"25 kg",precio:22132.11,cat:"granazo",sub:""},
   {id:"100291",marca:"GRANAZO",nombre:"Bloque Proteico 35%",presentacion:"15 kg",precio:18416.99,cat:"granazo",sub:""},
   {id:"100288",marca:"GRANAZO",nombre:"Borrego Exposición",presentacion:"25 kg",precio:18569.88,cat:"granazo",sub:""},
@@ -490,7 +455,6 @@ const productos = [
 let carrito = {};
 let catActual = "todos";
 
-// Render filtros
 const fr = document.getElementById('filter-row');
 categorias.forEach(c => {
   const b = document.createElement('button');
@@ -500,9 +464,7 @@ categorias.forEach(c => {
   fr.appendChild(b);
 });
 
-// Imágenes específicas por código de producto
 const imgPorCodigo = {
-  // ADVANCE PERROS
   '108828': 'https://advancebio.com.ar/wp-content/uploads/2025/12/1-3-450x450.png',
   '108829': 'https://advancebio.com.ar/wp-content/uploads/2025/12/2-3-450x450.png',
   '108832': 'https://advancebio.com.ar/wp-content/uploads/2023/04/Diseno-sin-titulo-40-450x450.png',
@@ -515,19 +477,17 @@ const imgPorCodigo = {
   '108833': 'https://advancebio.com.ar/wp-content/uploads/2023/04/Diseno-sin-titulo-42-450x450.png',
   '108834': 'https://advancebio.com.ar/wp-content/uploads/2023/04/Diseno-sin-titulo-42-450x450.png',
   '108911': 'https://advancebio.com.ar/wp-content/uploads/2025/12/Diseno-sin-titulo-44-450x450.png',
-  '108893': 'https://advancebio.com.ar/wp-content/uploads/2024/10/Cookies-Carne.png',     // Cookie Carne
-  '108871': 'https://advancebio.com.ar/wp-content/uploads/2024/09/cookie-cordero.webp',   // Cookie Cordero
-  '108892': 'https://advancebio.com.ar/wp-content/uploads/2024/09/cookie-pollo.webp',     // Cookie Pollo
-  // ADVANCE GATOS
-  '108837': 'https://advancebio.com.ar/wp-content/uploads/2024/09/6.png', // Adulto All Breeds 8kg
-  '108836': 'https://advancebio.com.ar/wp-content/uploads/2024/09/6.png', // Adulto All Breeds 1.5kg
-  '108870': 'https://advancebio.com.ar/wp-content/uploads/2024/09/5-450x450.png', // Indoor
-  '108868': 'https://advancebio.com.ar/wp-content/uploads/2024/09/8-450x450.png', // Kitten 7.5kg
-  '108867': 'https://advancebio.com.ar/wp-content/uploads/2024/09/8-450x450.png', // Kitten 750g
-  '108835': 'https://advancebio.com.ar/wp-content/uploads/2024/09/7-450x450.png', // Urinary 8kg
-  '108869': 'https://advancebio.com.ar/wp-content/uploads/2024/09/7-450x450.png', // Urinary 1.5kg
-  '108912': 'https://advancebio.com.ar/wp-content/uploads/2024/09/4.png', // Gato Nuggets
-  // OLD PRINCE EQUILIBRIUM PERROS
+  '108893': 'https://advancebio.com.ar/wp-content/uploads/2024/10/Cookies-Carne.png',
+  '108871': 'https://advancebio.com.ar/wp-content/uploads/2024/09/cookie-cordero.webp',
+  '108892': 'https://advancebio.com.ar/wp-content/uploads/2024/09/cookie-pollo.webp',
+  '108837': 'https://advancebio.com.ar/wp-content/uploads/2024/09/6.png',
+  '108836': 'https://advancebio.com.ar/wp-content/uploads/2024/09/6.png',
+  '108870': 'https://advancebio.com.ar/wp-content/uploads/2024/09/5-450x450.png',
+  '108868': 'https://advancebio.com.ar/wp-content/uploads/2024/09/8-450x450.png',
+  '108867': 'https://advancebio.com.ar/wp-content/uploads/2024/09/8-450x450.png',
+  '108835': 'https://advancebio.com.ar/wp-content/uploads/2024/09/7-450x450.png',
+  '108869': 'https://advancebio.com.ar/wp-content/uploads/2024/09/7-450x450.png',
+  '108912': 'https://advancebio.com.ar/wp-content/uploads/2024/09/4.png',
   '108764': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Mockup_OP-Equilibrium-Light-3-300x500.png',
   '108765': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Mockup_OP-Equilibrium-Light-3-300x500.png',
   '100090': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Mockup_Equilibrium-Adulto-MyG-1-300x500.png',
@@ -542,17 +502,15 @@ const imgPorCodigo = {
   '100087': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Mockup_Equilibrium-Cachorro-MyG-300x500.png',
   '100082': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Mockup_Equilibrium-Cachorro-Pequeno-300x500.png',
   '100081': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Mockup_Equilibrium-Cachorro-Pequeno-300x500.png',
-  // OLD PRINCE PREMIUM PERROS
   '108363': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Premium-Adulto-1-300x500.png',
   '108364': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Premium-Adulto-1-300x500.png',
   '108367': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Premium-Cordero-1-300x500.png',
   '108368': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Premium-Cordero-1-300x500.png',
   '108365': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Premium-Cachorro-1-300x500.png',
   '108366': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Premium-Cachorro-1-300x500.png',
-  // OLD PRINCE NOVEL PERROS
-  '100093': 'https://oldprince.com.ar/wp-content/uploads/2023/06/cordero-1-600x1030.png', // Novel Cordero Adulto MyL 15kg
-  '100094': 'https://oldprince.com.ar/wp-content/uploads/2023/06/cordero-1-600x1030.png', // Novel Cordero Adulto MyL 7.5kg
-  '100095': 'https://oldprince.com.ar/wp-content/uploads/2023/06/cordero-1-600x1030.png', // Novel Cordero Adulto MyL 3kg
+  '100093': 'https://oldprince.com.ar/wp-content/uploads/2023/06/cordero-1-600x1030.png',
+  '100094': 'https://oldprince.com.ar/wp-content/uploads/2023/06/cordero-1-600x1030.png',
+  '100095': 'https://oldprince.com.ar/wp-content/uploads/2023/06/cordero-1-600x1030.png',
   '100096': 'https://oldprince.com.ar/wp-content/uploads/2023/06/pequenos-1-300x500.png',
   '100097': 'https://oldprince.com.ar/wp-content/uploads/2023/06/pequenos-1-300x500.png',
   '100098': 'https://oldprince.com.ar/wp-content/uploads/2023/06/pequenos-1-300x500.png',
@@ -565,7 +523,6 @@ const imgPorCodigo = {
   '108418': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Adult-MockUP-WC-3-2-e1690385216732.png',
   '108415': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Mock-Up-edad-Avanzada-300x500.png',
   '108416': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Mock-Up-edad-Avanzada-300x500.png',
-  // OLD PRINCE EQUILIBRIUM GATOS
   '108422': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Mockup_Equilibrium-Gatito-300x500.png',
   '108421': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Mockup_Equilibrium-Gatito-300x500.png',
   '108424': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Mockup_Gato-adulto-equilibrium-Nuevo-1-300x500.png',
@@ -574,7 +531,6 @@ const imgPorCodigo = {
   '108425': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Mockup_Equilibrium-Gato-urinario-300x500.png',
   '108420': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Mockup_Equilibrium-Esterilizado-300x500.png',
   '108419': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Mockup_Equilibrium-Esterilizado-300x500.png',
-  // OLD PRINCE PREMIUM GATOS
   '108769': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Premium-Gatito-1-300x500.png',
   '108768': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Premium-Gatito-1-300x500.png',
   '108767': 'https://oldprince.com.ar/wp-content/uploads/2023/06/elementor/thumbs/Premium-Gato-Adulto-q97xhldjkaow9bb0evuu2jwwt86r6f2ogrm264eo0g.png',
@@ -583,7 +539,6 @@ const imgPorCodigo = {
   '108909': 'https://oldprince.com.ar/wp-content/uploads/2025/10/Premium-Gato-Cordero-300x500.png',
   '108908': 'https://oldprince.com.ar/wp-content/uploads/2025/10/Premium-Gato-Urinario-300x500.png',
   '108907': 'https://oldprince.com.ar/wp-content/uploads/2025/10/Premium-Gato-Urinario-300x500.png',
-  // OLD PRINCE NOVEL GATOS
   '100104': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Gatos-Adultos-300x500.png',
   '100105': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Gatos-Adultos-300x500.png',
   '100106': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Gatos-Adultos-300x500.png',
@@ -592,74 +547,60 @@ const imgPorCodigo = {
   '100111': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Esterilizados-300x500.png',
   '100107': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Gatitos-300x500.png',
   '100108': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Gatitos-300x500.png',
-  // FAWNA PERROS
-  '108780': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_perro_cachorro_peq-777x1024.png', // Cachorro Mord. Peq 3kg
-  '108779': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_perro_cachorro_peq-777x1024.png', // Cachorro Mord. Peq 7.5kg
-  '108776': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_perro_cachorro_gde-777x1024.png', // Cachorro MyG 3kg
-  '108775': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_perro_cachorro_gde-777x1024.png', // Cachorro MyG 7.5kg
-  '108774': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_perro_cachorro_gde-777x1024.png', // Cachorro MyG 15kg
-  '108778': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_perro_adulto_peq-777x1024.png', // Adulto Mord. Peq 3kg
-  '108777': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_perro_adulto_peq-777x1024.png', // Adulto Mord. Peq 7.5kg
-  '108773': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_perro_adulto-777x1024.png',     // Adulto MyG 3kg
-  '108772': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_perro_adulto-777x1024.png',     // Adulto MyG 15kg
-  '108924': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_perro_adulto-777x1024.png',     // Adulto MyG 15+1kg
-  '108782': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_perro_adulto_light-777x1024.png', // Light 3kg
-  '108781': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_perro_adulto_light-777x1024.png', // Light 15kg
-  '108925': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_perro_adulto_light-777x1024.png', // Light 15+1kg
-  '108784': 'https://fawna.com.ar/wp-content/uploads/2022/09/FAWNA_perro_adu_Senior-777x1024.png', // Senior 3kg
-  '108783': 'https://fawna.com.ar/wp-content/uploads/2022/09/FAWNA_perro_adu_Senior-777x1024.png', // Senior 15kg
-  '108926': 'https://fawna.com.ar/wp-content/uploads/2022/09/FAWNA_perro_adu_Senior-777x1024.png', // Senior 15+1kg
-  // FAWNA GATOS
-  '108786': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_gato_adulto-777x1024.png',       // Gato Adulto 3kg
-  '108785': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_gato_adulto-777x1024.png',       // Gato Adulto 7.5kg
-  '108788': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_gato_esterilizado-777x1024.png', // Esterilizado 3kg
-  '108787': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_gato_esterilizado-777x1024.png', // Esterilizado 7.5kg
-  '108792': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_gatitos-777x1024.png',           // Kitten 1kg
-  '108791': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_gatitos-777x1024.png',           // Kitten 3kg
-  '108790': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_gato_urinario-777x1024.png',     // Urinario 3kg
-  '108789': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_gato_urinario-777x1024.png',     // Urinario 7.5kg
-  // GUARDIAN PERROS
-  '108843': 'https://acdn-us.mitiendanube.com/stores/004/043/439/products/guardian-adulto-frenteok-a5b37e8950e1516b7717177096458871-1024-1024.webp', // Adulto 15kg
-  '108844': 'https://acdn-us.mitiendanube.com/stores/004/043/439/products/guardian-adulto-frenteok-a5b37e8950e1516b7717177096458871-1024-1024.webp', // Adulto 20kg
-  '108875': 'https://acdn-us.mitiendanube.com/stores/004/043/439/products/guardian-adulto-frenteok-a5b37e8950e1516b7717177096458871-1024-1024.webp', // Adulto 2kg
-  '108873': 'https://dcdn-us.mitiendanube.com/stores/005/091/765/products/image2024100113005098808-027b8967c6f31c4c6417362501846923-1024-1024.webp', // Cachorro 1.5kg
-  '108842': 'https://dcdn-us.mitiendanube.com/stores/005/091/765/products/image2024100113005098808-027b8967c6f31c4c6417362501846923-1024-1024.webp', // Cachorro 10kg
-  // GUARDIAN GATOS
-  '108845': 'https://dcdn-us.mitiendanube.com/stores/005/091/765/products/image2024100112580856256-cae32985a80e80c09517362501669676-1024-1024.webp', // Gato Adulto 10kg
-  '108876': 'https://dcdn-us.mitiendanube.com/stores/005/091/765/products/image2024100112580856256-cae32985a80e80c09517362501669676-1024-1024.webp', // Gato Adulto 500g
-  // RINTY
-  '108841': 'https://http2.mlstatic.com/D_NQ_NP_2X_605264-MLU72822279516_112023-F.webp', // Rinty Adulto 20kg
-  // DONDOG
-  '108838': 'https://http2.mlstatic.com/D_NQ_NP_2X_838678-MLA80821989827_112024-F.webp', // Dondog Adulto 20+2kg
-  // FANDOG
-  '108840': 'https://http2.mlstatic.com/D_NQ_NP_2X_603301-MLA75280991674_032024-F.webp', // Fandog Adulto 20kg
-  // NATURAL MEAT
-  '100123': 'https://naturallife.vtexassets.com/arquivos/ids/156226-300-300?v=637732969358230000&width=300&height=300&aspect=true', // Natural Adulto 15kg
-  '100124': 'https://naturallife.vtexassets.com/arquivos/ids/156226-300-300?v=637732969358230000&width=300&height=300&aspect=true', // Natural Adulto 7kg
-  '100126': 'https://naturallife.vtexassets.com/arquivos/ids/156228-300-300?v=637732969373100000&width=300&height=300&aspect=true', // Natural Cachorro 15kg
-  // VORAZ PERROS
-  // VORAZ MIX (imagen propia del mix)
+  '108780': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_perro_cachorro_peq-777x1024.png',
+  '108779': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_perro_cachorro_peq-777x1024.png',
+  '108776': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_perro_cachorro_gde-777x1024.png',
+  '108775': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_perro_cachorro_gde-777x1024.png',
+  '108774': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_perro_cachorro_gde-777x1024.png',
+  '108778': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_perro_adulto_peq-777x1024.png',
+  '108777': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_perro_adulto_peq-777x1024.png',
+  '108773': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_perro_adulto-777x1024.png',
+  '108772': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_perro_adulto-777x1024.png',
+  '108924': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_perro_adulto-777x1024.png',
+  '108782': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_perro_adulto_light-777x1024.png',
+  '108781': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_perro_adulto_light-777x1024.png',
+  '108925': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_perro_adulto_light-777x1024.png',
+  '108784': 'https://fawna.com.ar/wp-content/uploads/2022/09/FAWNA_perro_adu_Senior-777x1024.png',
+  '108783': 'https://fawna.com.ar/wp-content/uploads/2022/09/FAWNA_perro_adu_Senior-777x1024.png',
+  '108926': 'https://fawna.com.ar/wp-content/uploads/2022/09/FAWNA_perro_adu_Senior-777x1024.png',
+  '108786': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_gato_adulto-777x1024.png',
+  '108785': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_gato_adulto-777x1024.png',
+  '108788': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_gato_esterilizado-777x1024.png',
+  '108787': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_gato_esterilizado-777x1024.png',
+  '108792': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_gatitos-777x1024.png',
+  '108791': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_gatitos-777x1024.png',
+  '108790': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_gato_urinario-777x1024.png',
+  '108789': 'https://fawna.com.ar/wp-content/uploads/2021/05/FAWNA_gato_urinario-777x1024.png',
+  '108843': 'https://acdn-us.mitiendanube.com/stores/004/043/439/products/guardian-adulto-frenteok-a5b37e8950e1516b7717177096458871-1024-1024.webp',
+  '108844': 'https://acdn-us.mitiendanube.com/stores/004/043/439/products/guardian-adulto-frenteok-a5b37e8950e1516b7717177096458871-1024-1024.webp',
+  '108875': 'https://acdn-us.mitiendanube.com/stores/004/043/439/products/guardian-adulto-frenteok-a5b37e8950e1516b7717177096458871-1024-1024.webp',
+  '108873': 'https://dcdn-us.mitiendanube.com/stores/005/091/765/products/image2024100113005098808-027b8967c6f31c4c6417362501846923-1024-1024.webp',
+  '108842': 'https://dcdn-us.mitiendanube.com/stores/005/091/765/products/image2024100113005098808-027b8967c6f31c4c6417362501846923-1024-1024.webp',
+  '108845': 'https://dcdn-us.mitiendanube.com/stores/005/091/765/products/image2024100112580856256-cae32985a80e80c09517362501669676-1024-1024.webp',
+  '108876': 'https://dcdn-us.mitiendanube.com/stores/005/091/765/products/image2024100112580856256-cae32985a80e80c09517362501669676-1024-1024.webp',
+  '108841': 'https://http2.mlstatic.com/D_NQ_NP_2X_605264-MLU72822279516_112023-F.webp',
+  '108838': 'https://http2.mlstatic.com/D_NQ_NP_2X_838678-MLA80821989827_112024-F.webp',
+  '108840': 'https://http2.mlstatic.com/D_NQ_NP_2X_603301-MLA75280991674_032024-F.webp',
+  '100123': 'https://naturallife.vtexassets.com/arquivos/ids/156226-300-300?v=637732969358230000&width=300&height=300&aspect=true',
+  '100124': 'https://naturallife.vtexassets.com/arquivos/ids/156226-300-300?v=637732969358230000&width=300&height=300&aspect=true',
+  '100126': 'https://naturallife.vtexassets.com/arquivos/ids/156228-300-300?v=637732969373100000&width=300&height=300&aspect=true',
   '108338': 'https://alimentovoraz.com/wp-content/uploads/2024/10/Voraz-Perro-Mix-Carne-Pollo-y-Vegetales1.png',
   '108337': 'https://alimentovoraz.com/wp-content/uploads/2024/10/Voraz-Perro-Mix-Carne-Pollo-y-Vegetales1.png',
   '108336': 'https://alimentovoraz.com/wp-content/uploads/2024/10/Voraz-Perro-Mix-Carne-Pollo-y-Vegetales1.png',
   '108335': 'https://alimentovoraz.com/wp-content/uploads/2024/10/Voraz-Perro-Mix-Carne-Pollo-y-Vegetales1.png',
   '108923': 'https://alimentovoraz.com/wp-content/uploads/2024/10/Voraz-Perro-Mix-Carne-Pollo-y-Vegetales1.png',
-  // VORAZ ADULTO CARNE
   '108730': 'https://alimentovoraz.com/wp-content/uploads/2024/10/Voraz-Perros-Adultos-Carne1.png',
   '108342': 'https://alimentovoraz.com/wp-content/uploads/2024/10/Voraz-Perros-Adultos-Carne1.png',
   '108341': 'https://alimentovoraz.com/wp-content/uploads/2024/10/Voraz-Perros-Adultos-Carne1.png',
   '108340': 'https://alimentovoraz.com/wp-content/uploads/2024/10/Voraz-Perros-Adultos-Carne1.png',
   '108922': 'https://alimentovoraz.com/wp-content/uploads/2024/10/Voraz-Perros-Adultos-Carne1.png',
-  // VORAZ ADULTO POLLO Y ARROZ
   '108731': 'https://alimentovoraz.com/wp-content/uploads/2024/10/Voraz-Perros-Adultos-Pollo-y-Arroz1.png',
   '108343': 'https://alimentovoraz.com/wp-content/uploads/2024/10/Voraz-Perros-Adultos-Pollo-y-Arroz1.png',
-  // VORAZ CACHORROS
   '108348': 'https://arcencohogar.vtexassets.com/arquivos/ids/404073/1031391.jpg?v=638929370221000000',
   '108347': 'https://arcencohogar.vtexassets.com/arquivos/ids/404073/1031391.jpg?v=638929370221000000',
   '108346': 'https://arcencohogar.vtexassets.com/arquivos/ids/404073/1031391.jpg?v=638929370221000000',
   '108345': 'https://arcencohogar.vtexassets.com/arquivos/ids/404073/1031391.jpg?v=638929370221000000',
   '108344': 'https://arcencohogar.vtexassets.com/arquivos/ids/404073/1031391.jpg?v=638929370221000000',
-  // KONGO GOLD PERROS
   '100006': 'https://catycanar.vtexassets.com/arquivos/ids/159075/16290.jpg?v=637732986100470000',
   '100005': 'https://catycanar.vtexassets.com/arquivos/ids/159075/16290.jpg?v=637732986100470000',
   '100004': 'https://catycanar.vtexassets.com/arquivos/ids/159075/16290.jpg?v=637732986100470000',
@@ -672,7 +613,6 @@ const imgPorCodigo = {
   '100011': 'https://catycanar.vtexassets.com/arquivos/ids/158734/15676.jpg?v=637732983054530000',
   '100010': 'https://catycanar.vtexassets.com/arquivos/ids/158734/15676.jpg?v=637732983054530000',
   '100009': 'https://catycanar.vtexassets.com/arquivos/ids/158734/15676.jpg?v=637732983054530000',
-  // KONGO NATURAL PERROS
   '100018': 'https://catycanar.vtexassets.com/arquivos/ids/159071/16286.jpg?v=637732986072200000',
   '100017': 'https://catycanar.vtexassets.com/arquivos/ids/159071/16286.jpg?v=637732986072200000',
   '100016': 'https://catycanar.vtexassets.com/arquivos/ids/159071/16286.jpg?v=637732986072200000',
@@ -687,98 +627,92 @@ const imgPorCodigo = {
   '100025': 'https://catycanar.vtexassets.com/arquivos/ids/159102/16321.jpg?v=637732986287370000',
   '100024': 'https://catycanar.vtexassets.com/arquivos/ids/159102/16321.jpg?v=637732986287370000',
   '100023': 'https://catycanar.vtexassets.com/arquivos/ids/159102/16321.jpg?v=637732986287370000',
-  // AP
-  '108853': 'https://http2.mlstatic.com/D_NQ_NP_2X_874471-MLA100056985909_122025-F.webp', // AP Perro Adulto 20kg
-  '108854': 'https://http2.mlstatic.com/D_NQ_NP_2X_874471-MLA100056985909_122025-F.webp', // AP Perro Adulto SMB 20kg
-  '108851': 'https://http2.mlstatic.com/D_NQ_NP_2X_841607-MLA109271741416_042026-F.webp', // AP Gato 10kg
-  '108852': 'https://http2.mlstatic.com/D_NQ_NP_2X_844664-MLA108849157152_032026-F.webp', // AP Cachorro 10kg
-  // GRANAZO
-  '100275': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-balanceado-equinos.png', // Equino Desarrollo
-  '100274': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-balanceado-equinos.png', // Equino Mantenimiento
-  '100273': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-balanceado-equinos.png', // Equino Trainning
-  '100263': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-balanceado-bovinos.png', // Vacuno Engorde
-  '100264': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-balanceado-bovinos.png', // Vacuno Engorde Feed Lot
-  '100265': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-balanceado-bovinos.png', // Vacuno Mantenimiento
-  '100269': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-balanceado-bovinos.png', // Vacuno Recría 13%
-  '100262': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-balanceado-bovinos.png', // Vacuno Recría 16%
-  '100271': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-balanceado-bovinos.png', // Lechera Alta Energía
-  '100270': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-balanceado-bovinos.png', // Vaca Lechera 16%
-  '100272': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-balanceado-bovinos.png', // Vaca Pre Parto
-  '100266': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-balanceado-bovinos.png', // Toro Servicio
-  '100260': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png', // Destete Hiper Precoz
-  '100261': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png', // Destete Precoz
-  '100283': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png', // Cerdo Lechón
-  '100285': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png', // Cerdo Recría
-  '100286': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png', // Cerdo Reproductor
-  '100284': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png', // Cerdo Terminación
-  '100290': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png', // Conejo Engorde
-  '100287': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png', // Cordero
-  '100288': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png', // Borrego Exposición
-  '100289': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png', // Ovejas
-  '100276': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png', // Parrillero Iniciador
-  '100277': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png', // Parrillero Terminados
-  '100281': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png', // Ponedora Doméstica
-  '100278': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png', // Ponedora Jaula
-  '100279': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png', // Recría Reposición
-  '100280': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png', // Bebé Doméstico
-  '100282': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png', // Engorde Doméstico
-  '100267': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png', // Concentrado 40%
-  '100268': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png', // Concentrado 40% Sin Urea
-  '100291': 'https://granazo.com.ar/wp-content/uploads/2024/03/bloque-proteico.png', // Bloque Proteico 35%
-  '100129': 'https://http2.mlstatic.com/D_NQ_NP_2X_939422-MLA99929029893_112025-F.webp', // Company Perro Adulto 20kg
-  '100130': 'https://http2.mlstatic.com/D_NQ_NP_2X_852312-MLA100094059645_122025-F.webp', // Company Perro Cachorro 20kg
-  '100131': 'https://http2.mlstatic.com/D_NQ_NP_2X_841954-MLA99440138242_112025-F.webp', // Company Gato Adulto 15kg
-  '100132': 'https://http2.mlstatic.com/D_NQ_NP_2X_841954-MLA99440138242_112025-F.webp', // Company Gato Adulto 3kg
-  '100133': 'https://http2.mlstatic.com/D_NQ_NP_2X_658399-MLA99846968651_112025-F.webp', // Company Gatito 3kg
-  '2.15.11': 'https://tiendademascotasar.vtexassets.com/arquivos/ids/159343-1200-auto?v=637975527922800000&width=1200&height=auto&aspect=true', // Caudillo 18kg
-  '108848': 'https://acdn-us.mitiendanube.com/stores/003/710/450/products/agro-can-600x600-595afa74b9d442da6a17486411481298-1024-1024.webp', // Agrocan 15kg
-  '108847': 'https://acdn-us.mitiendanube.com/stores/003/710/450/products/agro-can-600x600-595afa74b9d442da6a17486411481298-1024-1024.webp', // Agrocan 20+2kg
-  '108906': 'https://http2.mlstatic.com/D_NQ_NP_2X_686117-MLA110794546552_052026-F.webp', // Bon Grille SMB 12kg
-  '108905': 'https://http2.mlstatic.com/D_NQ_NP_2X_663428-MLA111754315193_052026-F.webp', // Bon Grille 20kg
-  '108352': 'https://alimentovoraz.com/wp-content/uploads/2024/10/Voraz-Gatos-Adultos1.png', // Gato Adulto 0.5kg
-  '108351': 'https://alimentovoraz.com/wp-content/uploads/2024/10/Voraz-Gatos-Adultos1.png', // Gato Adulto 1kg
-  '108350': 'https://alimentovoraz.com/wp-content/uploads/2024/10/Voraz-Gatos-Adultos1.png', // Gato Adulto 10kg
-  '108349': 'https://alimentovoraz.com/wp-content/uploads/2024/10/Voraz-Gatos-Adultos1.png', // Gato Adulto 20kg
-  '108354': 'https://alimentovoraz.com/wp-content/uploads/2024/10/Voraz-Gatito1.png', // Gatito 1kg
-  '108732': 'https://alimentovoraz.com/wp-content/uploads/2024/10/Voraz-Gatito1.png', // Gatito 0.5kg
-  '108353': 'https://alimentovoraz.com/wp-content/uploads/2024/10/Voraz-Gatito1.png', // Gatito 15kg
-  '108839': 'https://http2.mlstatic.com/D_NQ_NP_2X_908277-MLA73896703203_012024-F.webp', // Miau Gato Adulto 8+2kg
-  '108846': 'https://http2.mlstatic.com/D_NQ_NP_2X_922443-MLA99813584603_112025-F.webp', // Nutri King Adulto 20kg
-  '108728': 'https://arcencohogar.vtexassets.com/arquivos/ids/327386/1340900-1.jpg?v=637952243463030000', // Adulto Peq 3kg
-  '108727': 'https://arcencohogar.vtexassets.com/arquivos/ids/327386/1340900-1.jpg?v=637952243463030000', // Adulto Peq 15kg
-  '100048': 'https://arcencohogar.vtexassets.com/arquivos/ids/327386/1340900-1.jpg?v=637952243463030000', // Adulto 3kg
-  '100047': 'https://arcencohogar.vtexassets.com/arquivos/ids/327386/1340900-1.jpg?v=637952243463030000', // Adulto 15kg
-  '100046': 'https://arcencohogar.vtexassets.com/arquivos/ids/327386/1340900-1.jpg?v=637952243463030000', // Adulto 22kg
-  '100052': 'https://arcencohogar.vtexassets.com/arquivos/ids/327386/1340900-1.jpg?v=637952243463030000', // High Pro 22kg
-  '108814': 'https://arcencohogar.vtexassets.com/arquivos/ids/383526/1448155.jpg?v=638653770986400000', // High Pro Cordero 15kg
-  '108813': 'https://arcencohogar.vtexassets.com/arquivos/ids/383526/1448155.jpg?v=638653770986400000', // High Pro Cordero 20kg
-  '108815': 'https://arcencohogar.vtexassets.com/arquivos/ids/383526/1448155.jpg?v=638653770986400000', // High Pro Cordero 3kg
-  // CRIADORES CACHORRO
-  '100050': 'https://arcencohogar.vtexassets.com/arquivos/ids/275595/1074910.jpg?v=637651589912630000', // Cachorro 3kg
-  '100049': 'https://arcencohogar.vtexassets.com/arquivos/ids/275595/1074910.jpg?v=637651589912630000', // Cachorro 15kg
-  '108816': 'https://arcencohogar.vtexassets.com/arquivos/ids/383530/1448157.jpg?v=638653772502530000', // High Pro Cordero Cachorro 15kg
-  '108817': 'https://arcencohogar.vtexassets.com/arquivos/ids/383530/1448157.jpg?v=638653772502530000', // High Pro Cordero Cachorro 3kg
-  // CRIADORES GATOS
-  '108729': 'https://catycanar.vtexassets.com/arquivos/ids/160225/18945.jpg?v=637733201133970000', // Gato 1kg
-  '100051': 'https://catycanar.vtexassets.com/arquivos/ids/160225/18945.jpg?v=637733201133970000', // Gato 15kg
-  '108919': 'https://catycanar.vtexassets.com/arquivos/ids/170607/23478.jpg?v=638442143303230000', // High Pro Gato Salmón 15kg
-  '108921': 'https://catycanar.vtexassets.com/arquivos/ids/170607/23478.jpg?v=638442143303230000', // High Pro Gato Salmón 3kg
-  '108920': 'https://catycanar.vtexassets.com/arquivos/ids/170607/23478.jpg?v=638442143303230000', // High Pro Gato Salmón 7.5kg
-  // KONGO GATOS
-  '100032': 'https://kongo.com.ar/wp-content/uploads/2023/08/b1.png', // Gato Adulto Carne y Pollo 0.5kg
-  '100031': 'https://kongo.com.ar/wp-content/uploads/2023/08/b1.png', // Gato Adulto Carne y Pollo 1kg
-  '100030': 'https://kongo.com.ar/wp-content/uploads/2023/08/b1.png', // Gato Adulto Carne y Pollo 3kg
-  '100029': 'https://kongo.com.ar/wp-content/uploads/2023/08/b1.png', // Gato Adulto Carne y Pollo 8kg
-  '100028': 'https://kongo.com.ar/wp-content/uploads/2023/08/b1.png', // Gato Adulto Carne y Pollo 15kg
-  '100037': 'https://kongo.com.ar/wp-content/uploads/2023/08/v1.png', // Gato Adulto Salmón y Atún 0.5kg
-  '100036': 'https://kongo.com.ar/wp-content/uploads/2023/08/v1.png', // Gato Adulto Salmón y Atún 1kg
-  '100035': 'https://kongo.com.ar/wp-content/uploads/2023/08/v1.png', // Gato Adulto Salmón y Atún 3kg
-  '100034': 'https://kongo.com.ar/wp-content/uploads/2023/08/v1.png', // Gato Adulto Salmón y Atún 8kg
-  '100033': 'https://kongo.com.ar/wp-content/uploads/2023/08/v1.png', // Gato Adulto Salmón y Atún 15kg
-  '100040': 'https://kongo.com.ar/wp-content/uploads/2023/08/c1.png', // Gatito Carne y Leche 1kg
-  '100039': 'https://kongo.com.ar/wp-content/uploads/2023/08/c1.png', // Gatito Carne y Leche 3kg
-  '100038': 'https://kongo.com.ar/wp-content/uploads/2023/08/c1.png', // Gatito Carne y Leche 8kg
-  // HUESOS
+  '108853': 'https://http2.mlstatic.com/D_NQ_NP_2X_874471-MLA100056985909_122025-F.webp',
+  '108854': 'https://http2.mlstatic.com/D_NQ_NP_2X_874471-MLA100056985909_122025-F.webp',
+  '108851': 'https://http2.mlstatic.com/D_NQ_NP_2X_841607-MLA109271741416_042026-F.webp',
+  '108852': 'https://http2.mlstatic.com/D_NQ_NP_2X_844664-MLA108849157152_032026-F.webp',
+  '100275': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-balanceado-equinos.png',
+  '100274': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-balanceado-equinos.png',
+  '100273': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-balanceado-equinos.png',
+  '100263': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-balanceado-bovinos.png',
+  '100264': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-balanceado-bovinos.png',
+  '100265': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-balanceado-bovinos.png',
+  '100269': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-balanceado-bovinos.png',
+  '100262': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-balanceado-bovinos.png',
+  '100271': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-balanceado-bovinos.png',
+  '100270': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-balanceado-bovinos.png',
+  '100272': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-balanceado-bovinos.png',
+  '100266': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-balanceado-bovinos.png',
+  '100260': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png',
+  '100261': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png',
+  '100283': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png',
+  '100285': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png',
+  '100286': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png',
+  '100284': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png',
+  '100290': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png',
+  '100287': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png',
+  '100288': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png',
+  '100289': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png',
+  '100276': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png',
+  '100277': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png',
+  '100281': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png',
+  '100278': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png',
+  '100279': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png',
+  '100280': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png',
+  '100282': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png',
+  '100267': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png',
+  '100268': 'https://granazo.com.ar/wp-content/uploads/2024/03/alimento-conejo-engorde.png',
+  '100291': 'https://granazo.com.ar/wp-content/uploads/2024/03/bloque-proteico.png',
+  '100129': 'https://http2.mlstatic.com/D_NQ_NP_2X_939422-MLA99929029893_112025-F.webp',
+  '100130': 'https://http2.mlstatic.com/D_NQ_NP_2X_852312-MLA100094059645_122025-F.webp',
+  '100131': 'https://http2.mlstatic.com/D_NQ_NP_2X_841954-MLA99440138242_112025-F.webp',
+  '100132': 'https://http2.mlstatic.com/D_NQ_NP_2X_841954-MLA99440138242_112025-F.webp',
+  '100133': 'https://http2.mlstatic.com/D_NQ_NP_2X_658399-MLA99846968651_112025-F.webp',
+  '2.15.11': 'https://tiendademascotasar.vtexassets.com/arquivos/ids/159343-1200-auto?v=637975527922800000&width=1200&height=auto&aspect=true',
+  '108848': 'https://acdn-us.mitiendanube.com/stores/003/710/450/products/agro-can-600x600-595afa74b9d442da6a17486411481298-1024-1024.webp',
+  '108847': 'https://acdn-us.mitiendanube.com/stores/003/710/450/products/agro-can-600x600-595afa74b9d442da6a17486411481298-1024-1024.webp',
+  '108906': 'https://http2.mlstatic.com/D_NQ_NP_2X_686117-MLA110794546552_052026-F.webp',
+  '108905': 'https://http2.mlstatic.com/D_NQ_NP_2X_663428-MLA111754315193_052026-F.webp',
+  '108352': 'https://alimentovoraz.com/wp-content/uploads/2024/10/Voraz-Gatos-Adultos1.png',
+  '108351': 'https://alimentovoraz.com/wp-content/uploads/2024/10/Voraz-Gatos-Adultos1.png',
+  '108350': 'https://alimentovoraz.com/wp-content/uploads/2024/10/Voraz-Gatos-Adultos1.png',
+  '108349': 'https://alimentovoraz.com/wp-content/uploads/2024/10/Voraz-Gatos-Adultos1.png',
+  '108354': 'https://alimentovoraz.com/wp-content/uploads/2024/10/Voraz-Gatito1.png',
+  '108732': 'https://alimentovoraz.com/wp-content/uploads/2024/10/Voraz-Gatito1.png',
+  '108353': 'https://alimentovoraz.com/wp-content/uploads/2024/10/Voraz-Gatito1.png',
+  '108839': 'https://http2.mlstatic.com/D_NQ_NP_2X_908277-MLA73896703203_012024-F.webp',
+  '108846': 'https://http2.mlstatic.com/D_NQ_NP_2X_922443-MLA99813584603_112025-F.webp',
+  '108728': 'https://arcencohogar.vtexassets.com/arquivos/ids/327386/1340900-1.jpg?v=637952243463030000',
+  '108727': 'https://arcencohogar.vtexassets.com/arquivos/ids/327386/1340900-1.jpg?v=637952243463030000',
+  '100048': 'https://arcencohogar.vtexassets.com/arquivos/ids/327386/1340900-1.jpg?v=637952243463030000',
+  '100047': 'https://arcencohogar.vtexassets.com/arquivos/ids/327386/1340900-1.jpg?v=637952243463030000',
+  '100046': 'https://arcencohogar.vtexassets.com/arquivos/ids/327386/1340900-1.jpg?v=637952243463030000',
+  '100052': 'https://arcencohogar.vtexassets.com/arquivos/ids/327386/1340900-1.jpg?v=637952243463030000',
+  '108814': 'https://arcencohogar.vtexassets.com/arquivos/ids/383526/1448155.jpg?v=638653770986400000',
+  '108813': 'https://arcencohogar.vtexassets.com/arquivos/ids/383526/1448155.jpg?v=638653770986400000',
+  '108815': 'https://arcencohogar.vtexassets.com/arquivos/ids/383526/1448155.jpg?v=638653770986400000',
+  '100050': 'https://arcencohogar.vtexassets.com/arquivos/ids/275595/1074910.jpg?v=637651589912630000',
+  '100049': 'https://arcencohogar.vtexassets.com/arquivos/ids/275595/1074910.jpg?v=637651589912630000',
+  '108816': 'https://arcencohogar.vtexassets.com/arquivos/ids/383530/1448157.jpg?v=638653772502530000',
+  '108817': 'https://arcencohogar.vtexassets.com/arquivos/ids/383530/1448157.jpg?v=638653772502530000',
+  '108729': 'https://catycanar.vtexassets.com/arquivos/ids/160225/18945.jpg?v=637733201133970000',
+  '100051': 'https://catycanar.vtexassets.com/arquivos/ids/160225/18945.jpg?v=637733201133970000',
+  '108919': 'https://catycanar.vtexassets.com/arquivos/ids/170607/23478.jpg?v=638442143303230000',
+  '108921': 'https://catycanar.vtexassets.com/arquivos/ids/170607/23478.jpg?v=638442143303230000',
+  '108920': 'https://catycanar.vtexassets.com/arquivos/ids/170607/23478.jpg?v=638442143303230000',
+  '100032': 'https://kongo.com.ar/wp-content/uploads/2023/08/b1.png',
+  '100031': 'https://kongo.com.ar/wp-content/uploads/2023/08/b1.png',
+  '100030': 'https://kongo.com.ar/wp-content/uploads/2023/08/b1.png',
+  '100029': 'https://kongo.com.ar/wp-content/uploads/2023/08/b1.png',
+  '100028': 'https://kongo.com.ar/wp-content/uploads/2023/08/b1.png',
+  '100037': 'https://kongo.com.ar/wp-content/uploads/2023/08/v1.png',
+  '100036': 'https://kongo.com.ar/wp-content/uploads/2023/08/v1.png',
+  '100035': 'https://kongo.com.ar/wp-content/uploads/2023/08/v1.png',
+  '100034': 'https://kongo.com.ar/wp-content/uploads/2023/08/v1.png',
+  '100033': 'https://kongo.com.ar/wp-content/uploads/2023/08/v1.png',
+  '100040': 'https://kongo.com.ar/wp-content/uploads/2023/08/c1.png',
+  '100039': 'https://kongo.com.ar/wp-content/uploads/2023/08/c1.png',
+  '100038': 'https://kongo.com.ar/wp-content/uploads/2023/08/c1.png',
   '108793': 'https://acdn-us.mitiendanube.com/stores/068/331/products/hueso-de-cuero-grande-2151ee7ec21b59696817106008109176-1024-1024.webp',
   '108794': 'https://acdn-us.mitiendanube.com/stores/068/331/products/hueso-de-cuero-grande-2151ee7ec21b59696817106008109176-1024-1024.webp',
   '108795': 'https://acdn-us.mitiendanube.com/stores/068/331/products/hueso-de-cuero-grande-2151ee7ec21b59696817106008109176-1024-1024.webp',
@@ -789,23 +723,20 @@ const imgPorCodigo = {
   '108800': 'https://acdn-us.mitiendanube.com/stores/068/331/products/hueso-de-cuero-grande-2151ee7ec21b59696817106008109176-1024-1024.webp',
   '108801': 'https://acdn-us.mitiendanube.com/stores/068/331/products/hueso-de-cuero-grande-2151ee7ec21b59696817106008109176-1024-1024.webp',
   '108802': 'https://acdn-us.mitiendanube.com/stores/068/331/products/hueso-de-cuero-grande-2151ee7ec21b59696817106008109176-1024-1024.webp',
-  // SNACKS
-  '108807': 'https://acdn-us.mitiendanube.com/stores/003/210/212/products/imagenes-web-bd80df56fd37f05bb017477512212963-1024-1024.webp', // Orejas 10u
-  '108805': 'https://tiendafrancisco.com/wp-content/uploads/2021/11/palitos-extrusados-de-colores-para-perros-200-un-v-adelina-D_NQ_NP_944581-MLA31046015541_062019-F.jpg', // Palitos 200u
-  '108904': 'https://veterinariaaguara.com/wp-content/uploads/2025/07/grisines.webp', // Grisin 7 10u
-  '108803': 'https://acdn-us.mitiendanube.com/stores/005/315/465/products/02588_1-e3753f3fe99d85353717292175888838-1024-1024.webp', // Roll 4 10u
-  '108804': 'https://acdn-us.mitiendanube.com/stores/005/315/465/products/02588_1-e3753f3fe99d85353717292175888838-1024-1024.webp', // Roll 6 10u
-  '108902': 'https://acdn-us.mitiendanube.com/stores/002/064/707/products/donas-3-5-natural1-29be8367eb4455482e16500595290103-1024-1024.webp', // Donuts 3.5 5u
-  '108903': 'https://acdn-us.mitiendanube.com/stores/002/064/707/products/donas-3-5-natural1-29be8367eb4455482e16500595290103-1024-1024.webp', // Donuts 5.5 5u
-  // ACCESORIOS / COMEDEROS
-  '108808': 'https://http2.mlstatic.com/D_NQ_NP_2X_806765-MLA77798426911_072024-F.webp', // Bandeja sanitaria
-  '108811': 'https://cdn.billowshop.com/071e89ac-46a5-8ab3/img/Producto/1948/01-1621360321-63212adf998bf.jpeg', // Comedero chico
-  '108812': 'https://cdn.billowshop.com/071e89ac-46a5-8ab3/img/Producto/1948/01-1621360321-63212adf998bf.jpeg', // Comedero gato
-  '108809': 'https://cdn.billowshop.com/071e89ac-46a5-8ab3/img/Producto/1948/01-1621360321-63212adf998bf.jpeg', // Comedero grande
-  '108810': 'https://cdn.billowshop.com/071e89ac-46a5-8ab3/img/Producto/1948/01-1621360321-63212adf998bf.jpeg', // Comedero mediano
+  '108807': 'https://acdn-us.mitiendanube.com/stores/003/210/212/products/imagenes-web-bd80df56fd37f05bb017477512212963-1024-1024.webp',
+  '108805': 'https://tiendafrancisco.com/wp-content/uploads/2021/11/palitos-extrusados-de-colores-para-perros-200-un-v-adelina-D_NQ_NP_944581-MLA31046015541_062019-F.jpg',
+  '108904': 'https://veterinariaaguara.com/wp-content/uploads/2025/07/grisines.webp',
+  '108803': 'https://acdn-us.mitiendanube.com/stores/005/315/465/products/02588_1-e3753f3fe99d85353717292175888838-1024-1024.webp',
+  '108804': 'https://acdn-us.mitiendanube.com/stores/005/315/465/products/02588_1-e3753f3fe99d85353717292175888838-1024-1024.webp',
+  '108902': 'https://acdn-us.mitiendanube.com/stores/002/064/707/products/donas-3-5-natural1-29be8367eb4455482e16500595290103-1024-1024.webp',
+  '108903': 'https://acdn-us.mitiendanube.com/stores/002/064/707/products/donas-3-5-natural1-29be8367eb4455482e16500595290103-1024-1024.webp',
+  '108808': 'https://http2.mlstatic.com/D_NQ_NP_2X_806765-MLA77798426911_072024-F.webp',
+  '108811': 'https://cdn.billowshop.com/071e89ac-46a5-8ab3/img/Producto/1948/01-1621360321-63212adf998bf.jpeg',
+  '108812': 'https://cdn.billowshop.com/071e89ac-46a5-8ab3/img/Producto/1948/01-1621360321-63212adf998bf.jpeg',
+  '108809': 'https://cdn.billowshop.com/071e89ac-46a5-8ab3/img/Producto/1948/01-1621360321-63212adf998bf.jpeg',
+  '108810': 'https://cdn.billowshop.com/071e89ac-46a5-8ab3/img/Producto/1948/01-1621360321-63212adf998bf.jpeg',
 };
 
-// Imágenes por marca y sub-categoría (fallback)
 const prodImgs = {
   'ADVANCE': {
     'perro_cachorro': 'https://advancebio.com.ar/wp-content/uploads/2023/04/Diseno-sin-titulo-42-450x450.png',
@@ -840,7 +771,6 @@ function renderAll() {
     return matchCat && matchBusq;
   });
 
-  // Agrupar por marca
   const grupos = {};
   filtrados.forEach(p => {
     if (!grupos[p.marca]) grupos[p.marca] = [];
@@ -897,12 +827,45 @@ function cambiarQty(id, delta) {
   if (qEl) qEl.textContent = carrito[id] ? carrito[id].qty : 0;
   if (cEl) cEl.classList.toggle('in-cart', !!carrito[id]);
   actualizarBadge();
+  actualizarKgTotal();
   if (document.getElementById('cart-panel').classList.contains('open')) renderCarrito();
 }
 
 function actualizarBadge() {
   const total = Object.values(carrito).reduce((s, i) => s + i.qty, 0);
   document.getElementById('cart-count').textContent = total;
+}
+
+function parseKgPresentacion(presentacion) {
+  if (!presentacion) return 0;
+  const plusMatch = presentacion.match(/(\d+)\s*\+\s*(\d+)\s*kg/i);
+  if (plusMatch) {
+    return parseFloat(plusMatch[1]) + parseFloat(plusMatch[2]);
+  }
+  const regex = /([\d,]+)\s*(kg|g)\b/gi;
+  let match, total = 0;
+  while ((match = regex.exec(presentacion)) !== null) {
+    let num = parseFloat(match[1].replace(',', '.'));
+    if (match[2].toLowerCase() === 'g') num = num / 1000;
+    total += num;
+  }
+  return total;
+}
+
+function actualizarKgTotal() {
+  const badge = document.getElementById('kg-total-badge');
+  const items = Object.values(carrito);
+  if (items.length === 0) {
+    badge.classList.remove('show');
+    return;
+  }
+  const totalKg = items.reduce((s, i) => s + parseKgPresentacion(i.presentacion) * i.qty, 0);
+  if (totalKg <= 0) {
+    badge.classList.remove('show');
+    return;
+  }
+  badge.textContent = `📦 Total pedido: ${totalKg.toLocaleString('es-AR', {maximumFractionDigits: 1})} kg`;
+  badge.classList.add('show');
 }
 
 function abrirCarrito() {
@@ -922,6 +885,7 @@ function renderCarrito() {
   if (items.length === 0) {
     cont.innerHTML = '<div class="cart-empty">Todavía no agregaste productos.<br>Buscá en el catálogo y tocá + para agregar.</div>';
     document.getElementById('total-monto').textContent = '$0';
+    actualizarKgTotal();
     return;
   }
   cont.innerHTML = items.map(i => `
@@ -939,6 +903,7 @@ function renderCarrito() {
     </div>`).join('');
   const total = items.reduce((s, i) => s + i.precio * i.qty, 0);
   document.getElementById('total-monto').textContent = '$' + Math.round(total).toLocaleString('es-AR');
+  actualizarKgTotal();
 }
 
 function enviarWhatsApp() {
@@ -957,13 +922,15 @@ function enviarWhatsApp() {
   msg += `*Fecha:* ${new Date().toLocaleDateString('es-AR')}\n\n`;
   msg += `*Productos:*\n`;
   items.forEach(i => {
-    msg += `• ${i.marca} ${i.nombre}${i.presentacion ? ' ' + i.presentacion : ''} x *${i.qty}* = $${Math.round(i.precio * i.qty).toLocaleString('es-AR')}\n`;
+    msg += `• *${i.qty}x* ${i.marca} ${i.nombre}${i.presentacion ? ' ' + i.presentacion : ''} = $${Math.round(i.precio * i.qty).toLocaleString('es-AR')}\n`;
   });
   msg += `\n*TOTAL: $${Math.round(total).toLocaleString('es-AR')}*`;
+  const totalKgMsg = items.reduce((s, i) => s + parseKgPresentacion(i.presentacion) * i.qty, 0);
+  if (totalKgMsg > 0) {
+    msg += `\n*Total kg: ${totalKgMsg.toLocaleString('es-AR', {maximumFractionDigits: 1})} kg*`;
+  }
   window.open(`https://wa.me/${numero}?text=${encodeURIComponent(msg)}`, '_blank');
 }
-
-renderAll();
 </script>
 </body>
 </html>
