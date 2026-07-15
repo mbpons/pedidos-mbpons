@@ -95,7 +95,6 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 </style>
 </head>
 <body>
-
 <header class="header">
   <div class="header-inner">
     <div class="logo">MBPONS <span>Distribuciones</span></div>
@@ -105,7 +104,6 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
     </button>
   </div>
 </header>
-
 <div class="controls">
   <div class="controls-inner">
     <div class="search-box">
@@ -115,9 +113,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
     <div class="filter-row" id="filter-row"></div>
   </div>
 </div>
-
 <main class="main" id="main-content"></main>
-
 <div class="cart-overlay" id="overlay" onclick="cerrarCarrito()"></div>
 <div class="cart-panel" id="cart-panel">
   <div class="cart-header">
@@ -146,13 +142,10 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
     </button>
   </div>
 </div>
-
 <div class="kg-total-badge" id="kg-total-badge"></div>
-
 <script>
 const NUMERO_GCU = "5493446206221";
 const NUMERO_RESTO = "5493446599787";
-
 const categorias = [
   { id: "todos", label: "Todos" },
   { id: "perro", label: "🐶 Perros" },
@@ -162,7 +155,6 @@ const categorias = [
   { id: "forraje", label: "🌾 Forrajes" },
   { id: "granazo", label: "🐄 Granazo" },
 ];
-
 const productos = [
   {id:"108833",marca:"ADVANCE",nombre:"Cachorros All Breeds",presentacion:"1,5 kg",precio:5013.53,cat:"perro",sub:"cachorro"},
   {id:"108834",marca:"ADVANCE",nombre:"Cachorros All Breeds",presentacion:"12 kg",precio:30725.69,cat:"perro",sub:"cachorro"},
@@ -364,14 +356,14 @@ const productos = [
   {id:"108352",marca:"VORAZ",nombre:"Gato Adulto",presentacion:"0,5 kg",precio:1478.26,cat:"gato",sub:"adulto"},
   {id:"108350",marca:"VORAZ",nombre:"Gato Adulto",presentacion:"10 kg",precio:20991.62,cat:"gato",sub:"adulto"},
   {id:"108349",marca:"VORAZ",nombre:"Gato Adulto",presentacion:"20 kg",precio:41107.75,cat:"gato",sub:"adulto"},
-  {id:"108852",marca:"AP",nombre:"Cachorro",presentacion:"10 kg",precio:20500,cat:"perro",sub:"cachorro"},
-  {id:"108853",marca:"AP",nombre:"Perro Adulto",presentacion:"20 kg",precio:31800,cat:"perro",sub:"adulto"},
-  {id:"108854",marca:"AP",nombre:"Perro Adulto SMB",presentacion:"20 kg",precio:31800,cat:"perro",sub:"adulto"},
-  {id:"108851",marca:"AP",nombre:"Gato",presentacion:"10 kg",precio:22000,cat:"gato",sub:"adulto"},
+  {id:"108852",marca:"AP",nombre:"Cachorro",presentacion:"10 kg",precio:21730,cat:"perro",sub:"cachorro"},
+  {id:"108853",marca:"AP",nombre:"Perro Adulto",presentacion:"20 kg",precio:33708,cat:"perro",sub:"adulto"},
+  {id:"108854",marca:"AP",nombre:"Perro Adulto SMB",presentacion:"20 kg",precio:33708,cat:"perro",sub:"adulto"},
+  {id:"108851",marca:"AP",nombre:"Gato",presentacion:"10 kg",precio:23320,cat:"gato",sub:"adulto"},
   {id:"108906",marca:"BON GRILLE",nombre:"SMB",presentacion:"12 kg",precio:16800,cat:"perro",sub:"adulto"},
   {id:"108905",marca:"BON GRILLE",nombre:"Perro",presentacion:"20 kg",precio:27560,cat:"perro",sub:"adulto"},
-  {id:"108848",marca:"AGROCAN",nombre:"Perro Adulto",presentacion:"15 kg",precio:14500,cat:"perro",sub:"adulto"},
-  {id:"108847",marca:"AGROCAN",nombre:"Perro Adulto",presentacion:"20+2 kg",precio:20868.40,cat:"perro",sub:"adulto"},
+  {id:"108848",marca:"AGROCAN",nombre:"Perro Adulto",presentacion:"15 kg",precio:15370,cat:"perro",sub:"adulto"},
+  {id:"108847",marca:"AGROCAN",nombre:"Perro Adulto",presentacion:"20+2 kg",precio:22120.50,cat:"perro",sub:"adulto"},
   {id:"100129",marca:"COMPANY",nombre:"Perro Adulto",presentacion:"20 kg",precio:35101,cat:"perro",sub:"adulto"},
   {id:"100130",marca:"COMPANY",nombre:"Perro Cachorro",presentacion:"20 kg",precio:40536,cat:"perro",sub:"cachorro"},
   {id:"100131",marca:"COMPANY",nombre:"Gato Adulto",presentacion:"15 kg",precio:48457,cat:"gato",sub:"adulto"},
@@ -451,10 +443,8 @@ const productos = [
   {id:"100269",marca:"GRANAZO",nombre:"Vacuno Recría 13%",presentacion:"30 kg",precio:17721.11,cat:"granazo",sub:""},
   {id:"100262",marca:"GRANAZO",nombre:"Vacuno Recría 16%",presentacion:"30 kg",precio:18454.60,cat:"granazo",sub:""},
 ];
-
 let carrito = {};
 let catActual = "todos";
-
 const fr = document.getElementById('filter-row');
 categorias.forEach(c => {
   const b = document.createElement('button');
@@ -463,7 +453,6 @@ categorias.forEach(c => {
   b.onclick = () => { catActual = c.id; document.querySelectorAll('.filter-btn').forEach(x => x.classList.remove('active')); b.classList.add('active'); renderAll(); };
   fr.appendChild(b);
 });
-
 const imgPorCodigo = {
   '108828': 'https://advancebio.com.ar/wp-content/uploads/2025/12/1-3-450x450.png',
   '108829': 'https://advancebio.com.ar/wp-content/uploads/2025/12/2-3-450x450.png',
@@ -736,7 +725,6 @@ const imgPorCodigo = {
   '108809': 'https://cdn.billowshop.com/071e89ac-46a5-8ab3/img/Producto/1948/01-1621360321-63212adf998bf.jpeg',
   '108810': 'https://cdn.billowshop.com/071e89ac-46a5-8ab3/img/Producto/1948/01-1621360321-63212adf998bf.jpeg',
 };
-
 const prodImgs = {
   'ADVANCE': {
     'perro_cachorro': 'https://advancebio.com.ar/wp-content/uploads/2023/04/Diseno-sin-titulo-42-450x450.png',
@@ -752,9 +740,7 @@ const prodImgs = {
     'gato_kitten':    'https://oldprince.com.ar/wp-content/uploads/2023/06/Mockup_Equilibrium-Kitten-300x500.png',
   },
 };
-
 const catEmoji = { perro: '🐶', gato: '🐱', hueso: '🦴', accesorio: '🏠', forraje: '🌾', granazo: '🐄' };
-
 function getProdImg(p) {
   if (imgPorCodigo[p.id]) return imgPorCodigo[p.id];
   const m = prodImgs[p.marca];
@@ -762,7 +748,6 @@ function getProdImg(p) {
   const key = p.cat + '_' + (p.sub || 'adulto');
   return m[key] || m[p.cat + '_adulto'] || null;
 }
-
 function renderAll() {
   const busq = document.getElementById('buscar').value.toLowerCase();
   const filtrados = productos.filter(p => {
@@ -770,19 +755,16 @@ function renderAll() {
     const matchBusq = !busq || p.nombre.toLowerCase().includes(busq) || p.marca.toLowerCase().includes(busq) || p.presentacion.toLowerCase().includes(busq);
     return matchCat && matchBusq;
   });
-
   const grupos = {};
   filtrados.forEach(p => {
     if (!grupos[p.marca]) grupos[p.marca] = [];
     grupos[p.marca].push(p);
   });
-
   const main = document.getElementById('main-content');
   if (filtrados.length === 0) {
     main.innerHTML = '<div class="empty-state"><p>Sin resultados para esa búsqueda</p></div>';
     return;
   }
-
   main.innerHTML = Object.entries(grupos).map(([marca, prods]) => `
     <div class="section-title">${marca}</div>
     <div class="prod-grid">
@@ -816,7 +798,6 @@ function renderAll() {
     </div>
   `).join('');
 }
-
 function cambiarQty(id, delta) {
   const p = productos.find(x => x.id === id);
   if (!carrito[id]) carrito[id] = { ...p, qty: 0 };
@@ -830,12 +811,10 @@ function cambiarQty(id, delta) {
   actualizarKgTotal();
   if (document.getElementById('cart-panel').classList.contains('open')) renderCarrito();
 }
-
 function actualizarBadge() {
   const total = Object.values(carrito).reduce((s, i) => s + i.qty, 0);
   document.getElementById('cart-count').textContent = total;
 }
-
 function parseKgPresentacion(presentacion) {
   if (!presentacion) return 0;
   const plusMatch = presentacion.match(/(\d+)\s*\+\s*(\d+)\s*kg/i);
@@ -851,7 +830,6 @@ function parseKgPresentacion(presentacion) {
   }
   return total;
 }
-
 function actualizarKgTotal() {
   const badge = document.getElementById('kg-total-badge');
   const items = Object.values(carrito);
@@ -867,18 +845,15 @@ function actualizarKgTotal() {
   badge.textContent = `📦 Total pedido: ${totalKg.toLocaleString('es-AR', {maximumFractionDigits: 1})} kg`;
   badge.classList.add('show');
 }
-
 function abrirCarrito() {
   document.getElementById('overlay').classList.add('open');
   document.getElementById('cart-panel').classList.add('open');
   renderCarrito();
 }
-
 function cerrarCarrito() {
   document.getElementById('overlay').classList.remove('open');
   document.getElementById('cart-panel').classList.remove('open');
 }
-
 function renderCarrito() {
   const items = Object.values(carrito);
   const cont = document.getElementById('cart-items-list');
@@ -905,7 +880,6 @@ function renderCarrito() {
   document.getElementById('total-monto').textContent = '$' + Math.round(total).toLocaleString('es-AR');
   actualizarKgTotal();
 }
-
 function enviarWhatsApp() {
   const nombre = document.getElementById('nombre-cliente').value.trim();
   const localidad = document.getElementById('localidad-cliente').value.trim();
@@ -931,7 +905,6 @@ function enviarWhatsApp() {
   }
   window.open(`https://wa.me/${numero}?text=${encodeURIComponent(msg)}`, '_blank');
 }
-
 renderAll();
 </script>
 </body>
