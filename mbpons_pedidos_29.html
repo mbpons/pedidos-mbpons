@@ -86,6 +86,25 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 .kg-total-badge { position: fixed; bottom: 14px; right: 14px; background: rgba(26,58,42,0.92); color: #fff; font-size: 12px; font-weight: 600; padding: 7px 14px; border-radius: 20px; z-index: 250; box-shadow: 0 2px 8px rgba(0,0,0,0.25); display: none; }
 .kg-total-badge.show { display: block; }
 .empty-state { text-align: center; padding: 4rem 1rem; color: var(--muted); }
+.splash-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 500; display: flex; align-items: center; justify-content: center; padding: 20px; cursor: pointer; opacity: 1; transition: opacity 0.4s ease; }
+.splash-overlay img { max-width: 90vw; max-height: 88vh; border-radius: 14px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); display: block; }
+.splash-overlay.hide { opacity: 0; pointer-events: none; }
+.promo-sidebar { display: none; }
+@media (min-width: 1500px) {
+  .promo-sidebar {
+    display: block;
+    position: fixed;
+    top: 140px;
+    right: 32px;
+    width: 210px;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+    border: 1px solid var(--border);
+    z-index: 150;
+  }
+  .promo-sidebar img { width: 100%; display: block; }
+}
 @media (max-width: 600px) {
   .prod-grid { grid-template-columns: 1fr; gap: 6px; }
   .prod-card { padding: 8px 10px; }
@@ -95,6 +114,9 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 </style>
 </head>
 <body>
+<div class="splash-overlay" id="splash-overlay" onclick="cerrarSplash()">
+  <img src="guardian_urinary_promo.png" alt="Guardian Urinary - Nuevo lanzamiento">
+</div>
 <header class="header">
   <div class="header-inner">
     <div class="logo">MBPONS <span>Distribuciones</span></div>
@@ -143,6 +165,9 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
   </div>
 </div>
 <div class="kg-total-badge" id="kg-total-badge"></div>
+<div class="promo-sidebar">
+  <img src="guardian_urinary_promo.png" alt="Guardian Urinary - Nuevo lanzamiento">
+</div>
 <script>
 const NUMERO_GCU = "5493446221971";
 const NUMERO_RESTO = "5493446599787";
@@ -187,6 +212,7 @@ const productos = [
   {id:"108874",marca:"GUARDIAN",nombre:"Adultos Small Breed",presentacion:"15 kg",precio:22508.60,cat:"perro",sub:"adulto"},
   {id:"108845",marca:"GUARDIAN",nombre:"Gatos Adultos",presentacion:"10 kg",precio:22627.92,cat:"gato",sub:"adulto"},
   {id:"108876",marca:"GUARDIAN",nombre:"Gatos Adultos",presentacion:"500 g",precio:1289.28,cat:"gato",sub:"adulto"},
+  {id:"108927",marca:"GUARDIAN",nombre:"Gato Urinary Adultos",presentacion:"8+2 kg",precio:25380,cat:"gato",sub:"adulto"},
   {id:"108838",marca:"DONDOG",nombre:"Perro Adulto",presentacion:"20+2 kg",precio:37694.20,cat:"perro",sub:"adulto"},
   {id:"108840",marca:"FANDOG",nombre:"Perro Adulto Criadores",presentacion:"20 kg",precio:35847.09,cat:"perro",sub:"adulto"},
   {id:"108841",marca:"RINTY",nombre:"Perro Adulto",presentacion:"20 kg",precio:32568.65,cat:"perro",sub:"adulto"},
@@ -394,7 +420,7 @@ const productos = [
   {id:"108809",marca:"ACCESORIO",nombre:"Comedero grande",presentacion:"1 u",precio:3097,cat:"accesorio",sub:""},
   {id:"108810",marca:"ACCESORIO",nombre:"Comedero mediano",presentacion:"1 u",precio:1839,cat:"accesorio",sub:""},
   {id:"108720",marca:"FORRAJE",nombre:"Alpiste",presentacion:"25 kg",precio:51300,cat:"forraje",sub:""},
-  {id:"100259",marca:"FORRAJE",nombre:"Arrocín",presentacion:"",precio:22800,cat:"forraje",sub:""},
+  {id:"100259",marca:"FORRAJE",nombre:"Arrocín",presentacion:"",precio:24000,cat:"forraje",sub:""},
   {id:"108721",marca:"FORRAJE",nombre:"Canario",presentacion:"25 kg",precio:51300,cat:"forraje",sub:""},
   {id:"108896",marca:"FORRAJE",nombre:"Conejo Gazapo",presentacion:"25 kg",precio:19000,cat:"forraje",sub:""},
   {id:"108724",marca:"FORRAJE",nombre:"Girasol",presentacion:"20 kg",precio:21000,cat:"forraje",sub:""},
@@ -454,29 +480,29 @@ categorias.forEach(c => {
   fr.appendChild(b);
 });
 const imgPorCodigo = {
-  '108828': 'https://advancebio.com.ar/wp-content/uploads/2025/12/1-3-450x450.png',
-  '108829': 'https://advancebio.com.ar/wp-content/uploads/2025/12/2-3-450x450.png',
-  '108832': 'https://advancebio.com.ar/wp-content/uploads/2023/04/Diseno-sin-titulo-40-450x450.png',
-  '108830': 'https://advancebio.com.ar/wp-content/uploads/2025/12/8-450x450.png',
-  '108831': 'https://advancebio.com.ar/wp-content/uploads/2025/12/9-450x450.png',
-  '108824': 'https://advancebio.com.ar/wp-content/uploads/2025/12/4-450x450.png',
-  '108825': 'https://advancebio.com.ar/wp-content/uploads/2025/12/4-450x450.png',
-  '108826': 'https://advancebio.com.ar/wp-content/uploads/2025/12/7-450x450.png',
-  '108827': 'https://advancebio.com.ar/wp-content/uploads/2025/12/7-450x450.png',
-  '108833': 'https://advancebio.com.ar/wp-content/uploads/2023/04/Diseno-sin-titulo-42-450x450.png',
-  '108834': 'https://advancebio.com.ar/wp-content/uploads/2023/04/Diseno-sin-titulo-42-450x450.png',
-  '108911': 'https://advancebio.com.ar/wp-content/uploads/2025/12/Diseno-sin-titulo-44-450x450.png',
-  '108893': 'https://advancebio.com.ar/wp-content/uploads/2024/10/Cookies-Carne.png',
-  '108871': 'https://advancebio.com.ar/wp-content/uploads/2024/09/cookie-cordero.webp',
-  '108892': 'https://advancebio.com.ar/wp-content/uploads/2024/09/cookie-pollo.webp',
-  '108837': 'https://advancebio.com.ar/wp-content/uploads/2024/09/6.png',
-  '108836': 'https://advancebio.com.ar/wp-content/uploads/2024/09/6.png',
-  '108870': 'https://advancebio.com.ar/wp-content/uploads/2024/09/5-450x450.png',
-  '108868': 'https://advancebio.com.ar/wp-content/uploads/2024/09/8-450x450.png',
-  '108867': 'https://advancebio.com.ar/wp-content/uploads/2024/09/8-450x450.png',
-  '108835': 'https://advancebio.com.ar/wp-content/uploads/2024/09/7-450x450.png',
-  '108869': 'https://advancebio.com.ar/wp-content/uploads/2024/09/7-450x450.png',
-  '108912': 'https://advancebio.com.ar/wp-content/uploads/2024/09/4.png',
+  '108833': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAA9lB9g7HQPOy1WL9LBIpGECXtZt5mc1e6DAfeA2rUw&s=10',
+  '108834': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAA9lB9g7HQPOy1WL9LBIpGECXtZt5mc1e6DAfeA2rUw&s=10',
+  '108828': 'https://http2.mlstatic.com/D_NQ_NP_707223-MLU72575406292_112023-O.webp',
+  '108829': 'https://http2.mlstatic.com/D_NQ_NP_882612-MLA107644158442_032026-O.webp',
+  '108832': 'https://dmmascotas.com/wp/wp-content/uploads/2025/09/2_9230_1-1-247x296.jpg',
+  '108830': 'https://perrosygatosfood.com.ar/wp-content/uploads/2025/12/ADVANCE-CORDERO-SMALL-300x300.jpg',
+  '108831': 'https://perrosygatosfood.com.ar/wp-content/uploads/2025/12/ADVANCE-CORDERO-M_G-300x300.jpg',
+  '108826': 'https://http2.mlstatic.com/D_NQ_NP_914627-MLA99441619816_112025-O.webp',
+  '108827': 'https://http2.mlstatic.com/D_NQ_NP_914627-MLA99441619816_112025-O.webp',
+  '108911': 'https://acdn-us.mitiendanube.com/stores/004/043/439/products/advancebioalmohaditas01ok-d17ab1add67ca15e9e17715088511686-640-0.webp',
+  '108893': 'https://perrosygatosfood.com.ar/wp-content/uploads/2025/12/cookie-carne-300x300.webp',
+  '108871': 'https://perrosygatosfood.com.ar/wp-content/uploads/2025/12/cookie-cordero-450x594-1-300x300.webp',
+  '108892': 'https://perrosygatosfood.com.ar/wp-content/uploads/2025/12/d1d8bd5e7d0a4cc9466b51df6cc8d263ec1f822da8bab626a26bd429a76d8c43148102-300x300.webp',
+  '108837': 'https://perrosygatosfood.com.ar/wp-content/uploads/2025/12/ADVANCE-GATO-X-8-300x300.jpg',
+  '108836': 'https://perrosygatosfood.com.ar/wp-content/uploads/2025/12/ADVANCE-GATO-X-8-300x300.jpg',
+  '108870': 'https://perrosygatosfood.com.ar/wp-content/uploads/2025/12/ADVANCE-GATO-X-8-300x300.jpg',
+  '108868': 'https://acdn-us.mitiendanube.com/stores/004/043/439/products/kitten_cuadrado-19829fa7e6508ca52617430906245076-640-0.webp',
+  '108867': 'https://acdn-us.mitiendanube.com/stores/004/043/439/products/kitten_cuadrado-19829fa7e6508ca52617430906245076-640-0.webp',
+  '108835': 'https://perrosygatosfood.com.ar/wp-content/uploads/2025/12/ADVANCE-URINARY-300x300.jpg',
+  '108869': 'https://perrosygatosfood.com.ar/wp-content/uploads/2025/12/ADVANCE-URINARY-300x300.jpg',
+  '108912': 'https://dmmascotas.com/wp/wp-content/uploads/2025/10/2_8766_1-2-247x296.jpg',
+  '108824': 'https://perrosygatosfood.com.ar/wp-content/uploads/2025/12/ADVANCE-SMALL-300x300.jpg',
+  '108825': 'https://perrosygatosfood.com.ar/wp-content/uploads/2025/12/ADVANCE-SMALL-300x300.jpg',
   '108764': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Mockup_OP-Equilibrium-Light-3-300x500.png',
   '108765': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Mockup_OP-Equilibrium-Light-3-300x500.png',
   '100090': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Mockup_Equilibrium-Adulto-MyG-1-300x500.png',
@@ -522,8 +548,8 @@ const imgPorCodigo = {
   '108419': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Mockup_Equilibrium-Esterilizado-300x500.png',
   '108769': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Premium-Gatito-1-300x500.png',
   '108768': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Premium-Gatito-1-300x500.png',
-  '108767': 'https://oldprince.com.ar/wp-content/uploads/2023/06/elementor/thumbs/Premium-Gato-Adulto-q97xhldjkaow9bb0evuu2jwwt86r6f2ogrm264eo0g.png',
-  '108766': 'https://oldprince.com.ar/wp-content/uploads/2023/06/elementor/thumbs/Premium-Gato-Adulto-q97xhldjkaow9bb0evuu2jwwt86r6f2ogrm264eo0g.png',
+  '108767': 'https://http2.mlstatic.com/D_NQ_NP_622629-MLA115361498321_072026-O.webp',
+  '108766': 'https://http2.mlstatic.com/D_NQ_NP_622629-MLA115361498321_072026-O.webp',
   '108910': 'https://oldprince.com.ar/wp-content/uploads/2025/10/Premium-Gato-Cordero-300x500.png',
   '108909': 'https://oldprince.com.ar/wp-content/uploads/2025/10/Premium-Gato-Cordero-300x500.png',
   '108908': 'https://oldprince.com.ar/wp-content/uploads/2025/10/Premium-Gato-Urinario-300x500.png',
@@ -686,9 +712,10 @@ const imgPorCodigo = {
   '108817': 'https://arcencohogar.vtexassets.com/arquivos/ids/383530/1448157.jpg?v=638653772502530000',
   '108729': 'https://catycanar.vtexassets.com/arquivos/ids/160225/18945.jpg?v=637733201133970000',
   '100051': 'https://catycanar.vtexassets.com/arquivos/ids/160225/18945.jpg?v=637733201133970000',
-  '108919': 'https://catycanar.vtexassets.com/arquivos/ids/170607/23478.jpg?v=638442143303230000',
-  '108921': 'https://catycanar.vtexassets.com/arquivos/ids/170607/23478.jpg?v=638442143303230000',
-  '108920': 'https://catycanar.vtexassets.com/arquivos/ids/170607/23478.jpg?v=638442143303230000',
+  '108927': 'guardian_gato_urinary_8kg.png',
+  '108919': 'https://acdn-us.mitiendanube.com/stores/001/777/737/products/rendermiantenancegatos-668afa869f277417ac17725649757386-640-0.webp',
+  '108921': 'https://acdn-us.mitiendanube.com/stores/001/777/737/products/rendermiantenancegatos-668afa869f277417ac17725649757386-640-0.webp',
+  '108920': 'https://acdn-us.mitiendanube.com/stores/001/777/737/products/rendermiantenancegatos-668afa869f277417ac17725649757386-640-0.webp',
   '100032': 'https://kongo.com.ar/wp-content/uploads/2023/08/b1.png',
   '100031': 'https://kongo.com.ar/wp-content/uploads/2023/08/b1.png',
   '100030': 'https://kongo.com.ar/wp-content/uploads/2023/08/b1.png',
@@ -727,11 +754,11 @@ const imgPorCodigo = {
 };
 const prodImgs = {
   'ADVANCE': {
-    'perro_cachorro': 'https://advancebio.com.ar/wp-content/uploads/2023/04/Diseno-sin-titulo-42-450x450.png',
-    'perro_adulto':   'https://advancebio.com.ar/wp-content/uploads/2025/12/7-450x450.png',
-    'perro_snack':    'https://advancebio.com.ar/wp-content/uploads/2024/10/Cookies-Carne.png',
-    'gato_kitten':    'https://advancebio.com.ar/wp-content/uploads/2024/10/Gatos-All-Breeds-Kitten.png',
-    'gato_adulto':    'https://advancebio.com.ar/wp-content/uploads/2024/10/Gatos-All-Breeds-Adulto.png',
+    'perro_cachorro': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAA9lB9g7HQPOy1WL9LBIpGECXtZt5mc1e6DAfeA2rUw&s=10',
+    'perro_adulto':   'https://http2.mlstatic.com/D_NQ_NP_914627-MLA99441619816_112025-O.webp',
+    'perro_snack':    'https://perrosygatosfood.com.ar/wp-content/uploads/2025/12/cookie-carne-300x300.webp',
+    'gato_kitten':    'https://acdn-us.mitiendanube.com/stores/004/043/439/products/kitten_cuadrado-19829fa7e6508ca52617430906245076-640-0.webp',
+    'gato_adulto':    'https://perrosygatosfood.com.ar/wp-content/uploads/2025/12/ADVANCE-GATO-X-8-300x300.jpg',
   },
   'OLD PRINCE': {
     'perro_cachorro': 'https://oldprince.com.ar/wp-content/uploads/2023/06/Mockup_Equilibrium-Cachorro-MyG-300x500.png',
@@ -906,6 +933,13 @@ function enviarWhatsApp() {
   window.open(`https://wa.me/${numero}?text=${encodeURIComponent(msg)}`, '_blank');
 }
 renderAll();
+function cerrarSplash() {
+  const el = document.getElementById('splash-overlay');
+  if (!el) return;
+  el.classList.add('hide');
+  setTimeout(() => el.remove(), 400);
+}
+setTimeout(cerrarSplash, 2000);
 </script>
 </body>
 </html>
