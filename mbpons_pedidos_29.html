@@ -45,7 +45,10 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 .prod-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 7px; }
 .prod-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: 10px; padding: 9px 10px; display: flex; flex-direction: row; align-items: center; gap: 10px; transition: border-color 0.15s, transform 0.1s; }
 .prod-card:hover { border-color: var(--brand-light); transform: translateY(-1px); }
-.prod-img-wrap { flex-shrink: 0; width: 54px; height: 54px; background: var(--bg); border-radius: 7px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.prod-img-wrap { flex-shrink: 0; width: 54px; height: 54px; background: var(--bg); border-radius: 7px; display: flex; align-items: center; justify-content: center; overflow: hidden; cursor: zoom-in; }
+.img-zoom-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 400; align-items: center; justify-content: center; padding: 20px; }
+.img-zoom-overlay.show { display: flex; }
+.img-zoom-overlay img { max-width: 85vw; max-height: 85vh; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); background: #fff; }
 .prod-img { width: 54px; height: 54px; object-fit: contain; }
 .prod-img-placeholder { font-size: 24px; line-height: 1; }
 .prod-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
@@ -165,6 +168,9 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
   </div>
 </div>
 <div class="kg-total-badge" id="kg-total-badge"></div>
+<div class="img-zoom-overlay" id="img-zoom-overlay">
+  <img id="img-zoom-img" src="" alt="">
+</div>
 <div class="promo-sidebar">
   <img src="GUARDI~2.PNG" alt="Guardian Urinary - Nuevo lanzamiento">
 </div>
@@ -817,7 +823,7 @@ function renderAll() {
           : '';
         const placeholderStyle = src ? 'display:none' : '';
         return `<div class="prod-card ${qty > 0 ? 'in-cart' : ''}" id="card-${p.id}">
-          <div class="prod-img-wrap">
+          <div class="prod-img-wrap" onclick="verImagenGrande('${src ? src.replace(/'/g, "\\'") : ''}')">
             ${imgHTML}
             <div class="prod-img-placeholder" style="${placeholderStyle}">${emoji}</div>
           </div>
@@ -837,6 +843,16 @@ function renderAll() {
       }).join('')}
     </div>
   `).join('');
+}
+let imgZoomTimeout = null;
+function verImagenGrande(src) {
+  if (!src) return;
+  const overlay = document.getElementById('img-zoom-overlay');
+  const img = document.getElementById('img-zoom-img');
+  img.src = src;
+  overlay.classList.add('show');
+  clearTimeout(imgZoomTimeout);
+  imgZoomTimeout = setTimeout(() => { overlay.classList.remove('show'); }, 1000);
 }
 function cambiarQty(id, delta) {
   const p = productos.find(x => x.id === id);
