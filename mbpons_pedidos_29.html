@@ -69,6 +69,8 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 .cart-header h2 { font-family: 'DM Serif Display', serif; font-size: 20px; }
 .close-btn { background: none; border: none; font-size: 22px; cursor: pointer; color: var(--muted); line-height: 1; padding: 4px; }
 .cart-body { flex: 1; overflow-y: auto; padding: 16px 20px; }
+.continue-shopping-btn { background: none; border: none; color: var(--brand-light); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; padding: 0; margin-bottom: 16px; display: flex; align-items: center; gap: 6px; }
+.continue-shopping-btn:hover { text-decoration: underline; }
 .cliente-field { margin-bottom: 1rem; }
 .cliente-field label { font-size: 13px; color: var(--muted); display: block; margin-bottom: 6px; font-weight: 500; }
 .cliente-field input { width: 100%; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none; color: var(--text); }
@@ -146,6 +148,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
     <button class="close-btn" onclick="cerrarCarrito()">✕</button>
   </div>
   <div class="cart-body">
+    <button class="continue-shopping-btn" onclick="cerrarCarrito()">← Seguir comprando</button>
     <div class="cliente-field">
       <label>Tu nombre y negocio</label>
       <input type="text" id="nombre-cliente" placeholder="Ej: Juan García - Veterinaria Central">
@@ -640,15 +643,15 @@ const imgPorCodigo = {
   '100016': 'https://catycanar.vtexassets.com/arquivos/ids/159071/16286.jpg?v=637732986072200000',
   '100015': 'https://catycanar.vtexassets.com/arquivos/ids/159071/16286.jpg?v=637732986072200000',
   '100014': 'https://catycanar.vtexassets.com/arquivos/ids/159071/16286.jpg?v=637732986072200000',
-  '100022': 'https://catycanar.vtexassets.com/arquivos/ids/159071/16286.jpg?v=637732986072200000',
-  '100021': 'https://catycanar.vtexassets.com/arquivos/ids/159071/16286.jpg?v=637732986072200000',
-  '100020': 'https://catycanar.vtexassets.com/arquivos/ids/159071/16286.jpg?v=637732986072200000',
-  '100019': 'https://catycanar.vtexassets.com/arquivos/ids/159071/16286.jpg?v=637732986072200000',
-  '100027': 'https://catycanar.vtexassets.com/arquivos/ids/159102/16321.jpg?v=637732986287370000',
-  '100026': 'https://catycanar.vtexassets.com/arquivos/ids/159102/16321.jpg?v=637732986287370000',
-  '100025': 'https://catycanar.vtexassets.com/arquivos/ids/159102/16321.jpg?v=637732986287370000',
-  '100024': 'https://catycanar.vtexassets.com/arquivos/ids/159102/16321.jpg?v=637732986287370000',
-  '100023': 'https://catycanar.vtexassets.com/arquivos/ids/159102/16321.jpg?v=637732986287370000',
+  '100022': 'https://http2.mlstatic.com/D_NQ_NP_2X_650810-MLA99408712620_112025-F.webp',
+  '100021': 'https://http2.mlstatic.com/D_NQ_NP_2X_650810-MLA99408712620_112025-F.webp',
+  '100020': 'https://http2.mlstatic.com/D_NQ_NP_2X_650810-MLA99408712620_112025-F.webp',
+  '100019': 'https://http2.mlstatic.com/D_NQ_NP_2X_650810-MLA99408712620_112025-F.webp',
+  '100027': 'https://http2.mlstatic.com/D_NQ_NP_2X_632213-MLA107034742658_022026-F.webp',
+  '100026': 'https://http2.mlstatic.com/D_NQ_NP_2X_632213-MLA107034742658_022026-F.webp',
+  '100025': 'https://http2.mlstatic.com/D_NQ_NP_2X_632213-MLA107034742658_022026-F.webp',
+  '100024': 'https://http2.mlstatic.com/D_NQ_NP_2X_632213-MLA107034742658_022026-F.webp',
+  '100023': 'https://http2.mlstatic.com/D_NQ_NP_2X_632213-MLA107034742658_022026-F.webp',
   '108853': 'https://http2.mlstatic.com/D_NQ_NP_2X_874471-MLA100056985909_122025-F.webp',
   '108854': 'https://http2.mlstatic.com/D_NQ_NP_2X_874471-MLA100056985909_122025-F.webp',
   '108851': 'https://http2.mlstatic.com/D_NQ_NP_2X_841607-MLA109271741416_042026-F.webp',
@@ -704,8 +707,8 @@ const imgPorCodigo = {
   '108353': 'https://alimentovoraz.com/wp-content/uploads/2024/10/Voraz-Gatito1.png',
   '108839': 'https://http2.mlstatic.com/D_NQ_NP_2X_908277-MLA73896703203_012024-F.webp',
   '108846': 'https://http2.mlstatic.com/D_NQ_NP_2X_922443-MLA99813584603_112025-F.webp',
-  '108728': 'https://arcencohogar.vtexassets.com/arquivos/ids/327386/1340900-1.jpg?v=637952243463030000',
-  '108727': 'https://arcencohogar.vtexassets.com/arquivos/ids/327386/1340900-1.jpg?v=637952243463030000',
+  '108728': 'https://http2.mlstatic.com/D_NQ_NP_2X_774002-MLA74442674019_022024-F.webp',
+  '108727': 'https://http2.mlstatic.com/D_NQ_NP_2X_774002-MLA74442674019_022024-F.webp',
   '100048': 'https://arcencohogar.vtexassets.com/arquivos/ids/327386/1340900-1.jpg?v=637952243463030000',
   '100047': 'https://arcencohogar.vtexassets.com/arquivos/ids/327386/1340900-1.jpg?v=637952243463030000',
   '100046': 'https://arcencohogar.vtexassets.com/arquivos/ids/327386/1340900-1.jpg?v=637952243463030000',
