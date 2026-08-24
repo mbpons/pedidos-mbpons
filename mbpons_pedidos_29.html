@@ -92,14 +92,24 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 .kg-total-badge.show { display: block; }
 .empty-state { text-align: center; padding: 4rem 1rem; color: var(--muted); }
 .splash-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 500; display: flex; align-items: center; justify-content: center; padding: 20px; cursor: pointer; opacity: 1; transition: opacity 0.4s ease; }
-.splash-overlay img { max-width: 90vw; max-height: 88vh; border-radius: 14px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); display: block; }
 .splash-overlay.hide { opacity: 0; pointer-events: none; }
-.announcement-banner { background: linear-gradient(135deg, var(--accent) 0%, #f0b545 100%); color: var(--brand); padding: 12px 42px 12px 16px; position: relative; font-size: 13px; line-height: 1.5; text-align: center; }
-.announcement-banner strong { font-weight: 600; }
-.announcement-banner .ann-close { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.35); border: none; width: 24px; height: 24px; border-radius: 50%; font-size: 15px; cursor: pointer; color: var(--brand); line-height: 1; display: flex; align-items: center; justify-content: center; }
-.announcement-banner .ann-close:hover { background: rgba(255,255,255,0.55); }
+.splash-card { max-width: 420px; width: 100%; background: linear-gradient(160deg, #fffdf8 0%, var(--accent-light) 100%); border: 2px solid var(--accent); border-radius: 16px; padding: 32px 28px 26px; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.5); cursor: default; }
+.splash-card-tag { display: inline-block; background: var(--brand); color: #fff; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; padding: 4px 12px; border-radius: 20px; margin-bottom: 14px; }
+.splash-card-icon { font-size: 46px; margin-bottom: 8px; }
+.splash-card-title { font-family: 'DM Serif Display', serif; font-size: 27px; color: var(--brand); margin-bottom: 14px; }
+.splash-card-text { font-size: 16px; font-weight: 600; color: var(--text); line-height: 1.6; margin-bottom: 10px; }
+.splash-card-text:last-of-type { margin-bottom: 0; }
+.splash-card-hint { display: block; margin-top: 18px; font-size: 12px; color: var(--muted); }
+.announcement-banner { background: linear-gradient(135deg, var(--danger) 0%, #8f2a1e 100%); color: #fff; padding: 16px 48px 16px 16px; position: relative; font-size: 17px; font-weight: 700; line-height: 1.55; text-align: center; border-bottom: 3px solid var(--accent); box-shadow: 0 2px 10px rgba(0,0,0,0.18); }
+.announcement-banner .ann-tag { display: inline-block; background: var(--accent); color: var(--brand); font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; padding: 3px 10px; border-radius: 4px; margin-right: 8px; vertical-align: middle; }
+.announcement-banner .ann-icon { display: inline-block; animation: ann-bounce 1.6s ease-in-out infinite; }
+@keyframes ann-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+.announcement-banner strong { font-weight: 700; }
+.announcement-banner .ann-close { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.25); border: none; width: 26px; height: 26px; border-radius: 50%; font-size: 15px; cursor: pointer; color: #fff; line-height: 1; display: flex; align-items: center; justify-content: center; }
+.announcement-banner .ann-close:hover { background: rgba(255,255,255,0.4); }
 @media (max-width: 600px) {
-  .announcement-banner { font-size: 12px; padding: 10px 36px 10px 12px; }
+  .announcement-banner { font-size: 14.5px; padding: 12px 38px 12px 12px; }
+  .announcement-banner .ann-tag { display: block; width: fit-content; margin: 0 auto 4px; }
 }
 .promo-sidebar { display: none; }
 @media (min-width: 1500px) {
@@ -127,12 +137,28 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 </head>
 <body>
 <div class="announcement-banner" id="announcement-banner">
-  📢 <strong>Estimado cliente:</strong> le informamos una actualización de precios próxima a aplicarse en las líneas del canal especializado (Fawna, Old Prince, Company/Origen, Natural Meat y Waffen). Línea Perro: <strong>7%</strong> · Línea Gato: <strong>8%</strong>
+  <span class="ann-tag">Aviso</span><span class="ann-icon">📢</span> <strong>Actualización de precios:</strong> ya aplicamos el ajuste en BON GRILLE (12 kg <strong>+7%</strong> · 20 kg <strong>+4%</strong>) y en las líneas del canal especializado (Fawna, Old Prince, Company, Origen y Natural Meat) — Línea Perro <strong>+7%</strong> · Línea Gato <strong>+8%</strong>.
   <button class="ann-close" onclick="cerrarAnuncio()" aria-label="Cerrar aviso">✕</button>
 </div>
 <div class="splash-overlay" id="splash-overlay" onclick="cerrarSplash()">
-  <img src="GUARDI~2.PNG" alt="Guardian Urinary - Nuevo lanzamiento">
+  <div class="splash-card">
+    <span class="splash-card-tag">Aviso</span>
+    <div class="splash-card-icon">💰</div>
+    <h2 class="splash-card-title">Actualización de precios</h2>
+    <p class="splash-card-text">Ya aplicamos el ajuste en <strong>BON GRILLE</strong> (12 kg <strong>+7%</strong> · 20 kg <strong>+4%</strong>).</p>
+    <p class="splash-card-text">También en las líneas del canal especializado (<strong>Fawna, Old Prince, Company, Origen y Natural Meat</strong>) — Línea Perro <strong>+7%</strong> · Línea Gato <strong>+8%</strong>.</p>
+    <span class="splash-card-hint">Tocá para cerrar</span>
+  </div>
 </div>
+<script>
+(function() {
+  var el = document.getElementById('splash-overlay');
+  var ini = new Date('2026-08-24T00:00:00');
+  var fin = new Date('2026-08-28T00:00:00');
+  var ahora = new Date();
+  if (el && (ahora < ini || ahora >= fin)) el.remove();
+})();
+</script>
 <header class="header">
   <div class="header-inner">
     <div class="logo">MBPONS <span>Distribuciones</span></div>
@@ -239,89 +265,89 @@ const productos = [
   {id:"108846",marca:"NUTRI KING",nombre:"Perro Adulto",presentacion:"20 kg",precio:27257.30,cat:"perro",sub:"adulto"},
   {id:"108872",marca:"TOBIE MENU",nombre:"Perro Adulto",presentacion:"20 kg",precio:35265.00,cat:"perro",sub:"adulto"},
   {id:"108839",marca:"MIAU",nombre:"Gato Adulto",presentacion:"8+2 kg",precio:26841.53,cat:"gato",sub:"adulto"},
-  {id:"108782",marca:"FAWNA",nombre:"Perro Adulto Light",presentacion:"3 kg",precio:24694,cat:"perro",sub:"adulto"},
-  {id:"108781",marca:"FAWNA",nombre:"Perro Adulto Light",presentacion:"15 kg",precio:81944,cat:"perro",sub:"adulto"},
-  {id:"108778",marca:"FAWNA",nombre:"Perro Adulto Mordida Pequeña",presentacion:"3 kg",precio:24083,cat:"perro",sub:"adulto"},
-  {id:"108777",marca:"FAWNA",nombre:"Perro Adulto Mordida Pequeña",presentacion:"7,5 kg",precio:50092,cat:"perro",sub:"adulto"},
-  {id:"108773",marca:"FAWNA",nombre:"Perro Adulto M y G",presentacion:"3 kg",precio:21730,cat:"perro",sub:"adulto"},
-  {id:"108772",marca:"FAWNA",nombre:"Perro Adulto M y G",presentacion:"15 kg",precio:80635,cat:"perro",sub:"adulto"},
-  {id:"108780",marca:"FAWNA",nombre:"Cachorro Mordida Pequeña",presentacion:"3 kg",precio:24613,cat:"perro",sub:"cachorro"},
-  {id:"108779",marca:"FAWNA",nombre:"Cachorro Mordida Pequeña",presentacion:"7,5 kg",precio:52213,cat:"perro",sub:"cachorro"},
-  {id:"108776",marca:"FAWNA",nombre:"Cachorro M y G",presentacion:"3 kg",precio:24613,cat:"perro",sub:"cachorro"},
-  {id:"108775",marca:"FAWNA",nombre:"Cachorro M y G",presentacion:"7,5 kg",precio:52454,cat:"perro",sub:"cachorro"},
-  {id:"108774",marca:"FAWNA",nombre:"Cachorro M y G",presentacion:"15 kg",precio:91180,cat:"perro",sub:"cachorro"},
-  {id:"108784",marca:"FAWNA",nombre:"Perro Senior",presentacion:"3 kg",precio:24694,cat:"perro",sub:"adulto"},
-  {id:"108783",marca:"FAWNA",nombre:"Perro Senior",presentacion:"15 kg",precio:81944,cat:"perro",sub:"adulto"},
-  {id:"108786",marca:"FAWNA",nombre:"Gato Adulto",presentacion:"3 kg",precio:33779,cat:"gato",sub:"adulto"},
-  {id:"108785",marca:"FAWNA",nombre:"Gato Adulto",presentacion:"7,5 kg",precio:65503,cat:"gato",sub:"adulto"},
-  {id:"108788",marca:"FAWNA",nombre:"Gato Adulto Esterilizado",presentacion:"3 kg",precio:37870,cat:"gato",sub:"adulto"},
-  {id:"108787",marca:"FAWNA",nombre:"Gato Adulto Esterilizado",presentacion:"7,5 kg",precio:71537,cat:"gato",sub:"adulto"},
-  {id:"108790",marca:"FAWNA",nombre:"Gato Adulto Urinario",presentacion:"3 kg",precio:39986,cat:"gato",sub:"adulto"},
-  {id:"108789",marca:"FAWNA",nombre:"Gato Adulto Urinario",presentacion:"7,5 kg",precio:74783,cat:"gato",sub:"adulto"},
-  {id:"108792",marca:"FAWNA",nombre:"Gatito Kitten",presentacion:"1 kg",precio:12415,cat:"gato",sub:"kitten"},
-  {id:"108791",marca:"FAWNA",nombre:"Gatito Kitten",presentacion:"3 kg",precio:35387,cat:"gato",sub:"kitten"},
-  {id:"100082",marca:"OLD PRINCE",nombre:"Equilibrium Cachorro M. Pequeña",presentacion:"3 kg",precio:14128,cat:"perro",sub:"cachorro"},
-  {id:"100081",marca:"OLD PRINCE",nombre:"Equilibrium Cachorro M. Pequeña",presentacion:"7,5 kg",precio:31151,cat:"perro",sub:"cachorro"},
-  {id:"100088",marca:"OLD PRINCE",nombre:"Equilibrium Cachorro M y G",presentacion:"3 kg",precio:13082,cat:"perro",sub:"cachorro"},
-  {id:"100087",marca:"OLD PRINCE",nombre:"Equilibrium Cachorro M y G",presentacion:"7,5 kg",precio:30220,cat:"perro",sub:"cachorro"},
-  {id:"100086",marca:"OLD PRINCE",nombre:"Equilibrium Cachorro M y G",presentacion:"15 kg",precio:54946,cat:"perro",sub:"cachorro"},
-  {id:"100092",marca:"OLD PRINCE",nombre:"Equilibrium Adulto M y G",presentacion:"3 kg",precio:12251,cat:"perro",sub:"adulto"},
-  {id:"100091",marca:"OLD PRINCE",nombre:"Equilibrium Adulto M y G",presentacion:"7,5 kg",precio:28291,cat:"perro",sub:"adulto"},
-  {id:"100090",marca:"OLD PRINCE",nombre:"Equilibrium Adulto M y G",presentacion:"15 kg",precio:49098,cat:"perro",sub:"adulto"},
-  {id:"100089",marca:"OLD PRINCE",nombre:"Equilibrium Adulto M y G",presentacion:"20 kg",precio:61993,cat:"perro",sub:"adulto"},
-  {id:"100085",marca:"OLD PRINCE",nombre:"Equilibrium Adulto Mord. Pequeña",presentacion:"3 kg",precio:13231,cat:"perro",sub:"adulto"},
-  {id:"100084",marca:"OLD PRINCE",nombre:"Equilibrium Adulto Mord. Pequeña",presentacion:"7,5 kg",precio:30220,cat:"perro",sub:"adulto"},
-  {id:"100083",marca:"OLD PRINCE",nombre:"Equilibrium Adulto Mord. Pequeña",presentacion:"15 kg",precio:54947,cat:"perro",sub:"adulto"},
-  {id:"108764",marca:"OLD PRINCE",nombre:"Equilibrium Adulto Weight Control",presentacion:"15 kg",precio:63838,cat:"perro",sub:"adulto"},
-  {id:"108765",marca:"OLD PRINCE",nombre:"Equilibrium Adulto Weight Control",presentacion:"3 kg",precio:14796,cat:"perro",sub:"adulto"},
-  {id:"108422",marca:"OLD PRINCE",nombre:"Equilibrium Kitten",presentacion:"1 kg",precio:8018,cat:"gato",sub:"kitten"},
-  {id:"108421",marca:"OLD PRINCE",nombre:"Equilibrium Kitten",presentacion:"3 kg",precio:21810,cat:"gato",sub:"kitten"},
-  {id:"108424",marca:"OLD PRINCE",nombre:"Equilibrium Gato Adulto",presentacion:"3 kg",precio:19828,cat:"gato",sub:"adulto"},
-  {id:"108423",marca:"OLD PRINCE",nombre:"Equilibrium Gato Adulto",presentacion:"7,5 kg",precio:46765,cat:"gato",sub:"adulto"},
-  {id:"108426",marca:"OLD PRINCE",nombre:"Equilibrium Gato Urinario",presentacion:"3 kg",precio:22751,cat:"gato",sub:"adulto"},
-  {id:"108425",marca:"OLD PRINCE",nombre:"Equilibrium Gato Urinario",presentacion:"7,5 kg",precio:53660,cat:"gato",sub:"adulto"},
-  {id:"108420",marca:"OLD PRINCE",nombre:"Equilibrium Gato Esterilizado",presentacion:"3 kg",precio:21810,cat:"gato",sub:"adulto"},
-  {id:"108419",marca:"OLD PRINCE",nombre:"Equilibrium Gato Esterilizado",presentacion:"7,5 kg",precio:51440,cat:"gato",sub:"adulto"},
-  {id:"100103",marca:"OLD PRINCE",nombre:"Novel Cerdo & Legumbres Adulto",presentacion:"3 kg",precio:14224,cat:"perro",sub:"adulto"},
-  {id:"100102",marca:"OLD PRINCE",nombre:"Novel Cerdo & Legumbres Adulto",presentacion:"15 kg",precio:61844,cat:"perro",sub:"adulto"},
-  {id:"100095",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Adulto M y L",presentacion:"3 kg",precio:16135,cat:"perro",sub:"adulto"},
-  {id:"100094",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Adulto M y L",presentacion:"7,5 kg",precio:36831,cat:"perro",sub:"adulto"},
-  {id:"100093",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Adulto M y L",presentacion:"15 kg",precio:67974,cat:"perro",sub:"adulto"},
-  {id:"100098",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Adulto Small",presentacion:"3 kg",precio:17748,cat:"perro",sub:"adulto"},
-  {id:"100097",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Adulto Small",presentacion:"7,5 kg",precio:40515,cat:"perro",sub:"adulto"},
-  {id:"100096",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Adulto Small",presentacion:"15 kg",precio:77172,cat:"perro",sub:"adulto"},
-  {id:"108418",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Adulto Light",presentacion:"3 kg",precio:16941,cat:"perro",sub:"adulto"},
-  {id:"108417",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Adulto Light",presentacion:"15 kg",precio:73664,cat:"perro",sub:"adulto"},
-  {id:"108416",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Adulto Senior",presentacion:"3 kg",precio:16941,cat:"perro",sub:"adulto"},
-  {id:"108415",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Adulto Senior",presentacion:"15 kg",precio:73664,cat:"perro",sub:"adulto"},
-  {id:"100101",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Cachorro",presentacion:"3 kg",precio:17748,cat:"perro",sub:"cachorro"},
-  {id:"100100",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Cachorro",presentacion:"7,5 kg",precio:40515,cat:"perro",sub:"cachorro"},
-  {id:"100099",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Cachorro",presentacion:"15 kg",precio:77172,cat:"perro",sub:"cachorro"},
-  {id:"100106",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Gato Adulto",presentacion:"1 kg",precio:9919,cat:"gato",sub:"adulto"},
-  {id:"100105",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Gato Adulto",presentacion:"3 kg",precio:27053,cat:"gato",sub:"adulto"},
-  {id:"100104",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Gato Adulto",presentacion:"7,5 kg",precio:60869,cat:"gato",sub:"adulto"},
-  {id:"100111",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Gato Sterilized",presentacion:"1 kg",precio:10910,cat:"gato",sub:"adulto"},
-  {id:"100110",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Gato Sterilized",presentacion:"3 kg",precio:29757,cat:"gato",sub:"adulto"},
-  {id:"100109",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Gato Sterilized",presentacion:"7,5 kg",precio:67632,cat:"gato",sub:"adulto"},
-  {id:"100108",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Gato Kitten",presentacion:"1 kg",precio:10910,cat:"gato",sub:"kitten"},
-  {id:"100107",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Gato Kitten",presentacion:"3 kg",precio:29757,cat:"gato",sub:"kitten"},
-  {id:"108364",marca:"OLD PRINCE",nombre:"Premium Adulto",presentacion:"3 kg",precio:8728,cat:"perro",sub:"adulto"},
-  {id:"108363",marca:"OLD PRINCE",nombre:"Premium Adulto",presentacion:"20 kg",precio:51495,cat:"perro",sub:"adulto"},
-  {id:"108368",marca:"OLD PRINCE",nombre:"Premium Adulto Cordero",presentacion:"3 kg",precio:13192,cat:"perro",sub:"adulto"},
-  {id:"108367",marca:"OLD PRINCE",nombre:"Premium Adulto Cordero",presentacion:"15 kg",precio:59968,cat:"perro",sub:"adulto"},
-  {id:"108366",marca:"OLD PRINCE",nombre:"Premium Cachorro",presentacion:"3 kg",precio:9425,cat:"perro",sub:"cachorro"},
-  {id:"108365",marca:"OLD PRINCE",nombre:"Premium Cachorro",presentacion:"15 kg",precio:42847,cat:"perro",sub:"cachorro"},
-  {id:"108769",marca:"OLD PRINCE",nombre:"Premium Gatito",presentacion:"3 kg",precio:18139,cat:"gato",sub:"kitten"},
-  {id:"108768",marca:"OLD PRINCE",nombre:"Premium Gatito",presentacion:"7,5 kg",precio:36279,cat:"gato",sub:"kitten"},
-  {id:"108767",marca:"OLD PRINCE",nombre:"Premium Gato Adulto",presentacion:"3 kg",precio:16490,cat:"gato",sub:"adulto"},
-  {id:"108766",marca:"OLD PRINCE",nombre:"Premium Gato Adulto",presentacion:"7,5 kg",precio:32981,cat:"gato",sub:"adulto"},
-  {id:"108910",marca:"OLD PRINCE",nombre:"Premium Gato Cordero Adulto",presentacion:"3 kg",precio:16490,cat:"gato",sub:"adulto"},
-  {id:"108909",marca:"OLD PRINCE",nombre:"Premium Gato Cordero Adulto",presentacion:"7,5 kg",precio:32981,cat:"gato",sub:"adulto"},
-  {id:"108908",marca:"OLD PRINCE",nombre:"Premium Gato Urinario",presentacion:"3 kg",precio:16490,cat:"gato",sub:"adulto"},
-  {id:"108907",marca:"OLD PRINCE",nombre:"Premium Gato Urinario",presentacion:"7,5 kg",precio:32981,cat:"gato",sub:"adulto"},
-  {id:"100124",marca:"NATURAL MEAT",nombre:"Perro Adulto",presentacion:"7 kg",precio:25337,cat:"perro",sub:"adulto"},
-  {id:"100123",marca:"NATURAL MEAT",nombre:"Perro Adulto",presentacion:"15 kg",precio:41553,cat:"perro",sub:"adulto"},
-  {id:"100126",marca:"NATURAL MEAT",nombre:"Perro Cachorro",presentacion:"15 kg",precio:45708,cat:"perro",sub:"cachorro"},
+  {id:"108782",marca:"FAWNA",nombre:"Perro Adulto Light",presentacion:"3 kg",precio:26422.58,cat:"perro",sub:"adulto"},
+  {id:"108781",marca:"FAWNA",nombre:"Perro Adulto Light",presentacion:"15 kg",precio:87680.08,cat:"perro",sub:"adulto"},
+  {id:"108778",marca:"FAWNA",nombre:"Perro Adulto Mordida Pequeña",presentacion:"3 kg",precio:25768.81,cat:"perro",sub:"adulto"},
+  {id:"108777",marca:"FAWNA",nombre:"Perro Adulto Mordida Pequeña",presentacion:"7,5 kg",precio:53598.44,cat:"perro",sub:"adulto"},
+  {id:"108773",marca:"FAWNA",nombre:"Perro Adulto M y G",presentacion:"3 kg",precio:23251.1,cat:"perro",sub:"adulto"},
+  {id:"108772",marca:"FAWNA",nombre:"Perro Adulto M y G",presentacion:"15 kg",precio:86279.45,cat:"perro",sub:"adulto"},
+  {id:"108780",marca:"FAWNA",nombre:"Cachorro Mordida Pequeña",presentacion:"3 kg",precio:26335.91,cat:"perro",sub:"cachorro"},
+  {id:"108779",marca:"FAWNA",nombre:"Cachorro Mordida Pequeña",presentacion:"7,5 kg",precio:55867.91,cat:"perro",sub:"cachorro"},
+  {id:"108776",marca:"FAWNA",nombre:"Cachorro M y G",presentacion:"3 kg",precio:26335.91,cat:"perro",sub:"cachorro"},
+  {id:"108775",marca:"FAWNA",nombre:"Cachorro M y G",presentacion:"7,5 kg",precio:56125.78,cat:"perro",sub:"cachorro"},
+  {id:"108774",marca:"FAWNA",nombre:"Cachorro M y G",presentacion:"15 kg",precio:97562.6,cat:"perro",sub:"cachorro"},
+  {id:"108784",marca:"FAWNA",nombre:"Perro Senior",presentacion:"3 kg",precio:26422.58,cat:"perro",sub:"adulto"},
+  {id:"108783",marca:"FAWNA",nombre:"Perro Senior",presentacion:"15 kg",precio:87680.08,cat:"perro",sub:"adulto"},
+  {id:"108786",marca:"FAWNA",nombre:"Gato Adulto",presentacion:"3 kg",precio:36481.32,cat:"gato",sub:"adulto"},
+  {id:"108785",marca:"FAWNA",nombre:"Gato Adulto",presentacion:"7,5 kg",precio:70743.24,cat:"gato",sub:"adulto"},
+  {id:"108788",marca:"FAWNA",nombre:"Gato Adulto Esterilizado",presentacion:"3 kg",precio:40899.6,cat:"gato",sub:"adulto"},
+  {id:"108787",marca:"FAWNA",nombre:"Gato Adulto Esterilizado",presentacion:"7,5 kg",precio:77259.96,cat:"gato",sub:"adulto"},
+  {id:"108790",marca:"FAWNA",nombre:"Gato Adulto Urinario",presentacion:"3 kg",precio:43184.88,cat:"gato",sub:"adulto"},
+  {id:"108789",marca:"FAWNA",nombre:"Gato Adulto Urinario",presentacion:"7,5 kg",precio:80765.64,cat:"gato",sub:"adulto"},
+  {id:"108792",marca:"FAWNA",nombre:"Gatito Kitten",presentacion:"1 kg",precio:13408.2,cat:"gato",sub:"kitten"},
+  {id:"108791",marca:"FAWNA",nombre:"Gatito Kitten",presentacion:"3 kg",precio:38217.96,cat:"gato",sub:"kitten"},
+  {id:"100082",marca:"OLD PRINCE",nombre:"Equilibrium Cachorro M. Pequeña",presentacion:"3 kg",precio:15116.96,cat:"perro",sub:"cachorro"},
+  {id:"100081",marca:"OLD PRINCE",nombre:"Equilibrium Cachorro M. Pequeña",presentacion:"7,5 kg",precio:33331.57,cat:"perro",sub:"cachorro"},
+  {id:"100088",marca:"OLD PRINCE",nombre:"Equilibrium Cachorro M y G",presentacion:"3 kg",precio:13997.74,cat:"perro",sub:"cachorro"},
+  {id:"100087",marca:"OLD PRINCE",nombre:"Equilibrium Cachorro M y G",presentacion:"7,5 kg",precio:32335.4,cat:"perro",sub:"cachorro"},
+  {id:"100086",marca:"OLD PRINCE",nombre:"Equilibrium Cachorro M y G",presentacion:"15 kg",precio:58792.22,cat:"perro",sub:"cachorro"},
+  {id:"100092",marca:"OLD PRINCE",nombre:"Equilibrium Adulto M y G",presentacion:"3 kg",precio:13108.57,cat:"perro",sub:"adulto"},
+  {id:"100091",marca:"OLD PRINCE",nombre:"Equilibrium Adulto M y G",presentacion:"7,5 kg",precio:30271.37,cat:"perro",sub:"adulto"},
+  {id:"100090",marca:"OLD PRINCE",nombre:"Equilibrium Adulto M y G",presentacion:"15 kg",precio:52534.86,cat:"perro",sub:"adulto"},
+  {id:"100089",marca:"OLD PRINCE",nombre:"Equilibrium Adulto M y G",presentacion:"20 kg",precio:66332.51,cat:"perro",sub:"adulto"},
+  {id:"100085",marca:"OLD PRINCE",nombre:"Equilibrium Adulto Mord. Pequeña",presentacion:"3 kg",precio:14157.17,cat:"perro",sub:"adulto"},
+  {id:"100084",marca:"OLD PRINCE",nombre:"Equilibrium Adulto Mord. Pequeña",presentacion:"7,5 kg",precio:32335.4,cat:"perro",sub:"adulto"},
+  {id:"100083",marca:"OLD PRINCE",nombre:"Equilibrium Adulto Mord. Pequeña",presentacion:"15 kg",precio:58793.29,cat:"perro",sub:"adulto"},
+  {id:"108764",marca:"OLD PRINCE",nombre:"Equilibrium Adulto Weight Control",presentacion:"15 kg",precio:68306.66,cat:"perro",sub:"adulto"},
+  {id:"108765",marca:"OLD PRINCE",nombre:"Equilibrium Adulto Weight Control",presentacion:"3 kg",precio:15831.72,cat:"perro",sub:"adulto"},
+  {id:"108422",marca:"OLD PRINCE",nombre:"Equilibrium Kitten",presentacion:"1 kg",precio:8659.44,cat:"gato",sub:"kitten"},
+  {id:"108421",marca:"OLD PRINCE",nombre:"Equilibrium Kitten",presentacion:"3 kg",precio:23554.8,cat:"gato",sub:"kitten"},
+  {id:"108424",marca:"OLD PRINCE",nombre:"Equilibrium Gato Adulto",presentacion:"3 kg",precio:21414.24,cat:"gato",sub:"adulto"},
+  {id:"108423",marca:"OLD PRINCE",nombre:"Equilibrium Gato Adulto",presentacion:"7,5 kg",precio:50506.2,cat:"gato",sub:"adulto"},
+  {id:"108426",marca:"OLD PRINCE",nombre:"Equilibrium Gato Urinario",presentacion:"3 kg",precio:24571.08,cat:"gato",sub:"adulto"},
+  {id:"108425",marca:"OLD PRINCE",nombre:"Equilibrium Gato Urinario",presentacion:"7,5 kg",precio:57952.8,cat:"gato",sub:"adulto"},
+  {id:"108420",marca:"OLD PRINCE",nombre:"Equilibrium Gato Esterilizado",presentacion:"3 kg",precio:23554.8,cat:"gato",sub:"adulto"},
+  {id:"108419",marca:"OLD PRINCE",nombre:"Equilibrium Gato Esterilizado",presentacion:"7,5 kg",precio:55555.2,cat:"gato",sub:"adulto"},
+  {id:"100103",marca:"OLD PRINCE",nombre:"Novel Cerdo & Legumbres Adulto",presentacion:"3 kg",precio:15219.68,cat:"perro",sub:"adulto"},
+  {id:"100102",marca:"OLD PRINCE",nombre:"Novel Cerdo & Legumbres Adulto",presentacion:"15 kg",precio:66173.08,cat:"perro",sub:"adulto"},
+  {id:"100095",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Adulto M y L",presentacion:"3 kg",precio:17264.45,cat:"perro",sub:"adulto"},
+  {id:"100094",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Adulto M y L",presentacion:"7,5 kg",precio:39409.17,cat:"perro",sub:"adulto"},
+  {id:"100093",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Adulto M y L",presentacion:"15 kg",precio:72732.18,cat:"perro",sub:"adulto"},
+  {id:"100098",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Adulto Small",presentacion:"3 kg",precio:18990.36,cat:"perro",sub:"adulto"},
+  {id:"100097",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Adulto Small",presentacion:"7,5 kg",precio:43351.05,cat:"perro",sub:"adulto"},
+  {id:"100096",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Adulto Small",presentacion:"15 kg",precio:82574.04,cat:"perro",sub:"adulto"},
+  {id:"108418",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Adulto Light",presentacion:"3 kg",precio:18126.87,cat:"perro",sub:"adulto"},
+  {id:"108417",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Adulto Light",presentacion:"15 kg",precio:78820.48,cat:"perro",sub:"adulto"},
+  {id:"108416",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Adulto Senior",presentacion:"3 kg",precio:18126.87,cat:"perro",sub:"adulto"},
+  {id:"108415",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Adulto Senior",presentacion:"15 kg",precio:78820.48,cat:"perro",sub:"adulto"},
+  {id:"100101",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Cachorro",presentacion:"3 kg",precio:18990.36,cat:"perro",sub:"cachorro"},
+  {id:"100100",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Cachorro",presentacion:"7,5 kg",precio:43351.05,cat:"perro",sub:"cachorro"},
+  {id:"100099",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Cachorro",presentacion:"15 kg",precio:82574.04,cat:"perro",sub:"cachorro"},
+  {id:"100106",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Gato Adulto",presentacion:"1 kg",precio:10712.52,cat:"gato",sub:"adulto"},
+  {id:"100105",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Gato Adulto",presentacion:"3 kg",precio:29217.24,cat:"gato",sub:"adulto"},
+  {id:"100104",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Gato Adulto",presentacion:"7,5 kg",precio:65738.52,cat:"gato",sub:"adulto"},
+  {id:"100111",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Gato Sterilized",presentacion:"1 kg",precio:11782.8,cat:"gato",sub:"adulto"},
+  {id:"100110",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Gato Sterilized",presentacion:"3 kg",precio:32137.56,cat:"gato",sub:"adulto"},
+  {id:"100109",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Gato Sterilized",presentacion:"7,5 kg",precio:73042.56,cat:"gato",sub:"adulto"},
+  {id:"100108",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Gato Kitten",presentacion:"1 kg",precio:11782.8,cat:"gato",sub:"kitten"},
+  {id:"100107",marca:"OLD PRINCE",nombre:"Novel Cordero & Arroz Gato Kitten",presentacion:"3 kg",precio:32137.56,cat:"gato",sub:"kitten"},
+  {id:"108364",marca:"OLD PRINCE",nombre:"Premium Adulto",presentacion:"3 kg",precio:9338.96,cat:"perro",sub:"adulto"},
+  {id:"108363",marca:"OLD PRINCE",nombre:"Premium Adulto",presentacion:"20 kg",precio:55099.65,cat:"perro",sub:"adulto"},
+  {id:"108368",marca:"OLD PRINCE",nombre:"Premium Adulto Cordero",presentacion:"3 kg",precio:14115.44,cat:"perro",sub:"adulto"},
+  {id:"108367",marca:"OLD PRINCE",nombre:"Premium Adulto Cordero",presentacion:"15 kg",precio:64165.76,cat:"perro",sub:"adulto"},
+  {id:"108366",marca:"OLD PRINCE",nombre:"Premium Cachorro",presentacion:"3 kg",precio:10084.75,cat:"perro",sub:"cachorro"},
+  {id:"108365",marca:"OLD PRINCE",nombre:"Premium Cachorro",presentacion:"15 kg",precio:45846.29,cat:"perro",sub:"cachorro"},
+  {id:"108769",marca:"OLD PRINCE",nombre:"Premium Gatito",presentacion:"3 kg",precio:19590.12,cat:"gato",sub:"kitten"},
+  {id:"108768",marca:"OLD PRINCE",nombre:"Premium Gatito",presentacion:"7,5 kg",precio:39181.32,cat:"gato",sub:"kitten"},
+  {id:"108767",marca:"OLD PRINCE",nombre:"Premium Gato Adulto",presentacion:"3 kg",precio:17809.2,cat:"gato",sub:"adulto"},
+  {id:"108766",marca:"OLD PRINCE",nombre:"Premium Gato Adulto",presentacion:"7,5 kg",precio:35619.48,cat:"gato",sub:"adulto"},
+  {id:"108910",marca:"OLD PRINCE",nombre:"Premium Gato Cordero Adulto",presentacion:"3 kg",precio:17809.2,cat:"gato",sub:"adulto"},
+  {id:"108909",marca:"OLD PRINCE",nombre:"Premium Gato Cordero Adulto",presentacion:"7,5 kg",precio:35619.48,cat:"gato",sub:"adulto"},
+  {id:"108908",marca:"OLD PRINCE",nombre:"Premium Gato Urinario",presentacion:"3 kg",precio:17809.2,cat:"gato",sub:"adulto"},
+  {id:"108907",marca:"OLD PRINCE",nombre:"Premium Gato Urinario",presentacion:"7,5 kg",precio:35619.48,cat:"gato",sub:"adulto"},
+  {id:"100124",marca:"NATURAL MEAT",nombre:"Perro Adulto",presentacion:"7 kg",precio:27110.59,cat:"perro",sub:"adulto"},
+  {id:"100123",marca:"NATURAL MEAT",nombre:"Perro Adulto",presentacion:"15 kg",precio:44461.71,cat:"perro",sub:"adulto"},
+  {id:"100126",marca:"NATURAL MEAT",nombre:"Perro Cachorro",presentacion:"15 kg",precio:48907.56,cat:"perro",sub:"cachorro"},
   {id:"100006",marca:"KONGO GOLD",nombre:"Natural Adulto",presentacion:"1,5 kg",precio:4305.64,cat:"perro",sub:"adulto"},
   {id:"100005",marca:"KONGO GOLD",nombre:"Natural Adulto",presentacion:"3 kg",precio:8226.82,cat:"perro",sub:"adulto"},
   {id:"100004",marca:"KONGO GOLD",nombre:"Natural Adulto",presentacion:"8 kg",precio:19534.65,cat:"perro",sub:"adulto"},
@@ -406,16 +432,16 @@ const productos = [
   {id:"108853",marca:"AP",nombre:"Perro Adulto",presentacion:"20 kg",precio:33708,cat:"perro",sub:"adulto"},
   {id:"108854",marca:"AP",nombre:"Perro Adulto SMB",presentacion:"20 kg",precio:33708,cat:"perro",sub:"adulto"},
   {id:"108851",marca:"AP",nombre:"Gato",presentacion:"10 kg",precio:23320,cat:"gato",sub:"adulto"},
-  {id:"108906",marca:"BON GRILLE",nombre:"SMB",presentacion:"12 kg",precio:16800,cat:"perro",sub:"adulto"},
-  {id:"108905",marca:"BON GRILLE",nombre:"Perro",presentacion:"20 kg",precio:27560,cat:"perro",sub:"adulto"},
+  {id:"108906",marca:"BON GRILLE",nombre:"SMB",presentacion:"12 kg",precio:17976,cat:"perro",sub:"adulto"},
+  {id:"108905",marca:"BON GRILLE",nombre:"Perro",presentacion:"20 kg",precio:28662.40,cat:"perro",sub:"adulto"},
   {id:"108848",marca:"AGROCAN",nombre:"Perro Adulto",presentacion:"15 kg",precio:15370,cat:"perro",sub:"adulto"},
   {id:"108847",marca:"AGROCAN",nombre:"Perro Adulto",presentacion:"20+2 kg",precio:22120.50,cat:"perro",sub:"adulto"},
-  {id:"100129",marca:"COMPANY",nombre:"Perro Adulto",presentacion:"20 kg",precio:35101,cat:"perro",sub:"adulto"},
-  {id:"100130",marca:"COMPANY",nombre:"Perro Cachorro",presentacion:"20 kg",precio:40536,cat:"perro",sub:"cachorro"},
-  {id:"100131",marca:"COMPANY",nombre:"Gato Adulto",presentacion:"15 kg",precio:48457,cat:"gato",sub:"adulto"},
-  {id:"100132",marca:"COMPANY",nombre:"Gato Adulto",presentacion:"3 kg",precio:1776,cat:"gato",sub:"adulto"},
-  {id:"100133",marca:"COMPANY",nombre:"Gatito",presentacion:"3 kg",precio:1907,cat:"gato",sub:"kitten"},
-  {id:"100136",marca:"ORIGEN",nombre:"Perro Adulto",presentacion:"20 kg",precio:27145.79,cat:"perro",sub:"adulto"},
+  {id:"100129",marca:"COMPANY",nombre:"Perro Adulto",presentacion:"20 kg",precio:37558.07,cat:"perro",sub:"adulto"},
+  {id:"100130",marca:"COMPANY",nombre:"Perro Cachorro",presentacion:"20 kg",precio:43373.52,cat:"perro",sub:"cachorro"},
+  {id:"100131",marca:"COMPANY",nombre:"Gato Adulto",presentacion:"15 kg",precio:52333.56,cat:"gato",sub:"adulto"},
+  {id:"100132",marca:"COMPANY",nombre:"Gato Adulto",presentacion:"3 kg",precio:1918.08,cat:"gato",sub:"adulto"},
+  {id:"100133",marca:"COMPANY",nombre:"Gatito",presentacion:"3 kg",precio:2059.56,cat:"gato",sub:"kitten"},
+  {id:"100136",marca:"ORIGEN",nombre:"Perro Adulto",presentacion:"20 kg",precio:29046,cat:"perro",sub:"adulto"},
   {"2.15.11":true,id:"2.15.11",marca:"CAUDILLO",nombre:"Perro",presentacion:"18 kg",precio:25926.33,cat:"perro",sub:"adulto"},
   {id:"108793",marca:"HUESO",nombre:"Hueso 2/3",presentacion:"10 u",precio:8483,cat:"hueso",sub:""},
   {id:"108794",marca:"HUESO",nombre:"Hueso 3/4",presentacion:"10 u",precio:9639,cat:"hueso",sub:""},
@@ -982,7 +1008,7 @@ function cerrarSplash() {
   el.classList.add('hide');
   setTimeout(() => el.remove(), 400);
 }
-setTimeout(cerrarSplash, 2000);
+setTimeout(cerrarSplash, 6000);
 
 // Anuncio temporal: visible del 24/08/2026 al 27/08/2026 inclusive. Se oculta solo después.
 const ANN_INICIO = new Date('2026-08-24T00:00:00');
