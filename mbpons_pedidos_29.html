@@ -94,6 +94,13 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 .splash-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 500; display: flex; align-items: center; justify-content: center; padding: 20px; cursor: pointer; opacity: 1; transition: opacity 0.4s ease; }
 .splash-overlay img { max-width: 90vw; max-height: 88vh; border-radius: 14px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); display: block; }
 .splash-overlay.hide { opacity: 0; pointer-events: none; }
+.announcement-banner { background: linear-gradient(135deg, var(--accent) 0%, #f0b545 100%); color: var(--brand); padding: 12px 42px 12px 16px; position: relative; font-size: 13px; line-height: 1.5; text-align: center; }
+.announcement-banner strong { font-weight: 600; }
+.announcement-banner .ann-close { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.35); border: none; width: 24px; height: 24px; border-radius: 50%; font-size: 15px; cursor: pointer; color: var(--brand); line-height: 1; display: flex; align-items: center; justify-content: center; }
+.announcement-banner .ann-close:hover { background: rgba(255,255,255,0.55); }
+@media (max-width: 600px) {
+  .announcement-banner { font-size: 12px; padding: 10px 36px 10px 12px; }
+}
 .promo-sidebar { display: none; }
 @media (min-width: 1500px) {
   .promo-sidebar {
@@ -119,6 +126,10 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 </style>
 </head>
 <body>
+<div class="announcement-banner" id="announcement-banner">
+  📢 <strong>Estimado cliente:</strong> le informamos una actualización de precios próxima a aplicarse en las líneas del canal especializado (Fawna, Old Prince, Company/Origen, Natural Meat y Waffen). Línea Perro: <strong>7%</strong> · Línea Gato: <strong>8%</strong>
+  <button class="ann-close" onclick="cerrarAnuncio()" aria-label="Cerrar aviso">✕</button>
+</div>
 <div class="splash-overlay" id="splash-overlay" onclick="cerrarSplash()">
   <img src="GUARDI~2.PNG" alt="Guardian Urinary - Nuevo lanzamiento">
 </div>
@@ -972,6 +983,22 @@ function cerrarSplash() {
   setTimeout(() => el.remove(), 400);
 }
 setTimeout(cerrarSplash, 2000);
+
+// Anuncio temporal: visible del 24/08/2026 al 27/08/2026 inclusive. Se oculta solo después.
+const ANN_INICIO = new Date('2026-08-24T00:00:00');
+const ANN_FIN = new Date('2026-08-28T00:00:00'); // límite exclusivo (cubre hasta el 27/08 completo)
+function cerrarAnuncio() {
+  const banner = document.getElementById('announcement-banner');
+  if (banner) banner.remove();
+}
+(function chequearAnuncio() {
+  const banner = document.getElementById('announcement-banner');
+  if (!banner) return;
+  const ahora = new Date();
+  if (ahora < ANN_INICIO || ahora >= ANN_FIN) {
+    banner.remove();
+  }
+})();
 </script>
 </body>
 </html>
