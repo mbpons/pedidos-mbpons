@@ -137,24 +137,24 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 </head>
 <body>
 <div class="announcement-banner" id="announcement-banner">
-  <span class="ann-tag">Aviso</span><span class="ann-icon">📢</span> <strong>Actualización de precios:</strong> ya aplicamos el ajuste en BON GRILLE <strong>(+7%)</strong> y en las líneas del canal especializado (Fawna, Old Prince, Company, Origen y Natural Meat) — Línea Perro <strong>+7%</strong> · Línea Gato <strong>+8%</strong>.
+  <span class="ann-tag">Aviso</span><span class="ann-icon">📢</span> <strong>Nuevos precios de GRANAZO vigentes.</strong> Ya está actualizado todo el catálogo de la línea (bovinos, equinos, aves, cerdos, conejos y más).
   <button class="ann-close" onclick="cerrarAnuncio()" aria-label="Cerrar aviso">✕</button>
 </div>
 <div class="splash-overlay" id="splash-overlay" onclick="cerrarSplash()">
   <div class="splash-card">
     <span class="splash-card-tag">Aviso</span>
-    <div class="splash-card-icon">💰</div>
-    <h2 class="splash-card-title">Actualización de precios</h2>
-    <p class="splash-card-text">Ya aplicamos el ajuste en <strong>BON GRILLE</strong> <strong>(+7%)</strong>.</p>
-    <p class="splash-card-text">También en las líneas del canal especializado (<strong>Fawna, Old Prince, Company, Origen y Natural Meat</strong>) — Línea Perro <strong>+7%</strong> · Línea Gato <strong>+8%</strong>.</p>
+    <div class="splash-card-icon">🐄</div>
+    <h2 class="splash-card-title">Nuevos precios GRANAZO</h2>
+    <p class="splash-card-text">Ya están vigentes los <strong>nuevos precios de GRANAZO</strong>.</p>
+    <p class="splash-card-text">Se actualizó toda la línea: bovinos, equinos, aves, cerdos, conejos, ovejas y bloque proteico.</p>
     <span class="splash-card-hint">Tocá para cerrar</span>
   </div>
 </div>
 <script>
 (function() {
   var el = document.getElementById('splash-overlay');
-  var ini = new Date('2026-08-24T00:00:00');
-  var fin = new Date('2026-08-28T00:00:00');
+  var ini = new Date('2026-08-27T00:00:00');
+  var fin = new Date('2026-08-31T00:00:00');
   var ahora = new Date();
   if (el && (ahora < ini || ahora >= fin)) el.remove();
 })();
@@ -483,38 +483,38 @@ const productos = [
   {id:"108898",marca:"CÉSPED",nombre:"Campos Deportivos",presentacion:"500 g",precio:5000,cat:"forraje",sub:""},
   {id:"108900",marca:"CÉSPED",nombre:"Fertilizante 15-15-15",presentacion:"1 kg",precio:5000,cat:"forraje",sub:""},
   {id:"108899",marca:"CÉSPED",nombre:"Jardín",presentacion:"500 g",precio:5000,cat:"forraje",sub:""},
-  {id:"100280",marca:"GRANAZO",nombre:"Bebé Doméstico",presentacion:"25 kg",precio:22132.11,cat:"granazo",sub:""},
-  {id:"100291",marca:"GRANAZO",nombre:"Bloque Proteico 35%",presentacion:"15 kg",precio:18416.99,cat:"granazo",sub:""},
-  {id:"100288",marca:"GRANAZO",nombre:"Borrego Exposición",presentacion:"25 kg",precio:18569.88,cat:"granazo",sub:""},
-  {id:"100283",marca:"GRANAZO",nombre:"Cerdo Lechón",presentacion:"25 kg",precio:21075.05,cat:"granazo",sub:""},
-  {id:"100285",marca:"GRANAZO",nombre:"Cerdo Recría",presentacion:"25 kg",precio:18988.16,cat:"granazo",sub:""},
-  {id:"100286",marca:"GRANAZO",nombre:"Cerdo Reproductor",presentacion:"25 kg",precio:17739.34,cat:"granazo",sub:""},
-  {id:"100284",marca:"GRANAZO",nombre:"Cerdo Terminación",presentacion:"25 kg",precio:16613.89,cat:"granazo",sub:""},
-  {id:"100267",marca:"GRANAZO",nombre:"Concentrado 40%",presentacion:"30 kg",precio:25763.53,cat:"granazo",sub:""},
-  {id:"100268",marca:"GRANAZO",nombre:"Concentrado 40% Sin Urea",presentacion:"30 kg",precio:30103.75,cat:"granazo",sub:""},
-  {id:"100290",marca:"GRANAZO",nombre:"Conejo Engorde",presentacion:"25 kg",precio:19284.11,cat:"granazo",sub:""},
-  {id:"100287",marca:"GRANAZO",nombre:"Cordero",presentacion:"25 kg",precio:17847.67,cat:"granazo",sub:""},
-  {id:"100260",marca:"GRANAZO",nombre:"Destete Hiper Precoz",presentacion:"25 kg",precio:29433.91,cat:"granazo",sub:""},
-  {id:"100261",marca:"GRANAZO",nombre:"Destete Precoz",presentacion:"30 kg",precio:20789.64,cat:"granazo",sub:""},
-  {id:"100282",marca:"GRANAZO",nombre:"Engorde Doméstico",presentacion:"25 kg",precio:20885.47,cat:"granazo",sub:""},
-  {id:"100275",marca:"GRANAZO",nombre:"Equino Desarrollo",presentacion:"30 kg",precio:22877.29,cat:"granazo",sub:""},
-  {id:"100274",marca:"GRANAZO",nombre:"Equino Mantenimiento",presentacion:"30 kg",precio:19361.71,cat:"granazo",sub:""},
-  {id:"100273",marca:"GRANAZO",nombre:"Equino Trainning",presentacion:"30 kg",precio:21162.90,cat:"granazo",sub:""},
-  {id:"100271",marca:"GRANAZO",nombre:"Lechera Alta Energía",presentacion:"30 kg",precio:17656,cat:"granazo",sub:""},
-  {id:"100289",marca:"GRANAZO",nombre:"Ovejas",presentacion:"25 kg",precio:17739.34,cat:"granazo",sub:""},
-  {id:"100276",marca:"GRANAZO",nombre:"Parrillero Iniciador",presentacion:"25 kg",precio:23539.60,cat:"granazo",sub:""},
-  {id:"100277",marca:"GRANAZO",nombre:"Parrillero Terminados",presentacion:"25 kg",precio:21916.68,cat:"granazo",sub:""},
-  {id:"100281",marca:"GRANAZO",nombre:"Ponedora Doméstica",presentacion:"25 kg",precio:15693.55,cat:"granazo",sub:""},
-  {id:"100278",marca:"GRANAZO",nombre:"Ponedora Jaula",presentacion:"25 kg",precio:17902.45,cat:"granazo",sub:""},
-  {id:"100279",marca:"GRANAZO",nombre:"Recría Reposición",presentacion:"25 kg",precio:20372.74,cat:"granazo",sub:""},
-  {id:"100266",marca:"GRANAZO",nombre:"Toro Servicio",presentacion:"30 kg",precio:18016.24,cat:"granazo",sub:""},
-  {id:"100270",marca:"GRANAZO",nombre:"Vaca Lechera 16%",presentacion:"30 kg",precio:18593.49,cat:"granazo",sub:""},
-  {id:"100272",marca:"GRANAZO",nombre:"Vaca Pre Parto",presentacion:"30 kg",precio:18241.93,cat:"granazo",sub:""},
-  {id:"100263",marca:"GRANAZO",nombre:"Vacuno Engorde",presentacion:"30 kg",precio:18077.01,cat:"granazo",sub:""},
-  {id:"100264",marca:"GRANAZO",nombre:"Vacuno Engorde Feed Lot",presentacion:"30 kg",precio:18597.83,cat:"granazo",sub:""},
-  {id:"100265",marca:"GRANAZO",nombre:"Vacuno Mantenimiento",presentacion:"30 kg",precio:17430.31,cat:"granazo",sub:""},
-  {id:"100269",marca:"GRANAZO",nombre:"Vacuno Recría 13%",presentacion:"30 kg",precio:17721.11,cat:"granazo",sub:""},
-  {id:"100262",marca:"GRANAZO",nombre:"Vacuno Recría 16%",presentacion:"30 kg",precio:18454.60,cat:"granazo",sub:""},
+  {id:"100280",marca:"GRANAZO",nombre:"Bebé Doméstico",presentacion:"25 kg",precio:23374.44,cat:"granazo",sub:""},
+  {id:"100291",marca:"GRANAZO",nombre:"Bloque Proteico 35%",presentacion:"15 kg",precio:22113.41,cat:"granazo",sub:""},
+  {id:"100288",marca:"GRANAZO",nombre:"Borrego Exposición",presentacion:"25 kg",precio:21252.60,cat:"granazo",sub:""},
+  {id:"100283",marca:"GRANAZO",nombre:"Cerdo Lechón",presentacion:"25 kg",precio:23735.20,cat:"granazo",sub:""},
+  {id:"100285",marca:"GRANAZO",nombre:"Cerdo Recría",presentacion:"25 kg",precio:21478.29,cat:"granazo",sub:""},
+  {id:"100286",marca:"GRANAZO",nombre:"Cerdo Reproductor",presentacion:"25 kg",precio:20086.53,cat:"granazo",sub:""},
+  {id:"100284",marca:"GRANAZO",nombre:"Cerdo Terminación",presentacion:"25 kg",precio:18995.68,cat:"granazo",sub:""},
+  {id:"100267",marca:"GRANAZO",nombre:"Concentrado 40%",presentacion:"30 kg",precio:27907.60,cat:"granazo",sub:""},
+  {id:"100268",marca:"GRANAZO",nombre:"Concentrado 40% Sin Urea",presentacion:"30 kg",precio:32074.21,cat:"granazo",sub:""},
+  {id:"100290",marca:"GRANAZO",nombre:"Conejo Engorde",presentacion:"25 kg",precio:22070.01,cat:"granazo",sub:""},
+  {id:"100287",marca:"GRANAZO",nombre:"Cordero",presentacion:"25 kg",precio:20199.37,cat:"granazo",sub:""},
+  {id:"100260",marca:"GRANAZO",nombre:"Destete Hiper Precoz",presentacion:"25 kg",precio:35517.45,cat:"granazo",sub:""},
+  {id:"100261",marca:"GRANAZO",nombre:"Destete Precoz",presentacion:"30 kg",precio:21961.50,cat:"granazo",sub:""},
+  {id:"100282",marca:"GRANAZO",nombre:"Engorde Doméstico",presentacion:"25 kg",precio:23913.02,cat:"granazo",sub:""},
+  {id:"100275",marca:"GRANAZO",nombre:"Equino Desarrollo",presentacion:"30 kg",precio:20399.02,cat:"granazo",sub:""},
+  {id:"100274",marca:"GRANAZO",nombre:"Equino Mantenimiento",presentacion:"30 kg",precio:21484.08,cat:"granazo",sub:""},
+  {id:"100273",marca:"GRANAZO",nombre:"Equino Trainning",presentacion:"30 kg",precio:23176.76,cat:"granazo",sub:""},
+  {id:"100271",marca:"GRANAZO",nombre:"Lechera Alta Energía",presentacion:"30 kg",precio:19791.39,cat:"granazo",sub:""},
+  {id:"100289",marca:"GRANAZO",nombre:"Ovejas",presentacion:"25 kg",precio:17754.38,cat:"granazo",sub:""},
+  {id:"100276",marca:"GRANAZO",nombre:"Parrillero Iniciador",presentacion:"25 kg",precio:25421.05,cat:"granazo",sub:""},
+  {id:"100277",marca:"GRANAZO",nombre:"Parrillero Terminados",presentacion:"25 kg",precio:25313.33,cat:"granazo",sub:""},
+  {id:"100281",marca:"GRANAZO",nombre:"Ponedora Doméstica",presentacion:"25 kg",precio:18527.20,cat:"granazo",sub:""},
+  {id:"100278",marca:"GRANAZO",nombre:"Ponedora Jaula",presentacion:"25 kg",precio:20609.72,cat:"granazo",sub:""},
+  {id:"100279",marca:"GRANAZO",nombre:"Recría Reposición",presentacion:"25 kg",precio:22764.05,cat:"granazo",sub:""},
+  {id:"100266",marca:"GRANAZO",nombre:"Toro Servicio",presentacion:"30 kg",precio:18532.73,cat:"granazo",sub:""},
+  {id:"100270",marca:"GRANAZO",nombre:"Vaca Lechera 16%",presentacion:"30 kg",precio:20572.63,cat:"granazo",sub:""},
+  {id:"100272",marca:"GRANAZO",nombre:"Vaca Pre Parto",presentacion:"30 kg",precio:17881.70,cat:"granazo",sub:""},
+  {id:"100263",marca:"GRANAZO",nombre:"Vacuno Engorde",presentacion:"30 kg",precio:18185.51,cat:"granazo",sub:""},
+  {id:"100264",marca:"GRANAZO",nombre:"Vacuno Engorde Feed Lot",presentacion:"30 kg",precio:19921.60,cat:"granazo",sub:""},
+  {id:"100265",marca:"GRANAZO",nombre:"Vacuno Mantenimiento",presentacion:"30 kg",precio:17794.89,cat:"granazo",sub:""},
+  {id:"100269",marca:"GRANAZO",nombre:"Vacuno Recría 13%",presentacion:"30 kg",precio:17881.70,cat:"granazo",sub:""},
+  {id:"100262",marca:"GRANAZO",nombre:"Vacuno Recría 16%",presentacion:"30 kg",precio:19617.78,cat:"granazo",sub:""},
 ];
 let carrito = {};
 let catActual = "todos";
@@ -1010,9 +1010,9 @@ function cerrarSplash() {
 }
 setTimeout(cerrarSplash, 6000);
 
-// Anuncio temporal: visible del 24/08/2026 al 27/08/2026 inclusive. Se oculta solo después.
-const ANN_INICIO = new Date('2026-08-24T00:00:00');
-const ANN_FIN = new Date('2026-08-28T00:00:00'); // límite exclusivo (cubre hasta el 27/08 completo)
+// Anuncio temporal: visible del 27/08/2026 al 30/08/2026 inclusive. Se oculta solo después.
+const ANN_INICIO = new Date('2026-08-27T00:00:00');
+const ANN_FIN = new Date('2026-08-31T00:00:00'); // límite exclusivo (cubre hasta el 30/08 completo)
 function cerrarAnuncio() {
   const banner = document.getElementById('announcement-banner');
   if (banner) banner.remove();
