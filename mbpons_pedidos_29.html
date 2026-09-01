@@ -93,7 +93,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 .empty-state { text-align: center; padding: 4rem 1rem; color: var(--muted); }
 .splash-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 500; display: flex; align-items: center; justify-content: center; padding: 20px; cursor: pointer; opacity: 1; transition: opacity 0.4s ease; }
 .splash-overlay.hide { opacity: 0; pointer-events: none; }
-.splash-card { max-width: 420px; width: 100%; background: linear-gradient(160deg, #fffdf8 0%, var(--accent-light) 100%); border: 2px solid var(--accent); border-radius: 16px; padding: 32px 28px 26px; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.5); cursor: default; }
+.splash-card { max-width: 520px; width: 100%; background: linear-gradient(160deg, #fffdf8 0%, var(--accent-light) 100%); border: 2px solid var(--accent); border-radius: 16px; padding: 28px 24px 26px; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.5); cursor: default; max-height: 90vh; overflow-y: auto; }
 .splash-card-tag { display: inline-block; background: var(--brand); color: #fff; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; padding: 4px 12px; border-radius: 20px; margin-bottom: 14px; }
 .splash-card-icon { font-size: 46px; margin-bottom: 8px; }
 .splash-card-title { font-family: 'DM Serif Display', serif; font-size: 27px; color: var(--brand); margin-bottom: 14px; }
@@ -137,24 +137,24 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 </head>
 <body>
 <div class="announcement-banner" id="announcement-banner">
-  <span class="ann-tag">Aviso</span><span class="ann-icon">📢</span> <strong>Nuevos precios de GRANAZO vigentes.</strong> Ya está actualizado todo el catálogo de la línea (bovinos, equinos, aves, cerdos, conejos y más).
+  <span class="ann-tag">Aviso</span><span class="ann-icon">🆕</span> <strong>Nuevo ingreso: Cuchas plásticas.</strong> Ya disponibles para perros y gatos, en todos los tamaños: chica, mediana y grande.
   <button class="ann-close" onclick="cerrarAnuncio()" aria-label="Cerrar aviso">✕</button>
 </div>
 <div class="splash-overlay" id="splash-overlay" onclick="cerrarSplash()">
   <div class="splash-card">
     <span class="splash-card-tag">Aviso</span>
-    <div class="splash-card-icon">🐄</div>
-    <h2 class="splash-card-title">Nuevos precios GRANAZO</h2>
-    <p class="splash-card-text">Ya están vigentes los <strong>nuevos precios de GRANAZO</strong>.</p>
-    <p class="splash-card-text">Se actualizó toda la línea: bovinos, equinos, aves, cerdos, conejos, ovejas y bloque proteico.</p>
+    <img src="https://scontent.faep14-2.fna.fbcdn.net/v/t39.30808-6/648479979_1567903185335792_3582758903288794436_n.jpg?stp=dst-jpg_tt6&cstp=mx1024x1536&ctp=s1024x1536&_nc_cat=109&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_ohc=5cneyylEDn0Q7kNvwE7pinx&_nc_oc=AdpSssgQzvsmJMwvzfrrhs_8LvnkjkbmWcPdeiHcbRYJ1XbanGxYqaALk7TqzyH2TW4&_nc_zt=23&_nc_ht=scontent.faep14-2.fna&_nc_gid=MyZbn1Vua0iaj7IYon3xVw&_nc_ss=7a289&oh=00_AQIepZH_Q4oJj0gInJXN8FOxz0hhiu6JXiS_kS9YTq-IYg&oe=6A9D2D20" alt="Cuchas plásticas - Nuevo ingreso" style="width:100%; max-height:60vh; object-fit:contain; border-radius:12px; margin-bottom:14px;">
+    <h2 class="splash-card-title">¡Nuevo ingreso!</h2>
+    <p class="splash-card-text">Ya llegaron las <strong>cuchas plásticas</strong> para perros y gatos.</p>
+    <p class="splash-card-text">Disponibles en tamaño chica, mediana y grande.</p>
     <span class="splash-card-hint">Tocá para cerrar</span>
   </div>
 </div>
 <script>
 (function() {
   var el = document.getElementById('splash-overlay');
-  var ini = new Date('2026-08-27T00:00:00');
-  var fin = new Date('2026-08-31T00:00:00');
+  var ini = new Date('2026-09-01T00:00:00');
+  var fin = new Date('2026-09-11T00:00:00');
   var ahora = new Date();
   if (el && (ahora < ini || ahora >= fin)) el.remove();
 })();
@@ -466,6 +466,10 @@ const productos = [
   {id:"108812",marca:"ACCESORIO",nombre:"Comedero gato",presentacion:"1 u",precio:1183,cat:"accesorio",sub:""},
   {id:"108809",marca:"ACCESORIO",nombre:"Comedero grande",presentacion:"1 u",precio:3097,cat:"accesorio",sub:""},
   {id:"108810",marca:"ACCESORIO",nombre:"Comedero mediano",presentacion:"1 u",precio:1839,cat:"accesorio",sub:""},
+  {id:"108929",marca:"ACCESORIO",nombre:"Cucha Plástica Gato",presentacion:"1 u",precio:39550,cat:"accesorio",sub:""},
+  {id:"108930",marca:"ACCESORIO",nombre:"Cucha Plástica Chica",presentacion:"1 u",precio:49042,cat:"accesorio",sub:""},
+  {id:"108931",marca:"ACCESORIO",nombre:"Cucha Plástica Mediana",presentacion:"1 u",precio:68817,cat:"accesorio",sub:""},
+  {id:"108932",marca:"ACCESORIO",nombre:"Cucha Plástica Grande",presentacion:"1 u",precio:98084,cat:"accesorio",sub:""},
   {id:"108720",marca:"FORRAJE",nombre:"Alpiste",presentacion:"25 kg",precio:51300,cat:"forraje",sub:""},
   {id:"100259",marca:"FORRAJE",nombre:"Arrocín",presentacion:"",precio:24000,cat:"forraje",sub:""},
   {id:"108721",marca:"FORRAJE",nombre:"Canario",presentacion:"25 kg",precio:51300,cat:"forraje",sub:""},
@@ -790,6 +794,10 @@ const imgPorCodigo = {
   '108807': 'https://acdn-us.mitiendanube.com/stores/003/210/212/products/imagenes-web-bd80df56fd37f05bb017477512212963-1024-1024.webp',
   '108805': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2gvyVLI0m15E6OA61lFmdg72Ac9mMWO0VLgsuaz-vuA&s=10',
   '108928': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQKgPEzhKJqr7_FDhvtnk4Hom3ybaAq0QNjsQUZ0_T4Q&s=10',
+  '108929': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRw9yWloI7NxouSBnhESuR2N4mYi-XLC5-nw6ojMIc7g&s=10',
+  '108930': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxgvf-WPN1vOL60R3l_jAK7F2fYJfR1HWQ8orZm9K8evG88J_3DqZ5QaQm&s=10',
+  '108931': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwNVqauJYlMaK0QMIFikN-Enf7mdaIzTGr9LLzQACAVOCGdLbJAofys14&s=10',
+  '108932': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmj9XN1F7Klh3pvB0gopjrt-CBoZcuhYAxYovgN0I3YkWTxZRZLGBLEfU&s=10',
   '108904': 'https://veterinariaaguara.com/wp-content/uploads/2025/07/grisines.webp',
   '108803': 'https://acdn-us.mitiendanube.com/stores/005/315/465/products/02588_1-e3753f3fe99d85353717292175888838-1024-1024.webp',
   '108804': 'https://acdn-us.mitiendanube.com/stores/005/315/465/products/02588_1-e3753f3fe99d85353717292175888838-1024-1024.webp',
@@ -1012,9 +1020,9 @@ function cerrarSplash() {
 }
 setTimeout(cerrarSplash, 6000);
 
-// Anuncio temporal: visible del 27/08/2026 al 30/08/2026 inclusive. Se oculta solo después.
-const ANN_INICIO = new Date('2026-08-27T00:00:00');
-const ANN_FIN = new Date('2026-08-31T00:00:00'); // límite exclusivo (cubre hasta el 30/08 completo)
+// Anuncio temporal: visible del 01/09/2026 al 10/09/2026 inclusive. Se oculta solo después.
+const ANN_INICIO = new Date('2026-09-01T00:00:00');
+const ANN_FIN = new Date('2026-09-11T00:00:00'); // límite exclusivo (cubre hasta el 10/09 completo)
 function cerrarAnuncio() {
   const banner = document.getElementById('announcement-banner');
   if (banner) banner.remove();
