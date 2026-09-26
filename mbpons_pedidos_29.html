@@ -75,6 +75,8 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 .cliente-field label { font-size: 13px; color: var(--muted); display: block; margin-bottom: 6px; font-weight: 500; }
 .cliente-field input { width: 100%; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none; color: var(--text); }
 .cliente-field input:focus { border-color: var(--brand-light); }
+.cliente-field textarea { width: 100%; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none; color: var(--text); resize: vertical; min-height: 70px; }
+.cliente-field textarea:focus { border-color: var(--brand-light); }
 .cart-empty { text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: 14px; }
 .cart-item { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); }
 .cart-item-name { flex: 1; font-size: 13px; line-height: 1.3; }
@@ -132,6 +134,38 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
   .prod-card { padding: 8px 10px; }
   .prod-name { font-size: 11px; }
   .prod-price { font-size: 12px; }
+}
+
+/* ===== Mejoras de lectura en celular ===== */
+@media (max-width: 600px) {
+  .header-inner { height: 60px; }
+  .logo { font-size: 18px; white-space: nowrap; }
+  .cart-btn { font-size: 15px; padding: 10px 12px; white-space: nowrap; }
+  .controls { top: 60px; padding: 10px 12px; }
+  .search-box input { font-size: 16px; padding: 12px 16px 12px 42px; }
+  .filter-row { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 2px; }
+  .filter-row::-webkit-scrollbar { display: none; }
+  .filter-btn { font-size: 14px; padding: 8px 16px; flex-shrink: 0; }
+  .main { padding: 12px; }
+  .section-title { font-size: 15px; color: var(--brand); margin: 1.6rem 0 0.7rem; }
+  .prod-grid { gap: 10px; }
+  .prod-card { padding: 12px; gap: 12px; }
+  .prod-img-wrap, .prod-img { width: 64px; height: 64px; }
+  .prod-brand { font-size: 11px; }
+  .prod-name { font-size: 15px; line-height: 1.35; }
+  .prod-price { font-size: 17px; margin-top: 4px; }
+  .qty-row { gap: 8px; }
+  .qty-btn { width: 38px; height: 38px; font-size: 20px; border-radius: 8px; }
+  .qty-num { font-size: 17px; min-width: 22px; font-weight: 600; }
+  .cliente-field label { font-size: 14px; }
+  .cliente-field input, .cliente-field textarea { font-size: 16px; }
+  .cart-item-name { font-size: 15px; }
+  .cart-item-brand { font-size: 12px; }
+  .cart-item-qty span { font-size: 16px; font-weight: 600; }
+  .cart-item-qty .qty-btn { width: 34px !important; height: 34px !important; font-size: 18px !important; }
+  .cart-item-price { font-size: 15px; }
+  .total-amount { font-size: 24px; }
+  .kg-total-badge { font-size: 14px; padding: 9px 16px; bottom: 16px; }
 }
 </style>
 </head>
@@ -223,6 +257,10 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
     <div class="cliente-field">
       <label>Tu localidad</label>
       <input type="text" id="localidad-cliente" placeholder="Ej: Gualeguaychú, Concepción del Uruguay...">
+    </div>
+    <div class="cliente-field">
+      <label>Comentarios o aclaraciones (opcional)</label>
+      <textarea id="comentarios-cliente" placeholder="Ej: si no hay stock de alguna presentación, enviar la otra..."></textarea>
     </div>
     <div id="cart-items-list"></div>
   </div>
@@ -1043,6 +1081,7 @@ function renderCarrito() {
 function enviarWhatsApp() {
   const nombre = document.getElementById('nombre-cliente').value.trim();
   const localidad = document.getElementById('localidad-cliente').value.trim();
+  const comentarios = document.getElementById('comentarios-cliente').value.trim();
   const items = Object.values(carrito);
   if (!nombre) { alert('Por favor ingresá tu nombre antes de enviar el pedido.'); return; }
   if (!localidad) { alert('Por favor ingresá tu localidad antes de enviar el pedido.'); return; }
@@ -1062,6 +1101,9 @@ function enviarWhatsApp() {
   const totalKgMsg = items.reduce((s, i) => s + parseKgPresentacion(i.presentacion) * i.qty, 0);
   if (totalKgMsg > 0) {
     msg += `\n*Total kg: ${totalKgMsg.toLocaleString('es-AR', {maximumFractionDigits: 1})} kg*`;
+  }
+  if (comentarios) {
+    msg += `\n\n*Comentarios:* ${comentarios}`;
   }
   window.open(`https://wa.me/${numero}?text=${encodeURIComponent(msg)}`, '_blank');
 }
