@@ -292,6 +292,7 @@ const categorias = [
   { id: "hueso", label: "🦴 Huesos y snacks" },
   { id: "accesorio", label: "🏠 Accesorios" },
   { id: "forraje", label: "🌾 Forrajes" },
+  { id: "jardineria", label: "🌱 Jardinería" },
   { id: "granazo", label: "🐄 Granazo" },
 ];
 const productos = [
@@ -562,10 +563,14 @@ const productos = [
   {id:"108895",marca:"FORRAJE",nombre:"Sales Minerales",presentacion:"25 kg",precio:17000,cat:"forraje",sub:""},
   {id:"108723",marca:"FORRAJE",nombre:"Silvestre",presentacion:"25 kg",precio:30000,cat:"forraje",sub:""},
   {id:"108862",marca:"FORRAJE",nombre:"Sustituto Lácteo",presentacion:"25 kg",precio:140000,cat:"forraje",sub:""},
-  {id:"108901",marca:"CÉSPED",nombre:"Fertilizante Sulfato de Hierro",presentacion:"1 kg",precio:5000,cat:"forraje",sub:""},
-  {id:"108898",marca:"CÉSPED",nombre:"Campos Deportivos",presentacion:"500 g",precio:5000,cat:"forraje",sub:""},
-  {id:"108900",marca:"CÉSPED",nombre:"Fertilizante 15-15-15",presentacion:"1 kg",precio:5000,cat:"forraje",sub:""},
-  {id:"108899",marca:"CÉSPED",nombre:"Jardín",presentacion:"500 g",precio:5000,cat:"forraje",sub:""},
+  {id:"108901",marca:"CÉSPED",nombre:"Fertilizante Sulfato de Hierro",presentacion:"1 kg",precio:8000,cat:"jardineria",sub:""},
+  {id:"108898",marca:"CÉSPED",nombre:"Campos Deportivos",presentacion:"500 g",precio:8000,cat:"jardineria",sub:""},
+  {id:"108900",marca:"CÉSPED",nombre:"Fertilizante 15-15-15",presentacion:"1 kg",precio:8000,cat:"jardineria",sub:""},
+  {id:"108899",marca:"CÉSPED",nombre:"Jardín",presentacion:"500 g",precio:8000,cat:"jardineria",sub:""},
+  {id:"J0001",marca:"TIERRA",nombre:"Tierra abonada",presentacion:"40 dm³",precio:6000,cat:"jardineria",sub:""},
+  {id:"J0002",marca:"TIERRA",nombre:"Tierra abonada",presentacion:"25 dm³",precio:4200,cat:"jardineria",sub:""},
+  {id:"J0003",marca:"TIERRA",nombre:"Tierra abonada",presentacion:"10 dm³",precio:3150,cat:"jardineria",sub:""},
+  {id:"J0004",marca:"TIERRA",nombre:"Tierra abonada",presentacion:"5 dm³",precio:2700,cat:"jardineria",sub:""},
   {id:"100280",marca:"GRANAZO",nombre:"Bebé Doméstico",presentacion:"25 kg",precio:23374.44,cat:"granazo",sub:""},
   {id:"100291",marca:"GRANAZO",nombre:"Bloque Proteico 35%",presentacion:"15 kg",precio:22113.41,cat:"granazo",sub:""},
   {id:"100288",marca:"GRANAZO",nombre:"Borrego Exposición",presentacion:"25 kg",precio:21252.60,cat:"granazo",sub:""},
@@ -928,7 +933,7 @@ const prodImgs = {
     'gato_kitten':    'https://oldprince.com.ar/wp-content/uploads/2023/06/Mockup_Equilibrium-Kitten-300x500.png',
   },
 };
-const catEmoji = { perro: '🐶', gato: '🐱', hueso: '🦴', accesorio: '🏠', forraje: '🌾', granazo: '🐄' };
+const catEmoji = { perro: '🐶', gato: '🐱', hueso: '🦴', accesorio: '🏠', forraje: '🌾', jardineria: '🌱', granazo: '🐄' };
 function getProdImg(p) {
   if (imgPorCodigo[p.id]) return imgPorCodigo[p.id];
   const m = prodImgs[p.marca];
