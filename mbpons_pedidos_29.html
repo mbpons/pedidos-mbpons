@@ -219,29 +219,6 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
     </button>
   </div>
 </header>
-<div class="announcement-banner" id="announcement-banner">
-  <span class="ann-tag">Aviso de precios</span>
-  <span class="ann-icon">📢</span> <strong>AGROCAN aumenta un 10%</strong>: se toman pedidos a precio viejo hasta el <strong>30/9</strong>.<br>
-  Nuevos precios vigentes con <strong>6% de aumento</strong> en <strong>ADVANCE, GUARDIAN, DONDOG, MIAU, FANDOG, RINTY y NUTRI KING</strong>.
-  <button class="ann-close" onclick="document.getElementById('announcement-banner').remove()" aria-label="Cerrar aviso">✕</button>
-</div>
-<script>
-(function() {
-  var el = document.getElementById('announcement-banner');
-  if (!el) return;
-  var ahora = new Date();
-  var aviso2Ini = new Date('2026-10-01T00:00:00');
-  var aviso2Fin = new Date('2026-10-08T00:00:00');
-  if (ahora >= aviso2Ini && ahora < aviso2Fin) {
-    el.innerHTML =
-      '<span class="ann-tag">Aviso de precios</span>' +
-      '<span class="ann-icon">📢</span> Nuevos precios de <strong>AGROCAN</strong> vigentes con <strong>10% de aumento</strong>.' +
-      '<button class="ann-close" onclick="document.getElementById(\'announcement-banner\').remove()" aria-label="Cerrar aviso">✕</button>';
-  } else if (ahora >= aviso2Fin) {
-    el.remove();
-  }
-})();
-</script>
 <div class="controls">
   <div class="controls-inner">
     <div class="search-box">
