@@ -192,7 +192,23 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
   var aviso2Ini = new Date('2026-10-01T00:00:00');
   var aviso2Fin = new Date('2026-10-03T00:00:00');
   var guardianIni = new Date('2026-10-03T00:00:00');
-  if (ahora >= guardianIni) {  // queda vigente hasta nuevo aviso
+  var apAviso1Fin = new Date('2026-10-22T00:00:00');
+  var apAviso2Fin = new Date('2026-10-26T00:00:00');
+  if (ahora < apAviso1Fin && ahora >= guardianIni) {
+    el.querySelector('.splash-card').innerHTML =
+      '<span class="splash-card-tag">Aviso de precios</span>' +
+      '<div class="splash-card-icon">📢</div>' +
+      '<h2 class="splash-card-title">Actualización de precios</h2>' +
+      '<p class="splash-card-text"><strong>AP aumenta un 7%</strong>.<br>Se toman pedidos a precio viejo hasta el <strong>21/10</strong>.</p>' +
+      '<span class="splash-card-hint">Tocá para cerrar</span>';
+  } else if (ahora >= apAviso1Fin && ahora < apAviso2Fin) {
+    el.querySelector('.splash-card').innerHTML =
+      '<span class="splash-card-tag">Aviso de precios</span>' +
+      '<div class="splash-card-icon">📢</div>' +
+      '<h2 class="splash-card-title">Actualización de precios</h2>' +
+      '<p class="splash-card-text">Nuevos precios de <strong>AP</strong> vigentes con <strong>7% de aumento</strong>.</p>' +
+      '<span class="splash-card-hint">Tocá para cerrar</span>';
+  } else if (ahora >= guardianIni) {  // queda vigente hasta nuevo aviso
     var card = el.querySelector('.splash-card');
     card.classList.add('splash-ad');
     card.innerHTML =
@@ -599,6 +615,10 @@ const productos = [
 // Aumento automático AGROCAN +10% desde el 1/10/2026
 if (new Date() >= new Date('2026-10-01T00:00:00')) {
   productos.forEach(p => { if (p.marca === 'AGROCAN') p.precio = Math.round(p.precio * 1.10 * 100) / 100; });
+}
+// Aumento automático AP +7% desde el 22/10/2026
+if (new Date() >= new Date('2026-10-22T00:00:00')) {
+  productos.forEach(p => { if (p.marca === 'AP') p.precio = Math.round(p.precio * 1.07 * 100) / 100; });
 }
 let carrito = {};
 let catActual = "todos";
