@@ -105,6 +105,19 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 .splash-card.splash-ad { background: #fff; border: none; padding: 0; overflow: hidden; max-width: 440px; position: relative; }
 .splash-card.splash-ad img { display: block; width: 100%; height: auto; }
 .splash-card.splash-ad .splash-card-hint { margin: 0; padding: 10px; background: #fff; }
+.splash-card.splash-promo { max-width: 460px; padding: 22px 18px 18px; }
+.splash-promo .splash-card-title { font-size: 25px; margin-bottom: 4px; }
+.promo-sub { font-size: 14px; color: var(--muted); margin-bottom: 14px; }
+.promo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+.promo-item { background: #fff; border: 1.5px solid var(--border); border-radius: 12px; padding: 10px 8px; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.promo-item img { width: 100%; height: 110px; object-fit: contain; }
+.promo-item .pi-emoji { font-size: 48px; height: 110px; display: none; align-items: center; justify-content: center; }
+.promo-item .pi-name { font-size: 12.5px; font-weight: 600; color: var(--text); line-height: 1.3; }
+.promo-item .pi-pres { font-size: 12px; color: var(--muted); }
+.promo-item .pi-price { font-size: 15px; font-weight: 700; color: var(--brand); }
+.promo-new-badge { display: inline-block; background: var(--danger); color: #fff; font-size: 10px; font-weight: 800; letter-spacing: 0.06em; padding: 2px 7px; border-radius: 10px; }
+.promo-cta { width: 100%; padding: 12px; background: var(--brand); color: #fff; border: none; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer; }
+.promo-cta:hover { background: var(--brand-light); }
 .announcement-banner { background: linear-gradient(135deg, var(--danger) 0%, #8f2a1e 100%); color: #fff; padding: 16px 48px 16px 16px; position: relative; font-size: 17px; font-weight: 700; line-height: 1.55; text-align: center; border-bottom: 3px solid var(--accent); box-shadow: 0 2px 10px rgba(0,0,0,0.18); }
 .announcement-banner .ann-tag { display: inline-block; background: var(--accent); color: var(--brand); font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; padding: 3px 10px; border-radius: 4px; margin-right: 8px; vertical-align: middle; }
 .announcement-banner .ann-icon { display: inline-block; animation: ann-bounce 1.6s ease-in-out infinite; }
@@ -196,7 +209,53 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
   var apAviso2Fin = new Date('2026-10-26T00:00:00');
   var nov1Ini = new Date('2026-11-02T00:00:00');
   var nov1Fin = new Date('2026-11-08T00:00:00');
-  if (ahora >= nov1Ini && ahora < nov1Fin) {
+  var nuevosOPIni = new Date('2026-11-10T00:00:00');
+  var nuevosOPFin = new Date('2026-12-01T00:00:00');
+  if (ahora >= nuevosOPIni && ahora < nuevosOPFin) {
+    var cardP = el.querySelector('.splash-card');
+    cardP.classList.add('splash-promo');
+    cardP.innerHTML =
+      '<span class="splash-card-tag">Nuevos productos</span>' +
+      '<h2 class="splash-card-title">¡Llegó más OLD PRINCE!</h2>' +
+      '<p class="promo-sub">Nuevas presentaciones ya disponibles para pedir</p>' +
+      '<div class="promo-grid">' +
+      '<div class="promo-item">' +
+        '<img src="https://baires-sa.com.ar/img_productos/Render%20Gato%20Premium.png" alt="" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">' +
+        '<div class="pi-emoji">🐱</div>' +
+        '<span class="promo-new-badge">NUEVO</span>' +
+        '<span class="pi-name">Premium Gato Adulto</span>' +
+        '<span class="pi-pres">15 kg</span>' +
+        '<span class="pi-price" data-pid="2.12.82"></span>' +
+      '</div>' +
+      '<div class="promo-item">' +
+        '<img src="https://baires-sa.com.ar/img_productos/Render%20Gato%20Equilibrium%20Adulto.png" alt="" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">' +
+        '<div class="pi-emoji">🐱</div>' +
+        '<span class="promo-new-badge">NUEVO</span>' +
+        '<span class="pi-name">Equilibrium Gato Adulto Complete</span>' +
+        '<span class="pi-pres">15 kg</span>' +
+        '<span class="pi-price" data-pid="2.12.83"></span>' +
+      '</div>' +
+      '<div class="promo-item">' +
+        '<img src="https://baires-sa.com.ar/img_productos/Premium%20Adulto%20Pequeno.png" alt="" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">' +
+        '<div class="pi-emoji">🐶</div>' +
+        '<span class="promo-new-badge">NUEVO</span>' +
+        '<span class="pi-name">Premium Adulto Cordero Mord. Pequeña</span>' +
+        '<span class="pi-pres">15 kg</span>' +
+        '<span class="pi-price" data-pid="2.11.190"></span>' +
+      '</div>' +
+      '<div class="promo-item">' +
+        '<img src="https://baires-sa.com.ar/img_productos/Premium%20Adulto%20Pequeno.png" alt="" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">' +
+        '<div class="pi-emoji">🐶</div>' +
+        '<span class="promo-new-badge">NUEVO</span>' +
+        '<span class="pi-name">Premium Adulto Cordero Mord. Pequeña</span>' +
+        '<span class="pi-pres">3 kg</span>' +
+        '<span class="pi-price" data-pid="2.11.189"></span>' +
+      '</div>' +
+      '</div>' +
+      '<button class="promo-cta" onclick="event.stopPropagation(); verNuevosOP()">Ver en el catálogo →</button>' +
+      '<span class="splash-card-hint">Tocá afuera para cerrar</span>';
+    cardP.onclick = function(e) { e.stopPropagation(); };
+  } else if (ahora >= nov1Ini && ahora < nov1Fin) {
     el.querySelector('.splash-card').innerHTML =
       '<span class="splash-card-tag">Aviso de precios</span>' +
       '<div class="splash-card-icon">📢</div>' +
@@ -1154,7 +1213,18 @@ function cerrarSplash() {
   el.classList.add('hide');
   setTimeout(() => el.remove(), 400);
 }
-setTimeout(cerrarSplash, 6000);
+document.querySelectorAll('.pi-price[data-pid]').forEach(el => {
+  const p = productos.find(x => x.id === el.dataset.pid);
+  if (p) el.textContent = '$' + Math.round(p.precio).toLocaleString('es-AR');
+});
+function verNuevosOP() {
+  cerrarSplash();
+  const b = document.getElementById('buscar');
+  b.value = 'old prince';
+  renderAll();
+  window.scrollTo(0, 0);
+}
+setTimeout(cerrarSplash, document.querySelector('.splash-promo') ? 15000 : 6000);
 </script>
 </body>
 </html>
