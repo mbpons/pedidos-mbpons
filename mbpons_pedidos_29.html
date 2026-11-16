@@ -211,7 +211,16 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
   var nov1Fin = new Date('2026-11-08T00:00:00');
   var nuevosOPIni = new Date('2026-11-10T00:00:00');
   var nuevosOPFin = new Date('2026-12-01T00:00:00');
-  if (ahora >= nuevosOPIni && ahora < nuevosOPFin) {
+  var granazoIni = new Date('2026-11-16T00:00:00');
+  var granazoFin = new Date('2026-11-23T00:00:00');
+  if (ahora >= granazoIni && ahora < granazoFin) {
+    el.querySelector('.splash-card').innerHTML =
+      '<span class="splash-card-tag">Aviso de precios</span>' +
+      '<div class="splash-card-icon">📢</div>' +
+      '<h2 class="splash-card-title">Actualización de precios</h2>' +
+      '<p class="splash-card-text">Nuevos precios vigentes en toda la línea <strong>GRANAZO</strong>.</p>' +
+      '<span class="splash-card-hint">Tocá para cerrar</span>';
+  } else if (ahora >= nuevosOPIni && ahora < nuevosOPFin) {
     var cardP = el.querySelector('.splash-card');
     cardP.classList.add('splash-promo');
     cardP.innerHTML =
