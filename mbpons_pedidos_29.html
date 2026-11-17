@@ -341,7 +341,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
     </div>
     <div class="cliente-field">
       <label>Comentarios o aclaraciones (opcional)</label>
-      <textarea id="comentarios-cliente" placeholder="Ej: si no hay stock de alguna presentación, enviar la otra..."></textarea>
+      <textarea id="comentarios-cliente" placeholder="Ej: talle de las botas, si no hay stock de alguna presentación enviar la otra..."></textarea>
     </div>
     <div id="cart-items-list"></div>
   </div>
@@ -372,6 +372,7 @@ const categorias = [
   { id: "gato", label: "🐱 Gatos" },
   { id: "hueso", label: "🦴 Huesos y snacks" },
   { id: "accesorio", label: "🏠 Accesorios" },
+  { id: "ropa", label: "👢 Ropa de trabajo" },
   { id: "forraje", label: "🌾 Forrajes" },
   { id: "jardineria", label: "🌱 Jardinería" },
   { id: "granazo", label: "🐄 Granazo" },
@@ -644,8 +645,8 @@ const productos = [
   {id:"108721",marca:"FORRAJE",nombre:"Canario",presentacion:"25 kg",precio:51300,cat:"forraje",sub:""},
   {id:"108896",marca:"FORRAJE",nombre:"Conejo Gazapo",presentacion:"25 kg",precio:19000,cat:"forraje",sub:""},
   {id:"108724",marca:"FORRAJE",nombre:"Girasol",presentacion:"20 kg",precio:21000,cat:"forraje",sub:""},
-  {id:"108718",marca:"FORRAJE",nombre:"Maíz Entero",presentacion:"25 kg",precio:14000,cat:"forraje",sub:""},
-  {id:"108719",marca:"FORRAJE",nombre:"Maíz Quebrado",presentacion:"25 kg",precio:15000,cat:"forraje",sub:""},
+  {id:"108718",marca:"FORRAJE",nombre:"Maíz Entero",presentacion:"25 kg",precio:15000,cat:"forraje",sub:""},
+  {id:"108719",marca:"FORRAJE",nombre:"Maíz Quebrado",presentacion:"25 kg",precio:16250,cat:"forraje",sub:""},
   {id:"108722",marca:"FORRAJE",nombre:"Mijo",presentacion:"25 kg",precio:30000,cat:"forraje",sub:""},
   {id:"108863",marca:"FORRAJE",nombre:"Pellets de Madera para Gatos",presentacion:"14 kg",precio:12000,cat:"forraje",sub:""},
   {id:"108861",marca:"FORRAJE",nombre:"Pajaro Pelletado Amarillo",presentacion:"25 kg",precio:23000,cat:"forraje",sub:""},
@@ -661,6 +662,8 @@ const productos = [
   {id:"J0002",marca:"TIERRA",nombre:"Tierra abonada",presentacion:"25 dm³",precio:4200,cat:"jardineria",sub:""},
   {id:"J0003",marca:"TIERRA",nombre:"Tierra abonada",presentacion:"10 dm³",precio:3150,cat:"jardineria",sub:""},
   {id:"J0004",marca:"TIERRA",nombre:"Tierra abonada",presentacion:"5 dm³",precio:2700,cat:"jardineria",sub:""},
+  {id:"R0001",marca:"OMBÚ",nombre:"Bota tipo náutica PVC",presentacion:"Talles 38 al 45",precio:36000,cat:"ropa",sub:""},
+  {id:"R0002",marca:"OMBÚ",nombre:"Bota Urbana caña alta",presentacion:"Talles 38 al 45",precio:28000,cat:"ropa",sub:""},
   {id:"100280",marca:"GRANAZO",nombre:"Bebé Doméstico",presentacion:"25 kg",precio:24338.69,cat:"granazo",sub:""},
   {id:"100291",marca:"GRANAZO",nombre:"Bloque Proteico 35%",presentacion:"15 kg",precio:22797.36,cat:"granazo",sub:""},
   {id:"100288",marca:"GRANAZO",nombre:"Borrego Exposición",presentacion:"25 kg",precio:21148.50,cat:"granazo",sub:""},
@@ -713,6 +716,8 @@ categorias.forEach(c => {
   fr.appendChild(b);
 });
 const imgPorCodigo = {
+  'R0001': 'https://www.casajonas.com.ar//productos/109/varios/calzado-general/Ombu/images/productos_galerias/OMBOTANA/big_01.jpg',
+  'R0002': 'https://acdn-us.mitiendanube.com/stores/006/644/699/products/bota-urb-99ffff2931460622af17733371049062-1024-1024.webp',
   '2.12.82': 'https://baires-sa.com.ar/img_productos/Render%20Gato%20Premium.png',
   '2.12.83': 'https://baires-sa.com.ar/img_productos/Render%20Gato%20Equilibrium%20Adulto.png',
   '2.11.190': 'https://baires-sa.com.ar/img_productos/Premium%20Adulto%20Pequeno.png',
@@ -1036,7 +1041,7 @@ const prodImgs = {
     'gato_kitten':    'https://oldprince.com.ar/wp-content/uploads/2023/06/Mockup_Equilibrium-Kitten-300x500.png',
   },
 };
-const catEmoji = { perro: '🐶', gato: '🐱', hueso: '🦴', accesorio: '🏠', forraje: '🌾', jardineria: '🌱', granazo: '🐄' };
+const catEmoji = { perro: '🐶', gato: '🐱', hueso: '🦴', accesorio: '🏠', ropa: '👢', forraje: '🌾', jardineria: '🌱', granazo: '🐄' };
 function getProdImg(p) {
   if (imgPorCodigo[p.id]) return imgPorCodigo[p.id];
   const m = prodImgs[p.marca];
